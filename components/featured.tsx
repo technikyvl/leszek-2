@@ -18,8 +18,15 @@ export default function Featured() {
           Profesjonalna fotografia ślubna, sesje narzeczeńskie i wideofilmowanie. 
           Każde zdjęcie to opowieść o Waszej miłości, uchwycona w najpiękniejszy sposób.
         </p>
-        <button className="bg-black text-white border border-black px-4 py-2 text-sm transition-all duration-300 hover:bg-white hover:text-black cursor-pointer w-fit">
-          ZOBACZ WIĘCEJ
+        <button 
+          onClick={() => {
+            document.getElementById('contact')?.scrollIntoView({ 
+              behavior: 'smooth' 
+            });
+          }}
+          className="bg-black text-white border border-black px-4 py-2 text-sm transition-all duration-300 hover:bg-white hover:text-black cursor-pointer w-fit"
+        >
+          UMÓW SESJĘ
         </button>
       </div>
     </div>

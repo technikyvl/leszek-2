@@ -2,7 +2,7 @@ import { FocusCardsDemo } from "@/components/ui/focus-cards-demo";
 
 export default function About() {
   return (
-    <section className="min-h-screen bg-white py-20 px-6">
+    <section id="about" className="min-h-screen bg-white py-20 px-6">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl md:text-6xl font-bold mb-8 text-neutral-900">Najbliższy fotograf od urzędu</h2>
         <div className="grid md:grid-cols-2 gap-12 mb-16">

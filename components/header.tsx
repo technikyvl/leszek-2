@@ -6,12 +6,16 @@ export default function Header() {
       <div className="flex justify-between items-center">
         <div className="text-black text-sm uppercase tracking-wide font-bold">leszek jakieła</div>
         <nav className="flex gap-8">
-          <Link
-            href="/about"
-            className="text-black hover:text-neutral-600 transition-colors duration-300 uppercase text-sm font-medium"
+          <button
+            onClick={() => {
+              document.getElementById('about')?.scrollIntoView({ 
+                behavior: 'smooth' 
+              });
+            }}
+            className="text-black hover:text-neutral-600 transition-colors duration-300 uppercase text-sm font-medium cursor-pointer"
           >
             O Mnie
-          </Link>
+          </button>
           <button
             onClick={() => {
               document.getElementById('contact')?.scrollIntoView({ 
@@ -20,7 +24,7 @@ export default function Header() {
             }}
             className="text-black hover:text-neutral-600 transition-colors duration-300 uppercase text-sm font-medium cursor-pointer"
           >
-            Contact
+            Kontakt
           </button>
         </nav>
       </div>
