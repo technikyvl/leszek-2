@@ -1,9 +1,11 @@
+import { FocusCardsDemo } from "@/components/ui/focus-cards-demo";
+
 export default function About() {
   return (
     <section className="min-h-screen bg-white py-20 px-6">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl md:text-6xl font-bold mb-8 text-neutral-900">O Mnie</h2>
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid md:grid-cols-2 gap-12 mb-16">
           <div>
             <p className="text-lg text-neutral-700 leading-relaxed mb-6">
               Jestem Leszek Jakieła, profesjonalny fotograf ślubny z Raciborza. Od lat specjalizuję się w fotografii 
@@ -23,6 +25,12 @@ export default function About() {
               Zapraszam do współpracy - razem stworzymy piękne wspomnienia, które będą cieszyć Was przez długie lata.
             </p>
           </div>
+        </div>
+        
+        {/* Focus Cards Gallery */}
+        <div className="mb-16">
+          <h3 className="text-2xl md:text-3xl font-bold mb-8 text-neutral-900 text-center">Moje Usługi</h3>
+          <FocusCardsDemo />
         </div>
       </div>
     </section>
