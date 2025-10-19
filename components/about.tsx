@@ -8,22 +8,21 @@ export default function About() {
         <div className="grid md:grid-cols-2 gap-12 mb-16">
           <div>
             <p className="text-lg text-neutral-700 leading-relaxed mb-6">
-              Jestem Leszek Jakieła, profesjonalny fotograf z Raciborza. Oferuję kompleksowe usługi fotograficzne 
-              dla firm, par młodych oraz osób potrzebujących zdjęć do dokumentów.
+              Nie ma znaczenia, czy potrzebujesz eleganckiego portretu biznesowego, wyjątkowych zdjęć ze ślubu, czy po prostu nowych fotografii do dokumentów.
+            </p>
+            <p className="text-lg text-neutral-700 leading-relaxed mb-6">
+              Wszystko sprowadza się do jednego — chcesz wyglądać dobrze i czuć się swobodnie przed obiektywem. I właśnie w tym pomagam.
             </p>
             <p className="text-lg text-neutral-700 leading-relaxed">
-              Specjalizuję się w fotografii biznesowej, ślubnej oraz zdjęciach do dokumentów. 
-              Każde zlecenie wykonuję z najwyższą starannością i profesjonalizmem.
+              Od ponad 10 lat fotografuję ludzi w Raciborzu i okolicach – przedsiębiorców, zakochane pary, rodziny, każdego, kto chce zatrzymać chwilę na dłużej.
             </p>
           </div>
           <div>
             <p className="text-lg text-neutral-700 leading-relaxed mb-6">
-              Moje usługi obejmują: fotografie biznesowe dla firm i korporacji, profesjonalną fotografię ślubną 
-              oraz zdjęcia do dokumentów (dowód osobisty, paszport, legitymacja).
+              Nie lubię sztuczności. Lubię prawdziwe emocje, naturalne światło i spokój, który sprawia, że nawet najbardziej nieśmiała osoba potrafi się uśmiechnąć.
             </p>
             <p className="text-lg text-neutral-700 leading-relaxed">
-              Pracuję z nowoczesnym sprzętem fotograficznym i zapewniam szybką realizację zleceń. 
-              Zapraszam do współpracy - jestem najbliższym fotografem od urzędu!
+              Fotografuję z uważnością i cierpliwością – tak, abyś na zdjęciach pozostał sobą, w najlepszym wydaniu.
             </p>
           </div>
         </div>
