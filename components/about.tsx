@@ -8,21 +8,25 @@ export default function About() {
         <div className="grid md:grid-cols-2 gap-12 mb-16">
           <div>
             <p className="text-lg text-neutral-700 leading-relaxed mb-6">
-              Nie ma znaczenia, czy potrzebujesz eleganckiego portretu biznesowego, wyjątkowych zdjęć ze ślubu, czy po prostu nowych fotografii do dokumentów.
+              Przede wszystkim specjalizuję się w zdjęciach do dokumentów – dowód osobisty, paszport, prawo jazdy, legitymacja studencka. 
+              Wszystko, czego potrzebujesz do urzędowych spraw.
             </p>
             <p className="text-lg text-neutral-700 leading-relaxed mb-6">
-              Wszystko sprowadza się do jednego — chcesz wyglądać dobrze i czuć się swobodnie przed obiektywem. I właśnie w tym pomagam.
+              Dodatkowo oferuję profesjonalną fotografię biznesową – portrety firmowe, zdjęcia korporacyjne, sesje dla przedsiębiorców.
             </p>
             <p className="text-lg text-neutral-700 leading-relaxed">
-              Od ponad 10 lat fotografuję ludzi w Raciborzu i okolicach – przedsiębiorców, zakochane pary, rodziny, każdego, kto chce zatrzymać chwilę na dłużej.
+              Moje studio znajduje się tuż obok urzędu, więc nie musisz już biegać po całym mieście. 
+              Szybko, profesjonalnie, w dobrej cenie.
             </p>
           </div>
           <div>
             <p className="text-lg text-neutral-700 leading-relaxed mb-6">
-              Nie lubię sztuczności. Lubię prawdziwe emocje, naturalne światło i spokój, który sprawia, że nawet najbardziej nieśmiała osoba potrafi się uśmiechnąć.
+              Od ponad 10 lat fotografuję ludzi w Raciborzu i okolicach. Znam wymagania urzędów i wiem, 
+              jak zrobić zdjęcie, które zostanie zaakceptowane za pierwszym razem.
             </p>
             <p className="text-lg text-neutral-700 leading-relaxed">
-              Fotografuję z uważnością i cierpliwością – tak, abyś na zdjęciach pozostał sobą, w najlepszym wydaniu.
+              Pracuję z nowoczesnym sprzętem, zapewniam odpowiednie oświetlenie i tło. 
+              Nawet paszportowe zdjęcie może wyglądać dobrze!
             </p>
           </div>
         </div>
