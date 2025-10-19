@@ -10,7 +10,7 @@ export default function Header() {
             href="/about"
             className="text-white hover:text-neutral-400 transition-colors duration-300 uppercase text-sm"
           >
-            About
+            O Mnie
           </Link>
           <Link
             href="/contact"
