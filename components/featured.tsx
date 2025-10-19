@@ -18,9 +18,7 @@ export default function Featured() {
           Nie musisz już biegać po całym mieście, żeby zrobić zdjęcia do dokumentów.
           Moje studio znajduje się tuż obok urzędu, gdzie wyrabiasz dowód osobisty, prawo jazdy, paszport czy inne dokumenty.
         </p>
-        <p className="text-xl lg:text-2xl mb-8">
-          Każde zdjęcie to Twoja historia – ślubna, zawodowa, codzienna. Nawet paszportowe może wyglądać dobrze.
-        </p>
+        
         <button 
           onClick={() => {
             document.getElementById('contact')?.scrollIntoView({ 
