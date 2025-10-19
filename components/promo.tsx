@@ -29,8 +29,8 @@ export default function Section() {
       </h3>
 
       <p className="absolute bottom-12 right-6 text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-5xl z-10">
-        Każde zdjęcie to opowieść o miłości. Uchwytam najważniejsze momenty Waszego dnia, 
-        tworząc wspomnienia, które będą cieszyć Was przez całe życie.
+        Każde zdjęcie to Twoja historia – ślubna, zawodowa, codzienna.
+        Nawet paszportowe może wyglądać dobrze.
       </p>
     </div>
   )
