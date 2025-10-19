@@ -23,7 +23,7 @@ export default function Gallery() {
   return (
     <section className="min-h-screen bg-neutral-100 py-20 px-6">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl md:text-6xl font-bold mb-12 text-neutral-900">Our Work</h2>
+        <h2 className="text-4xl md:text-6xl font-bold mb-12 text-neutral-900">Moja Praca</h2>
         <div className="grid md:grid-cols-2 gap-6">
           {images.map((image, index) => (
             <div key={index} className="relative aspect-[4/3] overflow-hidden rounded-lg">

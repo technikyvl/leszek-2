@@ -25,13 +25,13 @@ export default function Hero() {
         />
         <div className="absolute inset-0 flex items-center justify-start z-10">
           <div className="text-left text-white max-w-3xl px-6">
-            <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">Where Ideas Learn to Breathe</h1>
+            <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">Fotografia Ślubna w Raciborzu</h1>
             <p className="text-sm md:text-base leading-relaxed mb-8">
-              A landing space for bold experiments, half-finished thoughts, and sparks of inspiration. Built to grow,
-              adapt, and surprise—just like the projects you're about to launch.
+              Profesjonalna fotografia ślubna i wideofilmowanie. Uchwytam najpiękniejsze chwile Waszego dnia, 
+              tworząc wspomnienia, które będą towarzyszyć Wam przez całe życie.
             </p>
             <button className="px-4 py-2 border-2 border-white bg-transparent text-white text-sm transition-all duration-300 hover:bg-white hover:text-black cursor-pointer">
-              GET STARTED
+              ZOBACZ OFERTĘ
             </button>
           </div>
         </div>

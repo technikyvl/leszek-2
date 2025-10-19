@@ -11,53 +11,53 @@ export default function Footer() {
           <div className="bg-neutral-900 py-4 sm:py-6 lg:py-8 px-4 sm:px-6 h-full w-full flex flex-col justify-between">
             <div className="flex shrink-0 gap-8 sm:gap-12 lg:gap-20">
               <div className="flex flex-col gap-1 sm:gap-2">
-                <h3 className="mb-1 sm:mb-2 uppercase text-neutral-400 text-xs sm:text-sm">About</h3>
+                <h3 className="mb-1 sm:mb-2 uppercase text-neutral-400 text-xs sm:text-sm">O Mnie</h3>
                 <Link
-                  href="/projects"
+                  href="/galeria"
                   className="text-white hover:text-neutral-400 transition-colors duration-300 text-sm sm:text-base"
                 >
-                  Projects
+                  Galeria
                 </Link>
                 <Link
-                  href="/mission"
+                  href="/oferta"
                   className="text-white hover:text-neutral-400 transition-colors duration-300 text-sm sm:text-base"
                 >
-                  Our Mission
+                  Oferta
                 </Link>
                 <Link
-                  href="/contact"
+                  href="/kontakt"
                   className="text-white hover:text-neutral-400 transition-colors duration-300 text-sm sm:text-base"
                 >
-                  Contact Us
+                  Kontakt
                 </Link>
               </div>
               <div className="flex flex-col gap-1 sm:gap-2">
-                <h3 className="mb-1 sm:mb-2 uppercase text-neutral-400 text-xs sm:text-sm">Education</h3>
+                <h3 className="mb-1 sm:mb-2 uppercase text-neutral-400 text-xs sm:text-sm">Usługi</h3>
                 <Link
-                  href="/news"
+                  href="/fotografia-slubna"
                   className="text-white hover:text-neutral-400 transition-colors duration-300 text-sm sm:text-base"
                 >
-                  News
+                  Fotografia Ślubna
                 </Link>
                 <Link
-                  href="/learn"
+                  href="/wideofilmowanie"
                   className="text-white hover:text-neutral-400 transition-colors duration-300 text-sm sm:text-base"
                 >
-                  Learn
+                  Wideofilmowanie
                 </Link>
                 <Link
-                  href="/publications"
+                  href="/sesje-zdjeciowe"
                   className="text-white hover:text-neutral-400 transition-colors duration-300 text-sm sm:text-base"
                 >
-                  Publications
+                  Sesje Zdjęciowe
                 </Link>
               </div>
             </div>
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 sm:gap-0">
               <h1 className="text-[18vw] sm:text-[16vw] lg:text-[14vw] leading-[0.8] mt-4 sm:mt-6 lg:mt-10 text-white font-bold tracking-tight">
-                RESEARCH
+                LESZEK JAKIEŁA
               </h1>
-              <p className="text-white text-sm sm:text-base">©copyright</p>
+              <p className="text-white text-sm sm:text-base">© 2024 Leszek Jakieła - Fotografia Ślubna Racibórz</p>
             </div>
           </div>
         </div>
