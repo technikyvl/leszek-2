@@ -26,16 +26,19 @@ export default function Hero() {
         <div className="absolute inset-0 flex items-end justify-start z-10">
           <div className="text-left text-white px-6 pb-8">
             <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight uppercase">Fotografia na Każdą Okazję - Racibórz</h1>
-            <button 
-              onClick={() => {
-                document.getElementById('contact')?.scrollIntoView({ 
-                  behavior: 'smooth' 
-                });
-              }}
-              className="px-4 py-2 border-2 border-white bg-transparent text-white text-sm transition-all duration-300 hover:bg-white hover:text-black cursor-pointer"
-            >
-              SKONTAKTUJ SIĘ TERAZ
-            </button>
+            <div className="flex items-center gap-4">
+              <button 
+                onClick={() => {
+                  document.getElementById('contact')?.scrollIntoView({ 
+                    behavior: 'smooth' 
+                  });
+                }}
+                className="px-4 py-2 border-2 border-white bg-transparent text-white text-sm transition-all duration-300 hover:bg-white hover:text-black cursor-pointer"
+              >
+                SKONTAKTUJ SIĘ TERAZ
+              </button>
+              <span className="text-white text-xs md:text-sm opacity-90">Długa 6, 47-400 Racibórz</span>
+            </div>
           </div>
         </div>
       </motion.div>
