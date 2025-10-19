@@ -15,8 +15,8 @@ export default function Featured() {
       <div className="flex-1 text-left lg:h-[800px] flex flex-col justify-center lg:mr-12 lg:order-1">
         <h3 className="uppercase mb-4">Usługi Fotograficzne</h3>
         <p className="text-2xl lg:text-4xl mb-8">
-          Profesjonalna fotografia ślubna, sesje narzeczeńskie i wideofilmowanie. 
-          Każde zdjęcie to opowieść o Waszej miłości, uchwycona w najpiękniejszy sposób.
+          Nie musisz już biegać po całym mieście, żeby zrobić zdjęcia do dokumentów.
+          Moje studio znajduje się tuż obok urzędu, gdzie wyrabiasz dowód osobisty, prawo jazdy, paszport czy inne dokumenty.
         </p>
         <button 
           onClick={() => {
