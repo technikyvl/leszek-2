@@ -21,7 +21,7 @@ export const Contact2 = ({
   web = { label: "shadcnblocks.com", url: "https://shadcnblocks.com" },
 }: Contact2Props) => {
   return (
-    <section className="py-32">
+    <section id="contact" className="py-32">
       <div className="container">
         <div className="mx-auto flex max-w-screen-xl flex-col justify-between gap-10 lg:flex-row lg:gap-20">
           <div className="mx-auto flex max-w-sm flex-col justify-between gap-10">
