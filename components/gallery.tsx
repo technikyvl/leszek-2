@@ -3,20 +3,20 @@ import Image from "next/image"
 export default function Gallery() {
   const images = [
     {
-      src: "/modern-research-laboratory.png",
-      alt: "Research laboratory",
+      src: "/images/woman-horse.jpg",
+      alt: "Sesja ślubna w plenerze",
     },
     {
-      src: "/team-collaboration-workspace.png",
-      alt: "Team collaboration",
+      src: "/images/mountain-landscape.jpg",
+      alt: "Fotografia ślubna w górach",
     },
     {
-      src: "/innovative-technology-design.jpg",
-      alt: "Technology design",
+      src: "/images/spiral-circles.jpg",
+      alt: "Abstrakcyjne ujęcia ślubne",
     },
     {
-      src: "/scientific-equipment-and-tools.jpg",
-      alt: "Scientific equipment",
+      src: "/placeholder.jpg",
+      alt: "Portret ślubny",
     },
   ]
 
