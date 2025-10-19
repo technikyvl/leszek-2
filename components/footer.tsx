@@ -1,6 +1,11 @@
+"use client"
+
 import Link from "next/link"
+import { useTranslations } from 'next-intl'
 
 export default function Footer() {
+  const t = useTranslations('footer')
+  
   return (
     <div
       className="relative h-[400px] sm:h-[600px] lg:h-[800px] max-h-[800px]"
@@ -14,7 +19,7 @@ export default function Footer() {
               <h1 className="text-[18vw] sm:text-[16vw] lg:text-[14vw] leading-[0.8] mt-4 sm:mt-6 lg:mt-10 text-white font-bold tracking-tight">
                 LESZEK JAKIEŁA
               </h1>
-              <p className="text-white text-sm sm:text-base">© 2025 Leszek Jakieła - FotoExpress Racibórz</p>
+              <p className="text-white text-sm sm:text-base">{t('copyright')}</p>
             </div>
           </div>
         </div>

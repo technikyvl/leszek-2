@@ -3,8 +3,10 @@
 import Image from "next/image"
 import { useScroll, useTransform, motion } from "framer-motion"
 import { useRef } from "react"
+import { useTranslations } from 'next-intl'
 
 export default function Section() {
+  const t = useTranslations('promo')
   const container = useRef()
   const { scrollYProgress } = useScroll({
     target: container,
@@ -25,12 +27,11 @@ export default function Section() {
       </div>
 
       <h3 className="absolute top-12 right-6 text-white uppercase z-10 text-sm md:text-base lg:text-lg">
-        Zdjęcia do Dokumentów
+        {t('title')}
       </h3>
 
       <p className="absolute bottom-12 right-6 text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-5xl z-10">
-        Profesjonalne zdjęcia do dokumentów i portrety biznesowe.
-        Szybko, tanio, obok urzędu.
+        {t('description')}
       </p>
     </div>
   )
