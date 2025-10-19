@@ -37,7 +37,7 @@ export default function Hero() {
               >
                 SKONTAKTUJ SIĘ TERAZ
               </button>
-              <span className="text-white text-xs md:text-sm opacity-90">Długa 6, 47-400 Racibórz</span>
+              <span className="text-white text-sm md:text-lg lg:text-xl font-semibold opacity-90">Długa 6, 47-400 Racibórz</span>
             </div>
           </div>
         </div>
