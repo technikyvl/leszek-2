@@ -25,7 +25,7 @@ export default function Hero() {
         />
         <div className="absolute inset-0 flex items-end justify-start z-10">
           <div className="text-left text-white px-6 pb-8">
-            <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight uppercase">Fotografia na Każdą Okazję</h1>
+            <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight uppercase">Fotografia na Każdą Okazję - Racibórz</h1>
             <button 
               onClick={() => {
                 document.getElementById('contact')?.scrollIntoView({ 
