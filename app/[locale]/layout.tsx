@@ -32,7 +32,8 @@ export default async function RootLayout({
   params: { locale }
 }: Readonly<{
   children: React.ReactNode
-  params: { locale: string }
+  params: { locale: string }Application error: a server-side exception has occurred (see the server logs for more information).
+  Digest: 3950770631
 }>) {
   // Validate that the incoming `locale` parameter is valid
   if (!locales.includes(locale as any)) notFound();
