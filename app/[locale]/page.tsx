@@ -13,18 +13,22 @@ import Footer from "@/components/footer"
 
 export default function Home() {
   useEffect(() => {
-    const lenis = new Lenis()
+    try {
+      const lenis = new Lenis()
 
-    function raf(time: number) {
-      lenis.raf(time)
+      function raf(time: number) {
+        lenis.raf(time)
+        requestAnimationFrame(raf)
+      }
+
       requestAnimationFrame(raf)
+    } catch (error) {
+      console.error('Lenis error:', error)
     }
-
-    requestAnimationFrame(raf)
   }, [])
 
   return (
-    <main>
+    <main style={{ minHeight: '100vh', width: '100%' }}>
       <Header />
       <Hero />
       <About />
