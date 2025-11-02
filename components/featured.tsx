@@ -9,7 +9,6 @@ export default function Featured() {
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ["start end", "end start"],
-    layoutEffect: false,
   })
 
   const imageY = useTransform(scrollYProgress, [0, 1], [100, -100])
@@ -47,9 +46,17 @@ export default function Featured() {
           onClick={() => {
             const element = document.getElementById('contact');
             if (element) {
-              const yOffset = -20;
-              const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-              window.scrollTo({ top: y, behavior: 'smooth' });
+              const lenis = (window as any).lenis;
+              if (lenis) {
+                lenis.scrollTo(element, {
+                  offset: -20,
+                  duration: 1,
+                });
+              } else {
+                const yOffset = -20;
+                const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+              }
             }
           }}
           className="bg-black text-white border border-black px-4 py-2 text-sm transition-all duration-300 hover:bg-white hover:text-black cursor-pointer w-fit"

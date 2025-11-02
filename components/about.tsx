@@ -15,7 +15,6 @@ export default function About() {
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ["start end", "end start"],
-    layoutEffect: false,
   })
 
   const titleY = useTransform(scrollYProgress, [0, 0.3], [50, 0])

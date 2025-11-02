@@ -8,7 +8,6 @@ export default function Hero() {
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ["start start", "end start"],
-    layoutEffect: false,
   })
 
   const y = useTransform(scrollYProgress, [0, 1], [0, 300], {
@@ -45,9 +44,17 @@ export default function Hero() {
                 onClick={() => {
                   const element = document.getElementById('contact');
                   if (element) {
-                    const yOffset = -20;
-                    const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-                    window.scrollTo({ top: y, behavior: 'smooth' });
+                    const lenis = (window as any).lenis;
+                    if (lenis) {
+                      lenis.scrollTo(element, {
+                        offset: -20,
+                        duration: 1,
+                      });
+                    } else {
+                      const yOffset = -20;
+                      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                      window.scrollTo({ top: y, behavior: 'smooth' });
+                    }
                   }
                 }}
                 className="px-4 py-2 border-2 border-white bg-transparent text-white text-sm transition-all duration-300 hover:bg-white hover:text-black cursor-pointer"

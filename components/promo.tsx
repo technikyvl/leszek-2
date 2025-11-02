@@ -9,7 +9,6 @@ export default function Section() {
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ["start end", "end start"],
-    layoutEffect: false,
   })
   const y = useTransform(scrollYProgress, [0, 1], [-50, 50], {
     clamp: false,
