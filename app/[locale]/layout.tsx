@@ -44,7 +44,7 @@ export default async function RootLayout({
   // Load messages for the locale
   let messages = {};
   try {
-    messages = await getMessages() || {};
+    messages = await getMessages({ locale }) || {};
   } catch (error) {
     console.error('Error loading messages:', error);
     messages = {};
