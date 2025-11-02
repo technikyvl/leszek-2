@@ -3,7 +3,9 @@ import type { Metadata } from "next"
 import { Playfair_Display, Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import { locales } from '@/i18n';
 import "../globals.css"
 
 const playfair = Playfair_Display({
@@ -24,8 +26,6 @@ export const metadata: Metadata = {
   generator: "v0.app",
 }
 
-const locales = ['pl', 'en'];
-
 export default async function RootLayout({
   children,
   params
@@ -41,8 +41,8 @@ export default async function RootLayout({
     notFound();
   }
 
-  // Provide empty messages since translations aren't used in components yet
-  const messages = {};
+  // Load messages for the locale
+  const messages = await getMessages();
 
   return (
     <html lang={locale} className={`${playfair.variable} ${inter.variable}`}>
