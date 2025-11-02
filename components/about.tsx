@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import { useScroll, useTransform, motion } from "framer-motion"
 import { useRef } from "react"
+import Image from "next/image"
 
 const Services = dynamic(() => import("./services"), {
   ssr: false,
@@ -73,9 +74,25 @@ export default function About() {
           }}
         >
           <div className="max-w-4xl mx-auto">
-            <h3 className="text-2xl md:text-3xl font-bold mb-6 text-center">
-              Metody Robienia Zdjęć
-            </h3>
+            <div className="flex flex-col items-center mb-6">
+              <h3 className="text-2xl md:text-3xl font-bold mb-4 text-center">
+                Metody Robienia Zdjęć
+              </h3>
+              <div className="flex items-center gap-4 mb-2">
+                <div className="relative w-32 h-16 md:w-40 md:h-20">
+                  <Image
+                    src="/orly.png"
+                    alt="Orły Fotografii - Nagroda"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <div className="text-left">
+                  <p className="text-sm md:text-base text-neutral-300 font-semibold">Orły Fotografii</p>
+                  <p className="text-xs md:text-sm text-neutral-400">Nagroda za doskonałość</p>
+                </div>
+              </div>
+            </div>
             <div className="grid md:grid-cols-2 gap-6 mb-8">
               <div className="space-y-3">
                 <div className="flex items-start gap-3">
