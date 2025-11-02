@@ -53,9 +53,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} className={`${playfair.variable} ${inter.variable}`}>
       <body className="font-sans" style={{ margin: 0, padding: 0 }}>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
-        </NextIntlClientProvider>
+        {children}
         <Analytics />
       </body>
     </html>
