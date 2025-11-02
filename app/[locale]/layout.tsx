@@ -3,7 +3,6 @@ import type { Metadata } from "next"
 import { Playfair_Display, Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import "../globals.css"
 
@@ -38,22 +37,17 @@ export default async function RootLayout({
   const { locale } = await params;
   
   // Validate that the incoming `locale` parameter is valid
-  if (!locales.includes(locale as any)) notFound();
-
-  // Providing all messages to the client
-  // side is the easiest way to get started
-  let messages;
-  try {
-    messages = await getMessages({ locale });
-  } catch (error) {
-    // Fallback to empty messages if loading fails
-    messages = {};
+  if (!locale || !locales.includes(locale as any)) {
+    notFound();
   }
+
+  // Provide empty messages since translations aren't used in components yet
+  const messages = {};
 
   return (
     <html lang={locale} className={`${playfair.variable} ${inter.variable}`}>
       <body className="font-sans">
-        <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider locale={locale} messages={messages}>
           {children}
         </NextIntlClientProvider>
         <Analytics />
