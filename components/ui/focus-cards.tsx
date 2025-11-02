@@ -53,8 +53,16 @@ type Card = {
 export function FocusCards({ cards }: { cards: Card[] }) {
   const [hovered, setHovered] = useState<number | null>(null);
 
+  // Determine grid columns based on number of cards
+  const getGridCols = () => {
+    if (cards.length === 2) return 'md:grid-cols-2';
+    if (cards.length === 4) return 'md:grid-cols-2 lg:grid-cols-4';
+    if (cards.length <= 3) return 'md:grid-cols-3';
+    return 'md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4';
+  };
+
   return (
-    <div className={`grid grid-cols-1 gap-10 max-w-5xl mx-auto md:px-8 w-full ${cards.length === 2 ? 'md:grid-cols-2 justify-center' : 'md:grid-cols-3'}`}>
+    <div className={`grid grid-cols-1 gap-6 md:gap-8 max-w-6xl mx-auto md:px-8 w-full ${getGridCols()}`}>
       {cards.map((card, index) => (
         <Card
           key={card.title}
