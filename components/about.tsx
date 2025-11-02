@@ -63,6 +63,90 @@ export default function About() {
             </p>
           </div>
         </motion.div>
+
+        {/* Methods & Certification Section */}
+        <motion.div 
+          className="bg-neutral-900 text-white rounded-2xl p-8 md:p-12 mb-16"
+          style={{ 
+            y: useTransform(scrollYProgress, [0.2, 0.5], [80, 0]),
+            opacity: useTransform(scrollYProgress, [0.2, 0.5], [0, 1])
+          }}
+        >
+          <div className="max-w-4xl mx-auto">
+            <h3 className="text-2xl md:text-3xl font-bold mb-6 text-center">
+              Metody Robienia Zdjęć
+            </h3>
+            <div className="grid md:grid-cols-2 gap-6 mb-8">
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-2 h-2 rounded-full bg-white mt-2"></div>
+                  <div>
+                    <h4 className="font-semibold text-lg mb-1">Profesjonalne Studio Fotograficzne</h4>
+                    <p className="text-neutral-300">
+                      Zdjęcia wykonywane w profesjonalnym studio z kontrolowanym oświetleniem Profoto
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-2 h-2 rounded-full bg-white mt-2"></div>
+                  <div>
+                    <h4 className="font-semibold text-lg mb-1">Kontrola Jakości na Każdym Etapie</h4>
+                    <p className="text-neutral-300">
+                      Wielokrotne ujęcia z natychmiastowym podglądem i wyborem najlepszego zdjęcia
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-2 h-2 rounded-full bg-white mt-2"></div>
+                  <div>
+                    <h4 className="font-semibold text-lg mb-1">Profesjonalna Obróbka</h4>
+                    <p className="text-neutral-300">
+                      Retusz i korekta wykonywane z Twoim uczestnictwem, zgodnie z Twoimi preferencjami
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-2 h-2 rounded-full bg-white mt-2"></div>
+                  <div>
+                    <h4 className="font-semibold text-lg mb-1">Zgodność z Wymogami</h4>
+                    <p className="text-neutral-300">
+                      Każde zdjęcie spełnia aktualne wymogi urzędowe i jest gotowe do użycia
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="border-t border-neutral-700 pt-8 mt-8">
+              <div className="text-center">
+                <h4 className="text-xl md:text-2xl font-bold mb-4">
+                  Certyfikowane Zdjęcia z Oprogramowaniem Dokumenty Pro 8
+                </h4>
+                <div className="flex flex-wrap justify-center gap-6 md:gap-12 text-sm md:text-base">
+                  <div className="flex flex-col items-center">
+                    <span className="text-3xl md:text-4xl font-bold text-white mb-1">370+</span>
+                    <span className="text-neutral-300">Formatów</span>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <span className="text-3xl md:text-4xl font-bold text-white mb-1">80</span>
+                    <span className="text-neutral-300">Krajów</span>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <span className="text-xl md:text-2xl font-bold text-white mb-1">✓</span>
+                    <span className="text-neutral-300">Certyfikat Zgodności</span>
+                  </div>
+                </div>
+                <p className="mt-6 text-neutral-300 max-w-2xl mx-auto">
+                  Wszystkie zdjęcia wykonywane są przy użyciu profesjonalnego oprogramowania <span className="font-semibold text-white">Dokumenty Pro 8</span>, 
+                  które zapewnia zgodność z ponad <span className="font-semibold text-white">370 formatami</span> z <span className="font-semibold text-white">80 krajów</span>. 
+                  Każde zdjęcie zawiera <span className="font-semibold text-white">certyfikat zgodności</span>, potwierdzający spełnienie wszystkich wymogów urzędowych.
+                </p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
         
         {/* Key Features Section */}
         <div className="bg-neutral-50 rounded-2xl p-8 md:p-12 mb-16">
