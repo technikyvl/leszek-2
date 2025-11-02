@@ -11,13 +11,20 @@ export default function Hero() {
     layoutEffect: false,
   })
 
-  const y = useTransform(scrollYProgress, [0, 1], [0, 50], {
+  const y = useTransform(scrollYProgress, [0, 1], [0, 300], {
     clamp: false,
   })
 
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.2], {
+    clamp: false,
+  })
+
+  const textOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+  const textY = useTransform(scrollYProgress, [0, 0.5], [0, -50])
+
   return (
     <div ref={container} className="h-screen overflow-hidden relative">
-      <motion.div style={{ y }} className="relative h-full">
+      <motion.div style={{ y, scale }} className="relative h-full">
         <Image
           src="/images/woman-horse.jpg"
           fill
@@ -25,7 +32,13 @@ export default function Hero() {
           style={{ objectFit: "cover" }}
         />
         <div className="absolute inset-0 flex items-end justify-start z-10">
-          <div className="text-left text-white px-6 pb-8">
+          <motion.div 
+            className="text-left text-white px-6 pb-8"
+            style={{
+              opacity: textOpacity,
+              y: textY,
+            }}
+          >
             <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight uppercase">Zdjęcia do Dokumentów - Racibórz</h1>
             <div className="flex items-center gap-4">
               <button 
@@ -43,7 +56,7 @@ export default function Hero() {
               </button>
               <span className="text-white text-sm md:text-lg lg:text-xl font-semibold opacity-90">Długa 6, 47-400 Racibórz</span>
             </div>
-          </div>
+          </motion.div>
         </div>
       </motion.div>
     </div>
