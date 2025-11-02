@@ -44,9 +44,21 @@ export default async function RootLayout({
   // Load messages for the locale
   let messages = {};
   try {
-    messages = await getMessages({ locale }) || {};
+    const loadedMessages = await getMessages({ locale });
+    messages = loadedMessages || {};
   } catch (error) {
     console.error('Error loading messages:', error);
+    // Try to load default messages as fallback
+    try {
+      messages = (await import(`../messages/${locale}.json`)).default || {};
+    } catch (fallbackError) {
+      console.error('Fallback message loading failed:', fallbackError);
+      messages = {};
+    }
+  }
+  
+  // Ensure messages is always an object
+  if (!messages || typeof messages !== 'object') {
     messages = {};
   }
 
