@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   generator: "v0.app",
 }
 
-const locales = ['pl', 'uk'];
+const locales = ['pl', 'en'];
 
 export default async function RootLayout({
   children,
