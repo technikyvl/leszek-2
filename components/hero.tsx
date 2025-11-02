@@ -2,24 +2,8 @@
 import Image from "next/image"
 import { useScroll, useTransform, motion } from "framer-motion"
 import { useRef } from "react"
-import { useTranslations } from 'next-intl'
 
 export default function Hero() {
-  let t;
-  try {
-    t = useTranslations('hero')
-  } catch (error) {
-    // Fallback if translations fail
-    t = (key: string) => {
-      const fallbacks: Record<string, string> = {
-        title: 'Zdjęcia do Dokumentów - Racibórz',
-        button: 'SKONTAKTUJ SIĘ TERAZ',
-        address: 'Długa 6, 47-400 Racibórz'
-      }
-      return fallbacks[key] || key
-    }
-  }
-  
   const container = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: container,
@@ -55,7 +39,7 @@ export default function Hero() {
               y: textY,
             }}
           >
-            <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight uppercase">{t('title')}</h1>
+            <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight uppercase">Zdjęcia do Dokumentów - Racibórz</h1>
             <div className="flex items-center gap-4">
               <button 
                 onClick={() => {
@@ -68,9 +52,9 @@ export default function Hero() {
                 }}
                 className="px-4 py-2 border-2 border-white bg-transparent text-white text-sm transition-all duration-300 hover:bg-white hover:text-black cursor-pointer"
               >
-                {t('button')}
+                SKONTAKTUJ SIĘ TERAZ
               </button>
-              <span className="text-white text-sm md:text-lg lg:text-xl font-semibold opacity-90">{t('address')}</span>
+              <span className="text-white text-sm md:text-lg lg:text-xl font-semibold opacity-90">Długa 6, 47-400 Racibórz</span>
             </div>
           </motion.div>
         </div>

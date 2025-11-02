@@ -2,8 +2,6 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Playfair_Display, Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { locales } from '@/i18n';
 import "../globals.css"
@@ -41,33 +39,10 @@ export default async function RootLayout({
     notFound();
   }
 
-  // Load messages for the locale
-  let messages = {};
-  try {
-    const loadedMessages = await getMessages({ locale });
-    messages = loadedMessages || {};
-  } catch (error) {
-    console.error('Error loading messages:', error);
-    // Try to load default messages as fallback
-    try {
-      messages = (await import(`../messages/${locale}.json`)).default || {};
-    } catch (fallbackError) {
-      console.error('Fallback message loading failed:', fallbackError);
-      messages = {};
-    }
-  }
-  
-  // Ensure messages is always an object
-  if (!messages || typeof messages !== 'object') {
-    messages = {};
-  }
-
   return (
     <html lang={locale} className={`${playfair.variable} ${inter.variable}`}>
       <body className="font-sans" style={{ margin: 0, padding: 0, backgroundColor: '#ffffff', color: '#000000' }}>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
-        </NextIntlClientProvider>
+        {children}
         <Analytics />
       </body>
     </html>

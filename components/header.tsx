@@ -1,25 +1,8 @@
 "use client"
 
 import Link from "next/link"
-import { useTranslations } from 'next-intl'
-import LanguageSwitcher from './language-switcher'
 
 export default function Header() {
-  let t;
-  try {
-    t = useTranslations('header')
-  } catch (error) {
-    // Fallback if translations fail
-    t = (key: string) => {
-      const fallbacks: Record<string, string> = {
-        logo: 'leszek jakieła',
-        about: 'O Mnie',
-        contact: 'Kontakt'
-      }
-      return fallbacks[key] || key
-    }
-  }
-  
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -30,25 +13,22 @@ export default function Header() {
   };
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-50 p-4 md:p-6">
-      <div className="flex justify-between items-center gap-4">
-        <div className="text-black text-xs sm:text-sm uppercase tracking-wide font-bold whitespace-nowrap">
-          {t('logo')}
-        </div>
-        <nav className="flex items-center gap-3 sm:gap-4 md:gap-8">
+    <header className="absolute top-0 left-0 right-0 z-50 p-6">
+      <div className="flex justify-between items-center">
+        <div className="text-black text-sm uppercase tracking-wide font-bold">leszek jakieła</div>
+        <nav className="flex gap-8">
           <button
             onClick={() => scrollToSection('about')}
-            className="text-black hover:text-neutral-600 transition-colors duration-300 uppercase text-xs sm:text-sm font-medium cursor-pointer whitespace-nowrap"
+            className="text-black hover:text-neutral-600 transition-colors duration-300 uppercase text-sm font-medium cursor-pointer"
           >
-            {t('about')}
+            O Mnie
           </button>
           <button
             onClick={() => scrollToSection('contact')}
-            className="text-black hover:text-neutral-600 transition-colors duration-300 uppercase text-xs sm:text-sm font-medium cursor-pointer whitespace-nowrap"
+            className="text-black hover:text-neutral-600 transition-colors duration-300 uppercase text-sm font-medium cursor-pointer"
           >
-            {t('contact')}
+            Kontakt
           </button>
-          <LanguageSwitcher />
         </nav>
       </div>
     </header>
