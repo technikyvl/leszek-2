@@ -1,6 +1,8 @@
 "use client"
 
 import dynamic from "next/dynamic";
+import { useScroll, useTransform, motion } from "framer-motion"
+import { useRef } from "react"
 
 const Services = dynamic(() => import("./services"), {
   ssr: false,
@@ -8,11 +10,32 @@ const Services = dynamic(() => import("./services"), {
 });
 
 export default function About() {
+  const container = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ["start end", "end start"],
+    layoutEffect: false,
+  })
+
+  const titleY = useTransform(scrollYProgress, [0, 0.3], [50, 0])
+  const titleOpacity = useTransform(scrollYProgress, [0, 0.3], [0, 1])
+
+  const contentY = useTransform(scrollYProgress, [0.1, 0.4], [80, 0])
+  const contentOpacity = useTransform(scrollYProgress, [0.1, 0.4], [0, 1])
+
   return (
-    <section id="about" className="min-h-screen bg-white py-20 px-6">
+    <section ref={container} id="about" className="min-h-screen bg-white py-20 px-6">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl md:text-6xl font-bold mb-8 text-neutral-900">Najbliższy fotograf od urzędu</h2>
-        <div className="grid md:grid-cols-2 gap-12 mb-16">
+        <motion.h2 
+          className="text-4xl md:text-6xl font-bold mb-8 text-neutral-900"
+          style={{ y: titleY, opacity: titleOpacity }}
+        >
+          Najbliższy fotograf od urzędu
+        </motion.h2>
+        <motion.div 
+          className="grid md:grid-cols-2 gap-12 mb-16"
+          style={{ y: contentY, opacity: contentOpacity }}
+        >
           <div>
             <p className="text-lg text-neutral-700 leading-relaxed mb-6">
               Przede wszystkim specjalizuję się w zdjęciach do dokumentów – dowód osobisty, paszport, prawo jazdy, legitymacja studencka. 
@@ -39,7 +62,7 @@ export default function About() {
               <span className="font-semibold">Orły Fotografii</span> – jestem dumny z nagrody, którą otrzymałem za moją pracę.
             </p>
           </div>
-        </div>
+        </motion.div>
         
         {/* Key Features Section */}
         <div className="bg-neutral-50 rounded-2xl p-8 md:p-12 mb-16">
