@@ -42,7 +42,13 @@ export default async function RootLayout({
 
   // Providing all messages to the client
   // side is the easiest way to get started
-  const messages = await getMessages();
+  let messages;
+  try {
+    messages = await getMessages({ locale });
+  } catch (error) {
+    // Fallback to empty messages if loading fails
+    messages = {};
+  }
 
   return (
     <html lang={locale} className={`${playfair.variable} ${inter.variable}`}>
