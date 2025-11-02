@@ -5,7 +5,20 @@ import { useTranslations } from 'next-intl'
 import LanguageSwitcher from './language-switcher'
 
 export default function Header() {
-  const t = useTranslations('header')
+  let t;
+  try {
+    t = useTranslations('header')
+  } catch (error) {
+    // Fallback if translations fail
+    t = (key: string) => {
+      const fallbacks: Record<string, string> = {
+        logo: 'leszek jakieła',
+        about: 'O Mnie',
+        contact: 'Kontakt'
+      }
+      return fallbacks[key] || key
+    }
+  }
   
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);

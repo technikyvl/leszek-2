@@ -10,7 +10,13 @@ const languages = [
 ]
 
 export default function LanguageSwitcher() {
-  const locale = useLocale()
+  let locale = 'pl'
+  try {
+    locale = useLocale()
+  } catch (error) {
+    console.error('Error getting locale:', error)
+  }
+  
   const router = useRouter()
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)

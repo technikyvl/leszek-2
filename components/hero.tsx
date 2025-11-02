@@ -5,7 +5,21 @@ import { useRef } from "react"
 import { useTranslations } from 'next-intl'
 
 export default function Hero() {
-  const t = useTranslations('hero')
+  let t;
+  try {
+    t = useTranslations('hero')
+  } catch (error) {
+    // Fallback if translations fail
+    t = (key: string) => {
+      const fallbacks: Record<string, string> = {
+        title: 'Zdjęcia do Dokumentów - Racibórz',
+        button: 'SKONTAKTUJ SIĘ TERAZ',
+        address: 'Długa 6, 47-400 Racibórz'
+      }
+      return fallbacks[key] || key
+    }
+  }
+  
   const container = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: container,
