@@ -2,7 +2,6 @@
 import Image from "next/image"
 import { useScroll, useTransform, motion } from "framer-motion"
 import { useRef } from "react"
-import Header from "./header"
 
 export default function Hero() {
   const container = useRef<HTMLDivElement>(null)
@@ -15,7 +14,6 @@ export default function Hero() {
 
   return (
     <div className="h-screen overflow-hidden">
-      <Header />
       <motion.div ref={container} style={{ y }} className="relative h-full">
         <Image
           src="/images/woman-horse.jpg"

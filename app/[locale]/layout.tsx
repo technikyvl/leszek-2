@@ -42,7 +42,13 @@ export default async function RootLayout({
   }
 
   // Load messages for the locale
-  const messages = await getMessages();
+  let messages = {};
+  try {
+    messages = await getMessages() || {};
+  } catch (error) {
+    console.error('Error loading messages:', error);
+    messages = {};
+  }
 
   return (
     <html lang={locale} className={`${playfair.variable} ${inter.variable}`}>
