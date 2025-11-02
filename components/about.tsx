@@ -68,7 +68,8 @@ export default function About() {
         <motion.div 
           className="bg-neutral-900 text-white rounded-2xl p-8 md:p-12 mb-16"
           style={{ 
-            y: useTransform(scrollYProgress, [0.3, 0.6], [20, 0])
+            y: useTransform(scrollYProgress, [0.4, 0.7], [60, 0]),
+            opacity: useTransform(scrollYProgress, [0.35, 0.65], [0, 1])
           }}
         >
           <div className="max-w-4xl mx-auto">
