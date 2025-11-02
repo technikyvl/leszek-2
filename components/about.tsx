@@ -65,13 +65,7 @@ export default function About() {
         </motion.div>
 
         {/* Methods & Certification Section */}
-        <motion.div 
-          className="bg-neutral-900 text-white rounded-2xl p-8 md:p-12 mb-16"
-          style={{ 
-            y: useTransform(scrollYProgress, [0.4, 0.65], [30, 0]),
-            opacity: useTransform(scrollYProgress, [0.25, 0.35], [0.5, 1])
-          }}
-        >
+        <div className="bg-neutral-900 text-white rounded-2xl p-8 md:p-12 mb-16">
           <div className="max-w-4xl mx-auto">
             <div className="flex flex-col items-center mb-6">
               <h3 className="text-2xl md:text-3xl font-bold mb-4 text-center">
@@ -162,7 +156,7 @@ export default function About() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
         
         {/* Key Features Section */}
         <div className="bg-neutral-50 rounded-2xl p-8 md:p-12 mb-16">
