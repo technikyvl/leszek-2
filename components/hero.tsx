@@ -8,13 +8,16 @@ export default function Hero() {
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ["start start", "end start"],
+    layoutEffect: false,
   })
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0vh", "150vh"])
+  const y = useTransform(scrollYProgress, [0, 1], [0, 50], {
+    clamp: false,
+  })
 
   return (
-    <div className="h-screen overflow-hidden">
-      <motion.div ref={container} style={{ y }} className="relative h-full">
+    <div ref={container} className="h-screen overflow-hidden relative">
+      <motion.div style={{ y }} className="relative h-full">
         <Image
           src="/images/woman-horse.jpg"
           fill
@@ -27,9 +30,12 @@ export default function Hero() {
             <div className="flex items-center gap-4">
               <button 
                 onClick={() => {
-                  document.getElementById('contact')?.scrollIntoView({ 
-                    behavior: 'smooth' 
-                  });
+                  const element = document.getElementById('contact');
+                  if (element) {
+                    const yOffset = -20;
+                    const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+                  }
                 }}
                 className="px-4 py-2 border-2 border-white bg-transparent text-white text-sm transition-all duration-300 hover:bg-white hover:text-black cursor-pointer"
               >

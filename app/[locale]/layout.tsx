@@ -2,8 +2,6 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Playfair_Display, Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { locales } from '@/i18n';
 import "../globals.css"
@@ -39,15 +37,6 @@ export default async function RootLayout({
   // Validate that the incoming `locale` parameter is valid
   if (!locale || !locales.includes(locale as any)) {
     notFound();
-  }
-
-  // Load messages for the locale
-  let messages = {};
-  try {
-    messages = await getMessages() || {};
-  } catch (error) {
-    console.error('Error loading messages:', error);
-    messages = {};
   }
 
   return (
