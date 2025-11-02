@@ -44,7 +44,7 @@ export default async function RootLayout({
   // Load messages for the locale
   let messages = {};
   try {
-    messages = await getMessages({ locale }) || {};
+    messages = await getMessages() || {};
   } catch (error) {
     console.error('Error loading messages:', error);
     messages = {};
@@ -52,7 +52,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} className={`${playfair.variable} ${inter.variable}`}>
-      <body className="font-sans">
+      <body className="font-sans" style={{ margin: 0, padding: 0 }}>
         <NextIntlClientProvider locale={locale} messages={messages}>
           {children}
         </NextIntlClientProvider>

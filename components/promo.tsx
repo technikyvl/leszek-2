@@ -5,7 +5,7 @@ import { useScroll, useTransform, motion } from "framer-motion"
 import { useRef } from "react"
 
 export default function Section() {
-  const container = useRef()
+  const container = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ["start end", "end start"],
