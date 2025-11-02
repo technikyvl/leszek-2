@@ -17,25 +17,14 @@ export default function About() {
     offset: ["start end", "end start"],
   })
 
-  const titleY = useTransform(scrollYProgress, [0, 0.3], [50, 0])
-  const titleOpacity = useTransform(scrollYProgress, [0, 0.3], [0, 1])
-
-  const contentY = useTransform(scrollYProgress, [0.1, 0.4], [80, 0])
-  const contentOpacity = useTransform(scrollYProgress, [0.1, 0.4], [0, 1])
-
+  // Animation only used for Methods section below
   return (
     <section ref={container} id="about" className="min-h-screen bg-white py-20 px-6">
       <div className="max-w-6xl mx-auto">
-        <motion.h2 
-          className="text-4xl md:text-6xl font-bold mb-8 text-neutral-900"
-          style={{ y: titleY, opacity: titleOpacity }}
-        >
+        <h2 className="text-4xl md:text-6xl font-bold mb-8 text-neutral-900">
           Najbliższy fotograf od urzędu
-        </motion.h2>
-        <motion.div 
-          className="grid md:grid-cols-2 gap-12 mb-16"
-          style={{ y: contentY, opacity: contentOpacity }}
-        >
+        </h2>
+        <div className="grid md:grid-cols-2 gap-12 mb-16">
           <div>
             <p className="text-lg text-neutral-700 leading-relaxed mb-6">
               Przede wszystkim specjalizuję się w zdjęciach do dokumentów – dowód osobisty, paszport, prawo jazdy, legitymacja studencka. 
@@ -62,7 +51,7 @@ export default function About() {
               <span className="font-semibold">Orły Fotografii</span> – jestem dumny z nagrody, którą otrzymałem za moją pracę.
             </p>
           </div>
-        </motion.div>
+        </div>
 
         {/* Methods & Certification Section */}
         <motion.div 
