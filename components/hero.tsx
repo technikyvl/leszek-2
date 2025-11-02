@@ -5,7 +5,7 @@ import { useRef } from "react"
 import Header from "./header"
 
 export default function Hero() {
-  const container = useRef()
+  const container = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ["start start", "end start"],
@@ -16,7 +16,7 @@ export default function Hero() {
   return (
     <div className="h-screen overflow-hidden">
       <Header />
-      <motion.div style={{ y }} className="relative h-full">
+      <motion.div ref={container} style={{ y }} className="relative h-full">
         <Image
           src="/images/woman-horse.jpg"
           fill

@@ -24,10 +24,11 @@ export const Card = React.memo(
       )}
     >
       <Image
-        src={card.src}
+        src={card.src || "/placeholder.jpg"}
         alt={card.title}
         fill
         className="object-cover absolute inset-0"
+        unoptimized
       />
       <div
         className={cn(

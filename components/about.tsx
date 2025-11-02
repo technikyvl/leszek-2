@@ -1,4 +1,11 @@
-import Services from "./services";
+"use client"
+
+import dynamic from "next/dynamic";
+
+const Services = dynamic(() => import("./services"), {
+  ssr: false,
+  loading: () => <div className="min-h-[400px] flex items-center justify-center"><p className="text-neutral-600">Ładowanie usług...</p></div>
+});
 
 export default function About() {
   return (
