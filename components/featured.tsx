@@ -21,15 +21,16 @@ export default function Featured() {
   return (
     <div ref={container} className="flex flex-col lg:flex-row lg:justify-between lg:items-center min-h-screen px-6 py-12 lg:py-0">
       <motion.div 
-        className="flex-1 h-[400px] lg:h-[800px] mb-8 lg:mb-0 lg:order-2"
+        className="relative flex-1 h-[400px] lg:h-[800px] mb-8 lg:mb-0 lg:order-2"
         style={{ y: imageY, opacity: imageOpacity, scale: imageScale }}
       >
         <Image
           src="/mapa.png"
           alt="Mapa lokalizacji studia fotograficznego"
-          width={600}
-          height={800}
-          className="w-full h-full object-cover"
+          fill
+          priority
+          sizes="(max-width: 1024px) 100vw, 50vw"
+          className="object-cover"
         />
       </motion.div>
       <motion.div 
