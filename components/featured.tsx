@@ -25,8 +25,8 @@ export default function Featured() {
         style={{ y: imageY, opacity: imageOpacity, scale: imageScale }}
       >
         <Image
-          src="/images/woman-horse.jpg"
-          alt="Woman on horse in countryside"
+          src="/images/mapa.png"
+          alt="Mapa lokalizacji studia fotograficznego"
           width={600}
           height={800}
           className="w-full h-full object-cover"
