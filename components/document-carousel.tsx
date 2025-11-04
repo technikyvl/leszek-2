@@ -34,41 +34,22 @@ export default function DocumentCarousel({ items }: Props) {
 
   return (
     <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
-      {/* Left: Carousel */}
+      {/* Left: Single slide, click to advance */}
       <div className="w-full">
-        <div className="relative" ref={emblaRef}>
+        <div className="relative cursor-pointer select-none" ref={emblaRef} onClick={scrollNext}>
           <div className="flex">
             {items.map((item, idx) => (
-              <div key={idx} className="min-w-0 flex-[0_0_100%] pr-4">
+              <div key={idx} className="min-w-0 flex-[0_0_100%]">
                 <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden border border-neutral-200 bg-white">
                   <Image
                     src={item.src}
                     alt={item.title}
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-contain p-8"
+                    className="object-contain p-8 transition-transform duration-500"
                   />
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Controls */}
-        <div className="mt-4 flex items-center justify-between">
-          <div className="flex gap-2">
-            <button onClick={scrollPrev} className="px-3 py-2 rounded-md border text-sm">Poprzednie</button>
-            <button onClick={scrollNext} className="px-3 py-2 rounded-md border text-sm">Następne</button>
-          </div>
-          <div className="flex gap-2">
-            {items.map((_, i) => (
-              <span
-                key={i}
-                className={
-                  "h-2 w-2 rounded-full " +
-                  (i === selectedIndex ? "bg-neutral-900" : "bg-neutral-300")
-                }
-              />
             ))}
           </div>
         </div>
