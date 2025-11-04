@@ -1,8 +1,8 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, useMotionValue, useSpring, useInView } from "framer-motion"
 import { Star } from "lucide-react"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 type GoogleSummary = {
   rating: number
@@ -12,6 +12,8 @@ type GoogleSummary = {
 
 export default function Gallery() {
   const [summary, setSummary] = useState<GoogleSummary | null>(null)
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const sectionInView = useInView(sectionRef, { once: true, margin: "0px 0px -100px 0px" })
 
   useEffect(() => {
     let mounted = true
@@ -36,13 +38,33 @@ export default function Gallery() {
     { author_name: "Anna", text: "Najlepsze studio w okolicy – polecam!", rating: 5 },
   ]
 
+  function Stat({ label, target, start, suffix = "", prefix = "", decimals = 0 }: { label: string; target: number; start: boolean; suffix?: string; prefix?: string; decimals?: number }) {
+    const mv = useMotionValue(0)
+    const spring = useSpring(mv, { stiffness: 120, damping: 20 })
+    useEffect(() => {
+      if (start) mv.set(target)
+    }, [start, target, mv])
+    const [val, setVal] = useState(0)
+    useEffect(() => {
+      const unsub = spring.on("change", (v) => setVal(v))
+      return () => unsub()
+    }, [spring])
+    return (
+      <div className="rounded-xl bg-white p-6 shadow-sm border border-neutral-200 text-center">
+        <div className="text-3xl md:text-4xl font-bold text-neutral-900">
+          {prefix}{val.toFixed(decimals)}{suffix}
+        </div>
+        <div className="text-sm text-neutral-500 mt-1">{label}</div>
+      </div>
+    )
+  }
+
   return (
-    <section className="bg-neutral-100 py-20 px-6">
-      <div className="max-w-6xl mx-auto">
+    <section ref={sectionRef} className="min-h-screen bg-neutral-100 py-20 px-6 flex items-center">
+      <div className="max-w-6xl mx-auto w-full">
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={sectionInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
           className="text-4xl md:text-6xl font-bold mb-4 text-neutral-900"
         >
@@ -50,8 +72,7 @@ export default function Gallery() {
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 8 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={sectionInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.4, delay: 0.05 }}
           className="text-neutral-600 mb-10"
         >
@@ -67,13 +88,20 @@ export default function Gallery() {
           </span>
         </motion.p>
 
+        {/* Stats */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+          <Stat label="Opinie" target={total} suffix="+" start={sectionInView} />
+          <Stat label="Ocena" target={rating} decimals={1} prefix="★ " start={sectionInView} />
+          <Stat label="Formaty" target={370} suffix="+" start={sectionInView} />
+          <Stat label="Kraje" target={80} start={sectionInView} />
+        </div>
+
         <div className="grid md:grid-cols-3 gap-6">
           {reviews.map((rev, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              animate={sectionInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.4, delay: i * 0.05 }}
               className="rounded-xl bg-white p-6 shadow-sm border border-neutral-200"
             >
