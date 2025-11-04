@@ -7,42 +7,42 @@ export default function Services() {
   const documentCategories = [
     {
       title: "Zdjęcia do Dowodu Osobistego",
-      src: "/placeholder.jpg",
+      src: "/icons/id-card.svg",
       description: "Zdjęcia spełniające wszystkie wymogi urzędowe"
     },
     {
       title: "Zdjęcia do Paszportu",
-      src: "/placeholder.jpg",
+      src: "/icons/passport.svg",
       description: "Wymiar i format zgodny z przepisami"
     },
     {
       title: "Zdjęcia do Prawa Jazdy",
-      src: "/placeholder.jpg",
+      src: "/icons/drivers-license.svg",
       description: "Szybko i zgodnie z wymogami"
     },
     {
       title: "Zdjęcia do Legitymacji Szkolnej",
-      src: "/placeholder.jpg",
+      src: "/icons/student-id.svg",
       description: "Dla uczniów i studentów"
     },
     {
       title: "Zdjęcia do Legitymacji Studenckiej",
-      src: "/placeholder.jpg",
+      src: "/icons/student-id.svg",
       description: "Zdjęcia studenckie"
     },
     {
       title: "Zdjęcia do Dyplomu",
-      src: "/placeholder.jpg",
+      src: "/icons/diploma.svg",
       description: "Eleganckie zdjęcia na dyplomy"
     },
     {
       title: "Zdjęcia do Wizy",
-      src: "/placeholder.jpg",
+      src: "/icons/visa.svg",
       description: "Zgodne z wymogami konsularnymi"
     },
     {
       title: "Zdjęcia Biznesowe",
-      src: "/placeholder.jpg",
+      src: "/icons/briefcase.svg",
       description: "Profesjonalne portrety do CV i LinkedIn"
     },
   ]
@@ -51,22 +51,22 @@ export default function Services() {
   const studioCategories = [
     {
       title: "Sesje Indywidualne",
-      src: "/placeholder.jpg",
+      src: "/icons/portrait.svg",
       description: "Profesjonalne portrety indywidualne"
     },
     {
       title: "Sesje Rodzinne",
-      src: "/placeholder.jpg",
+      src: "/icons/family.svg",
       description: "Wspólne zdjęcia rodzinne w profesjonalnym studio"
     },
     {
       title: "Sesje Świąteczne",
-      src: "/placeholder.jpg",
+      src: "/icons/holiday.svg",
       description: "Pamiątkowe zdjęcia z okazji świąt"
     },
     {
       title: "Sesje Portretowe",
-      src: "/placeholder.jpg",
+      src: "/icons/portrait.svg",
       description: "Klasyczne portrety studyjne"
     },
   ]
