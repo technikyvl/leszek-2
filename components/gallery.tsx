@@ -40,7 +40,7 @@ export default function Gallery() {
 
   function Stat({ label, target, start, suffix = "", prefix = "", decimals = 0 }: { label: string; target: number; start: boolean; suffix?: string; prefix?: string; decimals?: number }) {
     const mv = useMotionValue(0)
-    const spring = useSpring(mv, { stiffness: 120, damping: 20 })
+    const spring = useSpring(mv, { stiffness: 240, damping: 18 })
     useEffect(() => {
       if (start) mv.set(target)
     }, [start, target, mv])
@@ -92,8 +92,8 @@ export default function Gallery() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
           <Stat label="Opinie" target={total} suffix="+" start={sectionInView} />
           <Stat label="Ocena" target={rating} decimals={1} prefix="★ " start={sectionInView} />
-          <Stat label="Formaty" target={370} suffix="+" start={sectionInView} />
-          <Stat label="Kraje" target={80} start={sectionInView} />
+          <Stat label="Sesji fotograficznych" target={450} suffix="+" start={sectionInView} />
+          <Stat label="Zdjęć do dokumentów" target={4550} suffix="+" start={sectionInView} />
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
