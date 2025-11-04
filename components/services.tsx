@@ -1,7 +1,6 @@
 "use client"
 
 import { FocusCards } from "@/components/ui/focus-cards"
-import DocumentCarousel from "./document-carousel"
 
 export default function Services() {
   // Document photo categories (from FotoJoker)
@@ -76,7 +75,13 @@ export default function Services() {
     <div className="space-y-16">
       {/* Document Photos Section */}
       <div>
-        <DocumentCarousel items={documentCategories} />
+        <h3 className="text-3xl md:text-4xl font-bold mb-6 text-neutral-900 text-center">
+          Zdjęcia do Dokumentów
+        </h3>
+        <p className="text-center text-neutral-600 mb-8 max-w-2xl mx-auto">
+          Wszystkie rodzaje zdjęć do dokumentów urzędowych. Wykonane zgodnie z aktualnymi przepisami, od ręki w expressie.
+        </p>
+        <FocusCards cards={documentCategories.map(cat => ({ title: cat.title, src: cat.src }))} />
       </div>
 
       {/* Studio Photography Section */}
