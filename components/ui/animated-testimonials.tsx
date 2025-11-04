@@ -49,11 +49,11 @@ export const AnimatedTestimonials = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "0px 0px -100px 0px" }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className={cn("max-w-sm md:max-w-4xl mx-auto px-4 md:px-8 lg:px-12 py-20", className)}
+      className={cn("max-w-5xl mx-auto px-4 md:px-6 py-12 md:py-16", className)}
     >
-      <div className="relative grid grid-cols-1 md:grid-cols-2 gap-20">
+      <div className="relative grid grid-cols-1 md:grid-cols-2 items-center gap-10 md:gap-16">
         <div>
-          <div className="relative h-[28rem] md:h-[32rem] w-full overflow-hidden rounded-3xl">
+          <div className="relative h-[22rem] md:h-[26rem] lg:h-[28rem] w-full overflow-hidden rounded-3xl shadow-sm">
             <AnimatePresence mode="wait">
               <motion.div
                 key={testimonials[active].src}
@@ -79,7 +79,7 @@ export const AnimatedTestimonials = ({
             </AnimatePresence>
           </div>
         </div>
-        <div className="flex justify-between flex-col py-4">
+        <div className="flex justify-center md:justify-between flex-col py-0">
           <motion.div
             key={active}
             initial={{ y: 20, opacity: 0 }}
@@ -93,7 +93,7 @@ export const AnimatedTestimonials = ({
             <p className="text-sm text-muted-foreground">
               {testimonials[active].designation}
             </p>
-            <motion.p className="text-lg text-muted-foreground mt-8">
+            <motion.p className="text-lg text-muted-foreground mt-6 md:mt-8 max-w-prose">
               {testimonials[active].quote.split(" ").map((word, index) => (
                 <motion.span
                   key={index}
@@ -107,16 +107,16 @@ export const AnimatedTestimonials = ({
               ))}
             </motion.p>
           </motion.div>
-          <div className="flex gap-4 pt-12 md:pt-0">
+          <div className="flex gap-3 pt-6 md:pt-6">
             <button
               onClick={handlePrev}
-              className="h-7 w-7 rounded-full bg-secondary flex items-center justify-center group/button"
+              className="h-8 w-8 rounded-full bg-secondary flex items-center justify-center group/button"
             >
               <IconArrowLeft className="h-5 w-5 text-foreground group-hover/button:rotate-12 transition-transform duration-300" />
             </button>
             <button
               onClick={handleNext}
-              className="h-7 w-7 rounded-full bg-secondary flex items-center justify-center group/button"
+              className="h-8 w-8 rounded-full bg-secondary flex items-center justify-center group/button"
             >
               <IconArrowRight className="h-5 w-5 text-foreground group-hover/button:-rotate-12 transition-transform duration-300" />
             </button>
