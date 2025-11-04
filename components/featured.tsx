@@ -3,6 +3,7 @@
 import Image from "next/image"
 import { useScroll, useTransform, motion } from "framer-motion"
 import { useRef } from "react"
+import { SectionReveal } from "@/components/ui/section-reveal"
 
 export default function Featured() {
   const container = useRef<HTMLDivElement>(null)
@@ -19,7 +20,8 @@ export default function Featured() {
   const textOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
 
   return (
-    <div ref={container} className="flex flex-col lg:flex-row lg:justify-between lg:items-center min-h-screen px-6 py-12 lg:py-0">
+    <SectionReveal>
+      <div ref={container} className="flex flex-col lg:flex-row lg:justify-between lg:items-center min-h-screen px-6 py-12 lg:py-0">
       <motion.div 
         className="relative flex-1 h-[400px] lg:h-[800px] mb-8 lg:mb-0 lg:order-2"
         style={{ y: imageY, opacity: imageOpacity, scale: imageScale }}
@@ -65,6 +67,7 @@ export default function Featured() {
           UMÓW SESJĘ
         </button>
       </motion.div>
-    </div>
+      </div>
+    </SectionReveal>
   )
 }

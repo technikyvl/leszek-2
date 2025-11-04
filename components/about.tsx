@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { useScroll, useTransform, motion } from "framer-motion"
 import { useRef } from "react"
 import Image from "next/image"
+import { SectionReveal } from "@/components/ui/section-reveal"
 
 const Services = dynamic(() => import("./services"), {
   ssr: false,
@@ -20,7 +21,7 @@ export default function About() {
   // Animation only used for Methods section below
   return (
     <section ref={container} id="about" className="min-h-screen bg-white py-20 px-6">
-      <div className="max-w-6xl mx-auto">
+      <SectionReveal className="max-w-6xl mx-auto">
         <h2 className="text-4xl md:text-6xl font-bold mb-8 text-neutral-900">
           Najbliższy fotograf od urzędu
         </h2>
@@ -215,7 +216,7 @@ export default function About() {
         <div className="mb-16">
           <Services />
         </div>
-      </div>
+      </SectionReveal>
     </section>
   )
 }

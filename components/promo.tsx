@@ -3,6 +3,7 @@
 import Image from "next/image"
 import { useScroll, useTransform, motion } from "framer-motion"
 import { useRef } from "react"
+import { SectionReveal } from "@/components/ui/section-reveal"
 
 export default function Section() {
   const container = useRef<HTMLDivElement>(null)
@@ -15,6 +16,7 @@ export default function Section() {
   })
 
   return (
+    <SectionReveal>
     <div
       ref={container}
       className="relative flex items-center justify-center h-screen overflow-hidden"
@@ -35,5 +37,6 @@ export default function Section() {
         Szybko, tanio, obok urzędu.
       </p>
     </div>
+    </SectionReveal>
   )
 }
