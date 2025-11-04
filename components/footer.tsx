@@ -14,7 +14,24 @@ export default function Footer() {
               <h1 className="text-[18vw] sm:text-[16vw] lg:text-[14vw] leading-[0.8] mt-4 sm:mt-6 lg:mt-10 text-white font-bold tracking-tight">
                 LESZEK JAKIEŁA
               </h1>
-              <p className="text-white text-sm sm:text-base">© 2025 Leszek Jakieła - FotoExpress Racibórz</p>
+              <div className="flex flex-col items-start sm:items-end gap-3">
+                <a
+                  href="https://www.orlyfotografii.pl/profile-195180-leszek-jakiela-photography"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <img
+                    src="https://www.orlyfotografii.pl/images/medals/195180/laureat300_gold_pl.png"
+                    alt="Leszek Jakieła Photography - Racibórz"
+                    title="Leszek Jakieła Photography - Racibórz"
+                    width="300"
+                    height="75"
+                    style={{ border: 0 }}
+                  />
+                </a>
+                <p className="text-white text-sm sm:text-base">© 2025 Leszek Jakieła - FotoExpress Racibórz</p>
+              </div>
             </div>
           </div>
         </div>
