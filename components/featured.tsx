@@ -25,7 +25,7 @@ export default function Featured() {
         style={{ y: imageY, opacity: imageOpacity, scale: imageScale }}
       >
         <Image
-          src="/images/mapa.png"
+          src="/mapa.png"
           alt="Mapa lokalizacji studia fotograficznego"
           width={600}
           height={800}
