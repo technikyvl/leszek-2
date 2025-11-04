@@ -23,6 +23,7 @@ export const AnimatedTestimonials = ({
   className?: string;
 }) => {
   const [active, setActive] = useState(0);
+  const [failedMap, setFailedMap] = useState<Record<string, boolean>>({});
 
   const handleNext = () => {
     setActive((prev) => (prev + 1) % testimonials.length);
@@ -37,10 +38,9 @@ export const AnimatedTestimonials = ({
   };
 
   useEffect(() => {
-    if (autoplay) {
-      const interval = setInterval(handleNext, 5000);
-      return () => clearInterval(interval);
-    }
+    if (!autoplay) return;
+    const interval = setInterval(handleNext, 5000);
+    return () => clearInterval(interval);
   }, [autoplay]);
 
   return (
@@ -53,7 +53,7 @@ export const AnimatedTestimonials = ({
     >
       <div className="relative grid grid-cols-1 md:grid-cols-2 gap-20">
         <div>
-          <div className="relative h-80 w-full overflow-hidden rounded-3xl">
+          <div className="relative h-[28rem] md:h-[32rem] w-full overflow-hidden rounded-3xl">
             <AnimatePresence mode="wait">
               <motion.div
                 key={testimonials[active].src}
@@ -64,13 +64,16 @@ export const AnimatedTestimonials = ({
                 className="absolute inset-0"
               >
                 <Image
-                  src={testimonials[active].src}
+                  src={failedMap[testimonials[active].src] ? "/placeholder.jpg" : testimonials[active].src}
                   alt={testimonials[active].name}
                   fill
                   priority
                   sizes="(max-width: 768px) 100vw, 50vw"
                   draggable={false}
                   className="h-full w-full object-cover object-center"
+                  onError={() => {
+                    setFailedMap((m) => ({ ...m, [testimonials[active].src]: true }));
+                  }}
                 />
               </motion.div>
             </AnimatePresence>

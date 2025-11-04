@@ -83,7 +83,6 @@ export default function Services() {
           Wszystkie rodzaje zdjęć do dokumentów urzędowych. Wykonane zgodnie z aktualnymi przepisami, od ręki w expressie.
         </p>
         <AnimatedTestimonials
-          autoplay
           testimonials={[
             {
               name: documentCategories[0].title,
