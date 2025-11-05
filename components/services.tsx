@@ -48,6 +48,18 @@ export default function Services() {
     },
   ]
 
+  // Local face images placed in public/ (spaces URL-encoded)
+  const faceImages = [
+    "/0H2A0113_pp%20kopia-Format%20dodatkowy-102x152%20mm_10x15.jpg",
+    "/0H2A0169_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
+    "/0H2A0318_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
+    "/0H2A0430_pp1-Format%20dodatkowy-102x152%20mm_10x15.jpg",
+    "/0H2A0562_pp1%20kopia2-Format%20dodatkowy-102x152%20mm_10x15.jpg",
+    "/0H2A0601_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
+    "/IMG_1432_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
+    "/IMG_1777_pp1-Format%20dodatkowy-102x152%20mm_10x15.jpg",
+  ]
+
   // Studio photography categories
   const studioCategories = [
     {
@@ -83,56 +95,12 @@ export default function Services() {
           Wszystkie rodzaje zdjęć do dokumentów urzędowych. Wykonane zgodnie z aktualnymi przepisami, od ręki w expressie.
         </p>
         <AnimatedTestimonials
-          testimonials={[
-            {
-              name: documentCategories[0].title,
-              designation: "Dowód osobisty",
-              quote: documentCategories[0].description,
-              src: "https://images.unsplash.com/photo-1606761568499-6d2451b23c51?q=80&w=1600&auto=format&fit=crop",
-            },
-            {
-              name: documentCategories[1].title,
-              designation: "Paszport",
-              quote: documentCategories[1].description,
-              src: "https://images.unsplash.com/photo-1518546305927-5a555bb7020d?q=80&w=1600&auto=format&fit=crop",
-            },
-            {
-              name: documentCategories[2].title,
-              designation: "Prawo jazdy",
-              quote: documentCategories[2].description,
-              src: "https://images.unsplash.com/photo-1533613220915-609f661a6fd8?q=80&w=1600&auto=format&fit=crop",
-            },
-            {
-              name: documentCategories[3].title,
-              designation: "Legitymacja szkolna",
-              quote: documentCategories[3].description,
-              src: "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1600&auto=format&fit=crop",
-            },
-            {
-              name: documentCategories[4].title,
-              designation: "Legitymacja studencka",
-              quote: documentCategories[4].description,
-              src: "https://images.unsplash.com/photo-1544006659-f0b21884ce1d?q=80&w=1600&auto=format&fit=crop",
-            },
-            {
-              name: documentCategories[5].title,
-              designation: "Dyplom",
-              quote: documentCategories[5].description,
-              src: "https://images.unsplash.com/photo-1491841573634-28140fc7ced7?q=80&w=1600&auto=format&fit=crop",
-            },
-            {
-              name: documentCategories[6].title,
-              designation: "Wiza",
-              quote: documentCategories[6].description,
-              src: "https://images.unsplash.com/photo-1517632298129-5f63a2050c02?q=80&w=1600&auto=format&fit=crop",
-            },
-            {
-              name: documentCategories[7].title,
-              designation: "Biznes",
-              quote: documentCategories[7].description,
-              src: "https://images.unsplash.com/photo-1554774853-b415df9eeb92?q=80&w=1600&auto=format&fit=crop",
-            },
-          ]}
+          testimonials={documentCategories.map((cat, idx) => ({
+            name: cat.title,
+            designation: cat.title.replace("Zdjęcia do ", ""),
+            quote: cat.description,
+            src: faceImages[idx % faceImages.length],
+          }))}
         />
       </div>
 
