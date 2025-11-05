@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useParams } from "next/navigation";
 
 const faces = [
   "/0H2A0113_pp%20kopia-Format%20dodatkowy-102x152%20mm_10x15.jpg",
@@ -18,11 +17,8 @@ const faces = [
   "/IMG_4055_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
 ];
 
-export default function DocumentsGallery() {
-  // locale-aware back link
-  // @ts-ignore - this is a client file when bundled by Next
-  const params = useParams?.() as any;
-  const locale = (params?.locale as string) || "pl";
+export default function DocumentsGallery({ params }: { params: { locale: string } }) {
+  const locale = params.locale || "pl";
   return (
     <main className="min-h-screen px-6 py-20">
       <div className="max-w-6xl mx-auto mb-8">

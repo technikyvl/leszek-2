@@ -1,10 +1,7 @@
 import Link from "next/link";
-import { useParams } from "next/navigation";
 
-export default function StudioGallery() {
-  // @ts-ignore
-  const params = useParams?.() as any;
-  const locale = (params?.locale as string) || "pl";
+export default function StudioGallery({ params }: { params: { locale: string } }) {
+  const locale = params.locale || "pl";
   return (
     <main className="min-h-screen px-6 py-20">
       <div className="max-w-6xl mx-auto mb-8">
