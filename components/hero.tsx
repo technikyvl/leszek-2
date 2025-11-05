@@ -30,6 +30,7 @@ export default function Hero() {
           priority
           alt="Studio Leszek Jakieła w Raciborzu – widok z ulicy"
           style={{ objectFit: "cover" }}
+          sizes="100vw"
         />
         <div className="absolute inset-0 flex items-end justify-start z-10">
           <motion.div 

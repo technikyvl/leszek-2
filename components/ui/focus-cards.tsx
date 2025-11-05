@@ -29,6 +29,7 @@ export const Card = React.memo(
         fill
         className="object-cover absolute inset-0"
         style={card.objectPosition ? { objectPosition: card.objectPosition } : undefined}
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         unoptimized
       />
       <div
