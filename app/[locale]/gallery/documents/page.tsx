@@ -59,8 +59,8 @@ export default function DocumentsGallery({ params }: { params: { locale: string 
           <Link href={`/${locale}/gallery`} className="text-sm uppercase text-neutral-600 hover:text-neutral-900">← Kategoria</Link>
           <Link href={`/${locale}`} className="text-sm uppercase text-neutral-600 hover:text-neutral-900">Strona główna</Link>
         </div>
-        <h1 className="text-4xl md:text-6xl font-bold text-neutral-900">Zdjęcia do dokumentów</h1>
-        <p className="text-neutral-600 mt-2">Przykładowe realizacje zdjęć do dokumentów.</p>
+        <motion.h1 initial={{opacity:0,y:16}} animate={{opacity:1,y:0}} transition={{duration:.5}} className="text-4xl md:text-6xl font-bold text-neutral-900">Zdjęcia do dokumentów</motion.h1>
+        <motion.p initial={{opacity:0,y:8}} animate={{opacity:1,y:0}} transition={{duration:.4,delay:.05}} className="text-neutral-600 mt-2">Przykładowe realizacje zdjęć do dokumentów.</motion.p>
       </div>
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {faces.map((src, i) => (

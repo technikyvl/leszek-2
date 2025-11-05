@@ -41,8 +41,9 @@ export default function GalleryLanding() {
           <Link key={c.title} href={`/${locale}/gallery/${c.href}`} className="block group">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, ease: "easeOut" }}
               className="rounded-lg relative bg-gray-100 dark:bg-neutral-900 overflow-hidden h-72 md:h-[28rem] w-full transition-all duration-300 ease-out"
             >
               <img src={c.src} alt={c.title} className="absolute inset-0 h-full w-full object-cover" />

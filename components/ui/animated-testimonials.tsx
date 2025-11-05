@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import { useIsMobile } from "@/lib/use-breakpoint";
 
 type Testimonial = {
   quote: string;
@@ -23,6 +24,7 @@ export const AnimatedTestimonials = ({
   className?: string;
 }) => {
   const [active, setActive] = useState(0);
+  const isMobile = useIsMobile();
   const [failedMap, setFailedMap] = useState<Record<string, boolean>>({});
 
   const handleNext = () => {
@@ -48,7 +50,7 @@ export const AnimatedTestimonials = ({
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "0px 0px -100px 0px" }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+      transition={{ duration: isMobile ? 0.35 : 0.5, ease: "easeOut" }}
       className={cn("max-w-5xl mx-auto px-4 md:px-6 py-12 md:py-16", className)}
     >
       <div className="relative grid grid-cols-1 md:grid-cols-2 items-center gap-10 md:gap-16">
@@ -60,8 +62,9 @@ export const AnimatedTestimonials = ({
                 initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 1.02 }}
-                transition={{ duration: 0.35, ease: "easeOut" }}
+                transition={{ duration: isMobile ? 0.25 : 0.35, ease: "easeOut" }}
                 className="absolute inset-0"
+                style={{ willChange: 'transform, opacity' }}
               >
                 <Image
                   src={failedMap[testimonials[active].src] ? "/placeholder.jpg" : testimonials[active].src}
