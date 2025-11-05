@@ -80,7 +80,9 @@ export default function Services() {
     {
       title: "Sesje Portretowe",
       src: "/polish%20businessmen%20with%20silver%20beard%20smiling%20realistic%20photo.jpg",
-      description: "Klasyczne portrety studyjne"
+      description: "Klasyczne portrety studyjne",
+      // Ensure face remains visible (shift focus to left where face is)
+      objectPosition: "left center",
     },
   ]
 
@@ -112,7 +114,7 @@ export default function Services() {
         <p className="text-center text-neutral-600 mb-8 max-w-2xl mx-auto">
           Profesjonalne sesje fotograficzne w naszym studio z oświetleniem Profoto
         </p>
-        <FocusCards cards={studioCategories.map(cat => ({ title: cat.title, src: cat.src }))} />
+        <FocusCards cards={studioCategories as any} />
       </div>
     </div>
   )
