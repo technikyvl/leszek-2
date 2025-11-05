@@ -24,9 +24,8 @@ export default function GalleryLanding() {
     <main className="min-h-screen px-6 py-20 flex items-center">
       <div className="max-w-6xl mx-auto w-full">
         {/* Simple nav */}
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex justify-start items-center mb-6">
           <Link href={`/${locale}`} className="text-sm uppercase text-neutral-600 hover:text-neutral-900">← Powrót</Link>
-          <div className="text-sm text-neutral-500">/{locale}/gallery</div>
         </div>
         <motion.div
           initial={{ opacity: 0, y: 24 }}
