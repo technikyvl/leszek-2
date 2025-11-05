@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+import { useParams } from "next/navigation";
 
 const faces = [
   "/0H2A0113_pp%20kopia-Format%20dodatkowy-102x152%20mm_10x15.jpg",
@@ -17,9 +19,17 @@ const faces = [
 ];
 
 export default function DocumentsGallery() {
+  // locale-aware back link
+  // @ts-ignore - this is a client file when bundled by Next
+  const params = useParams?.() as any;
+  const locale = (params?.locale as string) || "pl";
   return (
     <main className="min-h-screen px-6 py-20">
       <div className="max-w-6xl mx-auto mb-8">
+        <div className="flex justify-between items-center mb-3">
+          <Link href={`/${locale}/gallery`} className="text-sm uppercase text-neutral-600 hover:text-neutral-900">← Kategoria</Link>
+          <Link href={`/${locale}`} className="text-sm uppercase text-neutral-600 hover:text-neutral-900">Strona główna</Link>
+        </div>
         <h1 className="text-4xl md:text-6xl font-bold text-neutral-900">Zdjęcia do dokumentów</h1>
         <p className="text-neutral-600 mt-2">Przykładowe realizacje zdjęć do dokumentów.</p>
       </div>
