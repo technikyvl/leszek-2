@@ -28,6 +28,7 @@ export const Card = React.memo(
         alt={card.title}
         fill
         className="object-cover absolute inset-0"
+        style={card.objectPosition ? { objectPosition: card.objectPosition } : undefined}
         unoptimized
       />
       <div
