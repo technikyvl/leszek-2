@@ -2,19 +2,21 @@
 import Image from "next/image"
 import { useScroll, useTransform, motion } from "framer-motion"
 import { useRef } from "react"
+import { useIsMobile } from "@/lib/use-breakpoint"
 
 export default function Hero() {
   const container = useRef<HTMLDivElement>(null)
+  const isMobile = useIsMobile()
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ["start start", "end start"],
   })
 
-  const y = useTransform(scrollYProgress, [0, 1], [0, 300], {
+  const y = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 150 : 300], {
     clamp: false,
   })
 
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.2], {
+  const scale = useTransform(scrollYProgress, [0, 1], [1, isMobile ? 1.1 : 1.2], {
     clamp: false,
   })
 
@@ -23,7 +25,7 @@ export default function Hero() {
 
   return (
     <div ref={container} className="h-screen overflow-hidden relative">
-      <motion.div style={{ y, scale }} className="relative h-full">
+      <motion.div style={{ y, scale, willChange: 'transform' }} className="relative h-full">
         <Image
           src="/polish%20photographer%20studio%20leszek%20jakiela%20in%20raciborz%20photo%20of%20his%20photo%20saloon%20from%20the%20street%20perspective.jpg"
           fill
@@ -38,6 +40,7 @@ export default function Hero() {
             style={{
               opacity: textOpacity,
               y: textY,
+              willChange: 'transform, opacity'
             }}
           >
             <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight uppercase">Zdjęcia do Dokumentów - Racibórz</h1>
