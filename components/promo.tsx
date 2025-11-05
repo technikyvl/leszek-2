@@ -25,7 +25,13 @@ export default function Section() {
       {/* Background photo instead of interactive map */}
       <div className="fixed top-0 left-0 h-screen w-full -z-10">
         <motion.div style={{ y, willChange: 'transform' }} className="relative w-full h-full">
-          <Image src="/legitymacja%20-%20dyplom%20-%20przed%20retuszem%20i%20po%20oraz%20w%20r%C3%B3%C5%BCnych%20uk%C5%82adach/IMG_1092_pp1%20kopia-PL%20Legitymacja%20szkolna-102x152%20mm_6x%2035x45%20L.jpg" alt="Zdjęcia do dokumentów" fill style={{ objectFit: "cover" }} sizes="100vw" />
+          <Image 
+            src="/legitymacja - dyplom - przed retuszem i po oraz w różnych układach/IMG_1092_pp1 kopia-PL Legitymacja szkolna-102x152 mm_6x 35x45 L.jpg" 
+            alt="Zdjęcia do dokumentów" 
+            fill 
+            style={{ objectFit: "cover" }} 
+            sizes="100vw" 
+          />
           <div className="absolute inset-0 bg-black/35 pointer-events-none" />
         </motion.div>
       </div>
