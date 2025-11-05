@@ -1,8 +1,11 @@
 "use client"
 
 import Link from "next/link"
+import { useParams } from "next/navigation"
 
 export default function Header() {
+  const params = useParams();
+  const locale = (params?.locale as string) || "pl";
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -31,12 +34,12 @@ export default function Header() {
           >
             O Mnie
           </button>
-          <button
-            onClick={() => scrollToSection('gallery')}
-            className="text-white hover:text-neutral-300 transition-colors duration-300 uppercase text-sm font-medium cursor-pointer"
+          <Link
+            href={`/${locale}/gallery`}
+            className="text-white hover:text-neutral-300 transition-colors duration-300 uppercase text-sm font-medium"
           >
             Galeria
-          </button>
+          </Link>
           <button
             onClick={() => scrollToSection('contact')}
             className="text-white hover:text-neutral-300 transition-colors duration-300 uppercase text-sm font-medium cursor-pointer"
