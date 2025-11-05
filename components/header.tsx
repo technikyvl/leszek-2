@@ -23,17 +23,23 @@ export default function Header() {
   return (
     <header className="absolute top-0 left-0 right-0 z-50 p-6">
       <div className="flex justify-between items-center">
-        <div className="text-black text-sm uppercase tracking-wide font-bold">leszek jakieła</div>
+        <div className="text-white text-sm uppercase tracking-wide font-bold">leszek jakieła</div>
         <nav className="flex gap-8">
           <button
             onClick={() => scrollToSection('about')}
-            className="text-black hover:text-neutral-600 transition-colors duration-300 uppercase text-sm font-medium cursor-pointer"
+            className="text-white hover:text-neutral-300 transition-colors duration-300 uppercase text-sm font-medium cursor-pointer"
           >
             O Mnie
           </button>
           <button
+            onClick={() => scrollToSection('gallery')}
+            className="text-white hover:text-neutral-300 transition-colors duration-300 uppercase text-sm font-medium cursor-pointer"
+          >
+            Galeria
+          </button>
+          <button
             onClick={() => scrollToSection('contact')}
-            className="text-black hover:text-neutral-600 transition-colors duration-300 uppercase text-sm font-medium cursor-pointer"
+            className="text-white hover:text-neutral-300 transition-colors duration-300 uppercase text-sm font-medium cursor-pointer"
           >
             Kontakt
           </button>

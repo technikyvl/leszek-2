@@ -60,7 +60,7 @@ export default function Gallery() {
   }
 
   return (
-    <section ref={sectionRef} className="min-h-screen bg-neutral-100 py-20 px-6 flex items-center">
+    <section id="gallery" ref={sectionRef} className="min-h-screen bg-neutral-100 py-20 px-6 flex items-center">
       <div className="max-w-6xl mx-auto w-full">
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
