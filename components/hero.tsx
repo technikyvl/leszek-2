@@ -48,13 +48,16 @@ export default function Hero() {
   return (
     <div ref={container} className="h-screen overflow-hidden relative">
       <motion.div style={{ y, scale, willChange: 'transform' }} className="relative h-full">
-        <AnimatePresence mode="wait">
+        <AnimatePresence initial={false}>
           <motion.div
             key={currentIndex}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 1 }}
+            transition={{ 
+              duration: 1.5,
+              ease: [0.4, 0, 0.2, 1]
+            }}
             className="absolute inset-0"
           >
             <Image
