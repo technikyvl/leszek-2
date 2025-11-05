@@ -24,35 +24,42 @@ export const Contact2 = ({
     <section id="contact" className="py-32">
       <div className="container">
         <div className="mx-auto flex max-w-screen-xl flex-col justify-between gap-10 lg:flex-row lg:gap-20">
-          <div className="mx-auto flex max-w-sm flex-col justify-between gap-10">
+          {/* Info column */}
+          <div className="mx-auto flex w-full lg:w-auto max-w-2xl flex-col gap-10">
             <div className="text-center lg:text-left">
-              <h1 className="mb-2 text-5xl font-semibold lg:mb-1 lg:text-6xl">
+              <h1 className="mb-2 text-4xl md:text-5xl font-semibold lg:mb-1 lg:text-6xl">
                 {title}
               </h1>
               <p className="text-muted-foreground">{description}</p>
             </div>
-            <div className="mx-auto w-fit lg:mx-0">
-              <h3 className="mb-6 text-center text-2xl font-semibold lg:text-left">
-                Dane Kontaktowe
-              </h3>
-              <ul className="ml-4 list-disc">
-                <li>
-                  <span className="font-bold">Telefon: </span>
-                  {phone}
-                </li>
-                <li>
-                  <span className="font-bold">Email: </span>
-                  <a href={`mailto:${email}`} className="underline">
-                    {email}
-                  </a>
-                </li>
-                <li>
-                  <span className="font-bold">Strona: </span>
-                  <a href={web.url} target="_blank" className="underline">
-                    {web.label}
-                  </a>
-                </li>
-              </ul>
+            <div className="grid sm:grid-cols-2 gap-6">
+              <div className="rounded-2xl bg-neutral-900 text-white p-6">
+                <h3 className="text-lg font-semibold mb-2">Siedziba</h3>
+                <h4 className="text-2xl md:text-3xl font-bold mb-4">Fotograf na Długiej</h4>
+                <div className="space-y-1 text-neutral-200">
+                  <p>Długa 22</p>
+                  <p>47-400 Racibórz</p>
+                  <p>(w pobliżu Terenowego Punktu Paszportowego)</p>
+                  <p className="pt-2">NIP: 6392005862</p>
+                </div>
+              </div>
+              <div className="rounded-2xl bg-neutral-900 text-white p-6">
+                <h3 className="text-lg font-semibold mb-2">Godziny otwarcia</h3>
+                <div className="text-2xl md:text-3xl font-bold leading-snug">
+                  <p className="mb-2">Pon – Pt: 9:00 – 17:00</p>
+                  <p>Sob: 9:00 – 12:00</p>
+                </div>
+              </div>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-6">
+              <a href={`tel:${phone.replace(/\s+/g, "")}`} className="rounded-xl border bg-white p-4 text-center shadow-sm hover:shadow transition">
+                <div className="text-sm text-neutral-600">Telefon</div>
+                <div className="text-lg font-semibold">{phone}</div>
+              </a>
+              <a href={`mailto:${email}`} className="rounded-xl border bg-white p-4 text-center shadow-sm hover:shadow transition">
+                <div className="text-sm text-neutral-600">E‑mail</div>
+                <div className="text-lg font-semibold break-all">{email}</div>
+              </a>
             </div>
           </div>
           <div className="mx-auto flex max-w-screen-md flex-col gap-6 rounded-lg border p-10">
