@@ -34,19 +34,8 @@ export default function About() {
             <p className="text-lg text-neutral-700 leading-relaxed mb-6">💡 <span className="font-semibold">Sprzęt klasy premium – Profoto.</span><br/>Bo nawet zdjęcie paszportowe może wyglądać dobrze.</p>
             <p className="text-lg text-neutral-700 leading-relaxed">🏆 <span className="font-semibold">Laureat Orłów Fotografii.</span><br/>Sprawdź, dlaczego klienci wracają właśnie tutaj.</p>
           </div>
-          <div>
-            <p className="text-lg text-neutral-700 leading-relaxed mb-6">
-              Od ponad 10 lat fotografuję ludzi w Raciborzu i okolicach. Znam wymagania urzędów i wiem, 
-              jak zrobić zdjęcie, które zostanie zaakceptowane za pierwszym razem.
-            </p>
-            <p className="text-lg text-neutral-700 leading-relaxed mb-6">
-              Pracuję w profesjonalnym studio z najwyższej klasy oświetleniem <span className="font-semibold">Profoto</span>. 
-              Nawet paszportowe zdjęcie może wyglądać świetnie!
-            </p>
-            <p className="text-lg text-neutral-700 leading-relaxed">
-              <span className="font-semibold">Orły Fotografii</span> – jestem dumny z nagrody, którą otrzymałem za moją pracę.
-            </p>
-          </div>
+          {/* Right column intentionally left empty to keep balanced layout */}
+          <div />
         </div>
 
         {/* Methods & Certification Section */}

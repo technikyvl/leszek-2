@@ -81,8 +81,8 @@ export default function Services() {
       title: "Sesje Portretowe",
       src: "/polish%20businessmen%20with%20silver%20beard%20smiling%20realistic%20photo.jpg",
       description: "Klasyczne portrety studyjne",
-      // Ensure the face is centered in the crop
-      objectPosition: "center center",
+      // Shift focus slightly to the right so the full face is visible
+      objectPosition: "80% center",
     },
   ]
 
