@@ -64,22 +64,22 @@ export default function Services() {
   const studioCategories = [
     {
       title: "Sesje Indywidualne",
-      src: "/icons/portrait.svg",
+      src: "/individual%20photo%20session%20polish%20girl.jpg",
       description: "Profesjonalne portrety indywidualne"
     },
     {
       title: "Sesje Rodzinne",
-      src: "/icons/family.svg",
+      src: "/polish%20family%20photo.jpg",
       description: "Wspólne zdjęcia rodzinne w profesjonalnym studio"
     },
     {
       title: "Sesje Świąteczne",
-      src: "/icons/holiday.svg",
+      src: "/christmas%20polish%20family%20photo.jpg",
       description: "Pamiątkowe zdjęcia z okazji świąt"
     },
     {
       title: "Sesje Portretowe",
-      src: "/icons/portrait.svg",
+      src: "/polish%20businessmen%20with%20silver%20beard%20smiling%20realistic%20photo.jpg",
       description: "Klasyczne portrety studyjne"
     },
   ]
