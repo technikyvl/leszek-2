@@ -27,17 +27,12 @@ export default function About() {
         </h2>
         <div className="grid md:grid-cols-2 gap-12 mb-16">
           <div>
-            <p className="text-lg text-neutral-700 leading-relaxed mb-6">
-              Przede wszystkim specjalizuję się w zdjęciach do dokumentów – dowód osobisty, paszport, prawo jazdy, legitymacja studencka. 
-              Wszystko, czego potrzebujesz do urzędowych spraw.
-            </p>
-            <p className="text-lg text-neutral-700 leading-relaxed mb-6">
-              Dodatkowo oferuję profesjonalną fotografię biznesową oraz sesje studyjne – portrety firmowe, sesje indywidualne, rodzinne i świąteczne.
-            </p>
-            <p className="text-lg text-neutral-700 leading-relaxed">
-              Moje studio znajduje się tuż obok urzędu, więc nie musisz już biegać po całym mieście. 
-              Szybko, profesjonalnie, w dobrej cenie. <span className="font-semibold">Wszystko od ręki w expressie!</span>
-            </p>
+            <p className="text-lg text-neutral-700 leading-relaxed mb-6">📸 <span className="font-semibold">Zdjęcia do dokumentów? Zrobione.</span><br/>Dowód, paszport, prawo jazdy, legitymacja — wszystko od ręki, ekspresowo, bez stresu.</p>
+            <p className="text-lg text-neutral-700 leading-relaxed mb-6">🎯 <span className="font-semibold">Studio tuż obok urzędu.</span><br/>Wpadnij po zdjęcie, wyjdź gotowy na wszystkie urzędowe sprawy.</p>
+            <p className="text-lg text-neutral-700 leading-relaxed mb-6">💼 <span className="font-semibold">Fotografia biznesowa i studyjna.</span><br/>Portrety firmowe, rodzinne, świąteczne — profesjonalnie, naturalnie, z klimatem.</p>
+            <p className="text-lg text-neutral-700 leading-relaxed mb-6">🔥 <span className="font-semibold">Ponad 10 lat doświadczenia.</span><br/>Fotografuję ludzi w Raciborzu i okolicach, znam wymagania urzędów i wiem, jak zrobić zdjęcie, które przejdzie za pierwszym razem.</p>
+            <p className="text-lg text-neutral-700 leading-relaxed mb-6">💡 <span className="font-semibold">Sprzęt klasy premium – Profoto.</span><br/>Bo nawet zdjęcie paszportowe może wyglądać dobrze.</p>
+            <p className="text-lg text-neutral-700 leading-relaxed">🏆 <span className="font-semibold">Laureat Orłów Fotografii.</span><br/>Sprawdź, dlaczego klienci wracają właśnie tutaj.</p>
           </div>
           <div>
             <p className="text-lg text-neutral-700 leading-relaxed mb-6">
