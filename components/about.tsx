@@ -31,12 +31,12 @@ export default function About() {
             <p className="text-lg text-neutral-700 leading-relaxed mb-6">🎯 <span className="font-semibold">Studio tuż obok urzędu.</span><br/>Wpadnij po zdjęcie, wyjdź gotowy na wszystkie urzędowe sprawy.</p>
             <p className="text-lg text-neutral-700 leading-relaxed mb-6">💼 <span className="font-semibold">Fotografia biznesowa i studyjna.</span><br/>Portrety firmowe, rodzinne, świąteczne — profesjonalnie, naturalnie, z klimatem.</p>
             {/* przeniesione niżej do prawej kolumny */}
-            <p className="text-lg text-neutral-700 leading-relaxed mb-6">💡 <span className="font-semibold">Sprzęt klasy premium – Profoto.</span><br/>Bo nawet zdjęcie paszportowe może wyglądać dobrze.</p>
-            <p className="text-lg text-neutral-700 leading-relaxed">🏆 <span className="font-semibold">Laureat Orłów Fotografii.</span><br/>Sprawdź, dlaczego klienci wracają właśnie tutaj.</p>
           </div>
           {/* Right column with experience block to avoid empty space */}
           <div>
             <p className="text-lg text-neutral-700 leading-relaxed mb-6">🔥 <span className="font-semibold">Ponad 10 lat doświadczenia.</span><br/>Fotografuję ludzi w Raciborzu i okolicach, znam wymagania urzędów i wiem, jak zrobić zdjęcie, które przejdzie za pierwszym razem.</p>
+            <p className="text-lg text-neutral-700 leading-relaxed mb-6">💡 <span className="font-semibold">Sprzęt klasy premium – Profoto.</span><br/>Bo nawet zdjęcie paszportowe może wyglądać dobrze.</p>
+            <p className="text-lg text-neutral-700 leading-relaxed">🏆 <span className="font-semibold">Laureat Orłów Fotografii.</span><br/>Sprawdź, dlaczego klienci wracają właśnie tutaj.</p>
           </div>
         </div>
 
