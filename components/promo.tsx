@@ -23,7 +23,7 @@ export default function Section() {
       {/* Background photo instead of interactive map */}
       <div className="fixed top-0 left-0 h-screen w-full -z-10">
         <motion.div style={{ y }} className="relative w-full h-full">
-          <Image src="/kosciol.jpg" alt="Tło – kościół w Raciborzu" fill style={{ objectFit: "cover" }} />
+          <Image src="/kosciol.jpg" alt="Tło – kościół w Raciborzu" fill style={{ objectFit: "cover" }} sizes="100vw" />
           <div className="absolute inset-0 bg-black/35 pointer-events-none" />
         </motion.div>
       </div>
