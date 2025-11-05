@@ -47,16 +47,10 @@ export default function GalleryLanding() {
               className="rounded-lg relative bg-gray-100 dark:bg-neutral-900 overflow-hidden h-72 md:h-[28rem] w-full transition-all duration-300 ease-out"
             >
               <img src={c.src} alt={c.title} className="absolute inset-0 h-full w-full object-cover" />
-              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <motion.div
-                  initial={{ opacity: 0, y: 8 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4 }}
-                  className="text-2xl md:text-3xl font-semibold text-white text-center"
-                >
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-center justify-center">
+                <div className="text-2xl md:text-3xl font-semibold text-white text-center drop-shadow-lg">
                   {c.title}
-                </motion.div>
+                </div>
               </div>
             </motion.div>
           </Link>

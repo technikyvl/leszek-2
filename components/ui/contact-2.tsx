@@ -35,11 +35,10 @@ export const Contact2 = ({
             <div className="grid sm:grid-cols-2 gap-6">
               <div className="rounded-2xl bg-neutral-900 text-white p-6">
                 <h3 className="text-lg font-semibold mb-2">Siedziba</h3>
-                <h4 className="text-2xl md:text-3xl font-bold mb-4">Fotograf na Długiej</h4>
+                <h4 className="text-2xl md:text-3xl font-bold mb-4">Foto Express Leszek Jakieła</h4>
                 <div className="space-y-1 text-neutral-200">
-                  <p className="whitespace-nowrap">Długa&nbsp;22</p>
+                  <p className="whitespace-nowrap">Batorego&nbsp;7</p>
                   <p className="whitespace-nowrap">47-400&nbsp;Racibórz</p>
-                  <p>(w pobliżu Terenowego Punktu Paszportowego)</p>
                   <p className="pt-2 whitespace-nowrap">NIP:&nbsp;6392005862</p>
                 </div>
               </div>

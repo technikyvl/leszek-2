@@ -30,7 +30,7 @@ export default function Hero() {
           src="/polish%20photographer%20studio%20leszek%20jakiela%20in%20raciborz%20photo%20of%20his%20photo%20saloon%20from%20the%20street%20perspective.jpg"
           fill
           priority
-          alt="Studio Leszek Jakieła w Raciborzu – widok z ulicy"
+          alt="Studio Foto Express Leszek Jakieła w Raciborzu – widok z ulicy"
           style={{ objectFit: "cover" }}
           sizes="100vw"
         />
@@ -66,7 +66,7 @@ export default function Hero() {
               >
                 SKONTAKTUJ SIĘ TERAZ
               </button>
-              <span className="text-white text-sm md:text-lg lg:text-xl font-semibold opacity-90">Długa 6, 47-400 Racibórz</span>
+              <span className="text-white text-sm md:text-lg lg:text-xl font-semibold opacity-90">Batorego 7, 47-400 Racibórz</span>
             </div>
           </motion.div>
         </div>

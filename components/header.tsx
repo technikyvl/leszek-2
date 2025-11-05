@@ -26,7 +26,7 @@ export default function Header() {
   return (
     <header className="absolute top-0 left-0 right-0 z-50 p-6">
       <div className="flex justify-between items-center">
-        <div className="text-white text-sm uppercase tracking-wide font-bold">leszek jakieła</div>
+        <div className="text-white text-sm uppercase tracking-wide font-bold">foto express leszek jakieła</div>
         <nav className="flex gap-8">
           <button
             onClick={() => scrollToSection('about')}

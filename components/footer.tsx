@@ -12,7 +12,7 @@ export default function Footer() {
             <div className="flex shrink-0 gap-8 sm:gap-12 lg:gap-20" />
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 sm:gap-0">
               <h1 className="text-[18vw] sm:text-[16vw] lg:text-[14vw] leading-[0.8] mt-4 sm:mt-6 lg:mt-10 text-white font-bold tracking-tight">
-                LESZEK JAKIEŁA
+                FOTO EXPRESS LESZEK JAKIEŁA
               </h1>
               <div className="flex flex-col items-start sm:items-end gap-3">
                 <a
@@ -23,14 +23,14 @@ export default function Footer() {
                 >
                   <img
                     src="https://www.orlyfotografii.pl/images/medals/195180/laureat300_gold_pl.png"
-                    alt="Leszek Jakieła Photography - Racibórz"
-                    title="Leszek Jakieła Photography - Racibórz"
+                    alt="Foto Express Leszek Jakieła Photography - Racibórz"
+                    title="Foto Express Leszek Jakieła Photography - Racibórz"
                     width="300"
                     height="75"
                     style={{ border: 0 }}
                   />
                 </a>
-                <p className="text-white text-sm sm:text-base">© 2025 Leszek Jakieła - FotoExpress Racibórz</p>
+                <p className="text-white text-sm sm:text-base">© 2025 Foto Express Leszek Jakieła - Racibórz</p>
               </div>
             </div>
           </div>

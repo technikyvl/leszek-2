@@ -19,7 +19,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "Leszek Jakiela - Photographer",
+  title: "Foto Express Leszek Jakieła - Photographer",
   description: "Polish photographer from Raciborz - Portfolio",
   generator: "v0.app",
 }
