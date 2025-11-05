@@ -25,9 +25,10 @@ export default function Hero() {
     <div ref={container} className="h-screen overflow-hidden relative">
       <motion.div style={{ y, scale }} className="relative h-full">
         <Image
-          src="/images/woman-horse.jpg"
+          src="/polish%20photographer%20studio%20leszek%20jakiela%20in%20raciborz%20photo%20of%20his%20photo%20saloon%20from%20the%20street%20perspective.jpg"
           fill
-          alt="Sesja ślubna w plenerze"
+          priority
+          alt="Studio Leszek Jakieła w Raciborzu – widok z ulicy"
           style={{ objectFit: "cover" }}
         />
         <div className="absolute inset-0 flex items-end justify-start z-10">
