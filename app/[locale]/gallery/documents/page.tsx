@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 
 const faces = [
   "/0H2A0113_pp%20kopia-Format%20dodatkowy-102x152%20mm_10x15.jpg",
@@ -50,19 +51,34 @@ const faces = [
   "/IMG_8932_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
 ];
 
-export default function DocumentsGallery({ params }: { params: { locale: string } }) {
-  const locale = params.locale || "pl";
+export default function DocumentsGallery() {
+  const params = useParams();
+  const locale = (params?.locale as string) || "pl";
+  
   return (
     <main className="min-h-screen px-6 py-20">
-      <div className="max-w-6xl mx-auto mb-8">
-        <div className="flex justify-between items-center mb-3">
-          <Link href={`/${locale}/gallery`} className="text-sm uppercase text-neutral-600 hover:text-neutral-900">← Kategoria</Link>
-          <Link href={`/${locale}`} className="text-sm uppercase text-neutral-600 hover:text-neutral-900">Strona główna</Link>
+      <div className="max-w-6xl mx-auto">
+        <div className="flex justify-between items-center mb-8">
+          <Link href={`/${locale}/gallery`} className="text-sm uppercase text-neutral-600 hover:text-neutral-900 transition-colors">← Kategoria</Link>
+          <Link href={`/${locale}`} className="text-sm uppercase text-neutral-600 hover:text-neutral-900 transition-colors">Strona główna</Link>
         </div>
-        <motion.h1 initial={{opacity:0,y:16}} animate={{opacity:1,y:0}} transition={{duration:.5}} className="text-4xl md:text-6xl font-bold text-neutral-900">Zdjęcia do dokumentów</motion.h1>
-        <motion.p initial={{opacity:0,y:8}} animate={{opacity:1,y:0}} transition={{duration:.4,delay:.05}} className="text-neutral-600 mt-2">Przykładowe realizacje zdjęć do dokumentów.</motion.p>
-      </div>
-      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <motion.h1 
+          initial={{ opacity: 0, y: 16 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 0.5 }} 
+          className="text-4xl md:text-6xl font-bold text-neutral-900 mb-4"
+        >
+          Zdjęcia do dokumentów
+        </motion.h1>
+        <motion.p 
+          initial={{ opacity: 0, y: 8 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 0.4, delay: 0.05 }} 
+          className="text-neutral-600 text-lg mb-12"
+        >
+          Przykładowe realizacje zdjęć do dokumentów.
+        </motion.p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
         {faces.map((src, i) => (
           <motion.div
             key={src}
@@ -70,7 +86,7 @@ export default function DocumentsGallery({ params }: { params: { locale: string 
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.35, delay: 0.02 * i }}
-            className="relative aspect-[3/4] overflow-hidden rounded-lg"
+            className="relative aspect-[3/4] overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
           >
             <Image src={src} alt="Zdjęcie do dokumentów" fill className="object-cover" unoptimized />
           </motion.div>

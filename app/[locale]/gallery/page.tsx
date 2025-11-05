@@ -24,19 +24,19 @@ export default function GalleryLanding() {
     <main className="min-h-screen px-6 py-20 flex items-center">
       <div className="max-w-6xl mx-auto w-full">
         {/* Simple nav */}
-        <div className="flex justify-start items-center mb-6">
-          <Link href={`/${locale}`} className="text-sm uppercase text-neutral-600 hover:text-neutral-900">← Powrót</Link>
+        <div className="flex justify-start items-center mb-8">
+          <Link href={`/${locale}`} className="text-sm uppercase text-neutral-600 hover:text-neutral-900 transition-colors">← Powrót</Link>
         </div>
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="text-center mb-10"
+          className="text-center mb-12"
         >
-          <h1 className="text-4xl md:text-6xl font-bold text-neutral-900">Galeria</h1>
-          <p className="text-neutral-600 mt-2">Wybierz kategorię, aby zobaczyć zdjęcia.</p>
+          <h1 className="text-4xl md:text-6xl font-bold text-neutral-900 mb-4">Galeria</h1>
+          <p className="text-neutral-600 text-lg">Wybierz kategorię, aby zobaczyć zdjęcia.</p>
         </motion.div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 md:px-8 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
         {cards.map((c) => (
           <Link key={c.title} href={`/${locale}/gallery/${c.href}`} className="block group">
             <motion.div
