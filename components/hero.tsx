@@ -1,12 +1,25 @@
 "use client"
 import Image from "next/image"
-import { useScroll, useTransform, motion } from "framer-motion"
-import { useRef } from "react"
+import { useScroll, useTransform, motion, AnimatePresence } from "framer-motion"
+import { useRef, useState, useEffect } from "react"
 import { useIsMobile } from "@/lib/use-breakpoint"
+
+const facePortraits = [
+  "/0H2A0169_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
+  "/0H2A0318_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
+  "/0H2A0430_pp1-Format%20dodatkowy-102x152%20mm_10x15.jpg",
+  "/0H2A0562_pp1%20kopia2-Format%20dodatkowy-102x152%20mm_10x15.jpg",
+  "/0H2A0601_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
+  "/IMG_1777_pp1-Format%20dodatkowy-102x152%20mm_10x15.jpg",
+  "/IMG_1790_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
+  "/IMG_2221_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
+]
 
 export default function Hero() {
   const container = useRef<HTMLDivElement>(null)
   const isMobile = useIsMobile()
+  const [currentIndex, setCurrentIndex] = useState(0)
+  
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ["start start", "end start"],
@@ -23,17 +36,39 @@ export default function Hero() {
   const textOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
   const textY = useTransform(scrollYProgress, [0, 0.5], [0, -50])
 
+  // Auto-rotate carousel every 4 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % facePortraits.length)
+    }, 4000)
+
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <div ref={container} className="h-screen overflow-hidden relative">
       <motion.div style={{ y, scale, willChange: 'transform' }} className="relative h-full">
-        <Image
-          src="/polish%20photographer%20studio%20leszek%20jakiela%20in%20raciborz%20photo%20of%20his%20photo%20saloon%20from%20the%20street%20perspective.jpg"
-          fill
-          priority
-          alt="Studio Foto Express Leszek Jakieła w Raciborzu – widok z ulicy"
-          style={{ objectFit: "cover" }}
-          sizes="100vw"
-        />
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1 }}
+            className="absolute inset-0"
+          >
+            <Image
+              src={facePortraits[currentIndex]}
+              fill
+              priority={currentIndex === 0}
+              alt="Zdjęcia do dokumentów - portrety"
+              style={{ objectFit: "cover", objectPosition: "center" }}
+              sizes="100vw"
+            />
+          </motion.div>
+        </AnimatePresence>
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/40" />
         <div className="absolute inset-0 flex items-end justify-start z-10">
           <motion.div 
             className="text-left text-white px-6 pb-8"
