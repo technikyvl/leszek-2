@@ -91,6 +91,7 @@ export default function DocumentsGallery() {
             <Image src={src} alt="Zdjęcie do dokumentów" fill className="object-cover" unoptimized />
           </motion.div>
         ))}
+        </div>
       </div>
     </main>
   );
