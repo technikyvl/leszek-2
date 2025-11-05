@@ -4,14 +4,16 @@ import Image from "next/image"
 import { useScroll, useTransform, motion } from "framer-motion"
 import { useRef } from "react"
 import { SectionReveal } from "@/components/ui/section-reveal"
+import { useIsMobile } from "@/lib/use-breakpoint"
 
 export default function Section() {
   const container = useRef<HTMLDivElement>(null)
+  const isMobile = useIsMobile()
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ["start end", "end start"],
   })
-  const y = useTransform(scrollYProgress, [0, 1], [-30, 30], { clamp: false })
+  const y = useTransform(scrollYProgress, [0, 1], [isMobile ? -15 : -30, isMobile ? 15 : 30], { clamp: false })
 
   return (
     <SectionReveal>
@@ -22,7 +24,7 @@ export default function Section() {
     >
       {/* Background photo instead of interactive map */}
       <div className="fixed top-0 left-0 h-screen w-full -z-10">
-        <motion.div style={{ y }} className="relative w-full h-full">
+        <motion.div style={{ y, willChange: 'transform' }} className="relative w-full h-full">
           <Image src="/kosciol.jpg" alt="Tło – kościół w Raciborzu" fill style={{ objectFit: "cover" }} sizes="100vw" />
           <div className="absolute inset-0 bg-black/35 pointer-events-none" />
         </motion.div>
