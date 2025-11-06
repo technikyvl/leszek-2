@@ -19,10 +19,9 @@ export default function DocumentsLanding({ params }: { params: { locale: string 
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="flex justify-between items-center mb-8"
+          className="flex justify-start items-center mb-8"
         >
           <Link href={`/${locale}`} className="text-sm uppercase text-neutral-600 hover:text-neutral-900 transition-colors">← Strona główna</Link>
-          <span className="text-neutral-400 uppercase text-xs">{locale}</span>
         </motion.div>
 
         {/* Hero */}
