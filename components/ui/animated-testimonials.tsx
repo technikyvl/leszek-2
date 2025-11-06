@@ -132,12 +132,14 @@ export const AnimatedTestimonials = ({
             scrollbarWidth: "none",
             msOverflowStyle: "none",
             WebkitOverflowScrolling: "touch",
-            paddingInline: sidePadding,
-            scrollPaddingInline: sidePadding,
+            paddingInline: 0,
+            scrollPaddingInline: 0,
           }}
           role="region"
           aria-label="Karuzela zdjęć do dokumentów"
         >
+          {/* Start spacer to allow first slide to center */}
+          <div className="shrink-0" style={{ width: sidePadding }} aria-hidden />
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
@@ -160,6 +162,8 @@ export const AnimatedTestimonials = ({
               </div>
             </div>
           ))}
+          {/* End spacer to allow last slide to center */}
+          <div className="shrink-0" style={{ width: sidePadding }} aria-hidden />
         </div>
 
         {/* Active item info */}
