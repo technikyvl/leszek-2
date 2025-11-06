@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
+import type React from "react";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/lib/use-breakpoint";
 
@@ -63,6 +64,16 @@ export const AnimatedTestimonials = ({
     }
   };
 
+  const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
+    // Translate vertical wheel into horizontal scroll for desktop mouses
+    if (!scrollContainerRef.current) return;
+    const container = scrollContainerRef.current;
+    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+      e.preventDefault();
+      container.scrollBy({ left: e.deltaY, behavior: "smooth" });
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 24 }}
@@ -76,17 +87,21 @@ export const AnimatedTestimonials = ({
         <div
           ref={scrollContainerRef}
           onScroll={handleScroll}
+          onWheel={handleWheel}
           className="flex gap-4 overflow-x-auto scrollbar-hide pb-4 snap-x snap-mandatory scroll-smooth"
           style={{
             scrollbarWidth: "none",
             msOverflowStyle: "none",
             WebkitOverflowScrolling: "touch",
+            scrollPaddingInline: "24px",
           }}
+          role="region"
+          aria-label="Karuzela zdjęć do dokumentów"
         >
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="flex-shrink-0 w-full md:w-[500px] snap-center"
+              className="flex-shrink-0 basis-full md:basis-[560px] snap-center px-1"
             >
               <div className="relative h-[22rem] md:h-[26rem] lg:h-[28rem] w-full overflow-hidden rounded-3xl shadow-lg">
                 <Image
