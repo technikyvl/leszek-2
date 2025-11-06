@@ -51,33 +51,36 @@ export default function DocumentsLanding({ params }: { params: { locale: string 
         <div className="grid md:grid-cols-3 gap-6 mb-16">
           <div className="rounded-xl border border-neutral-200 bg-white p-6">
             <div className="text-lg font-semibold mb-2">Dowód, Paszport, Prawo jazdy</div>
-            <p className="text-neutral-600 text-sm">Biometryczne 35×45 mm. Twarz prosto do obiektywu, naturalny wyraz, zamknięte usta, dobrze widoczne oczy.</p>
+            <p className="text-neutral-600 text-sm">Zdjęcia biometryczne 35×45 mm w kolorze. Twarz skierowana prosto do obiektywu, naturalny wyraz, zamknięte usta i dobrze widoczne oczy oraz linia brwi. Ujęcie przygotowane zgodnie z aktualnymi wytycznymi MSWiA, tak aby urząd zaakceptował fotografię bez poprawek.</p>
           </div>
           <div className="rounded-xl border border-neutral-200 bg-white p-6">
             <div className="text-lg font-semibold mb-2">Dyplom i Legitymacja</div>
-            <p className="text-neutral-600 text-sm">Najczęściej 45×65 mm; lewy półprofil (legitymacja). Dostosowujemy się do wymogów uczelni/instytucji.</p>
+            <p className="text-neutral-600 text-sm">Najczęściej 45×65 mm. W legitymacjach zwykle wymagany jest lewy półprofil z odsłoniętym lewym uchem; dyplomy dopuszczają frontalne ujęcie lub półprofil — dostosowujemy się do wytycznych uczelni lub szkoły. Zapewniamy elegancki, oficjalny charakter zdjęcia.</p>
           </div>
           <div className="rounded-xl border border-neutral-200 bg-white p-6">
             <div className="text-lg font-semibold mb-2">Wiza</div>
-            <p className="text-neutral-600 text-sm">Specyficzne kadrowanie i odległości. Przygotowujemy zgodnie z wymaganiami kraju (np. USA).</p>
+            <p className="text-neutral-600 text-sm">Fotografie wizowe przygotowujemy pod wymagania konkretnego kraju (np. USA). Zachowujemy właściwą odległość linii oczu od dolnej krawędzi zdjęcia, odpowiedni rozmiar głowy i proporcje kadru. Stosujemy aktualne profile w oprogramowaniu Dokumenty Pro.</p>
           </div>
         </div>
 
         {/* Guidelines */}
         <div className="rounded-2xl bg-neutral-50 border border-neutral-200 p-8 mb-16">
-          <h3 className="text-2xl font-bold text-neutral-900 mb-4">Wytyczne (skrócone)</h3>
+          <h3 className="text-2xl font-bold text-neutral-900 mb-4">Wytyczne zdjęć do dokumentów</h3>
           <ul className="grid sm:grid-cols-2 gap-3 text-neutral-700 text-sm list-disc pl-5">
-            <li>Twarz w pełni widoczna, bez przechylania głowy; patrz prosto w obiektyw.</li>
-            <li>Naturalny wyraz twarzy, zamknięte usta, widoczna linia brwi.</li>
-            <li>Oczy otwarte i wyraźne; okulary tylko bez zasłaniania oczu/odbić.</li>
-            <li>Nakrycia głowy – wyłącznie z uzasadnieniem (np. religijnym).</li>
+            <li>Twarz musi być w pełni widoczna i skierowana prosto w obiektyw. Niedopuszczalne jest przechylanie głowy.</li>
+            <li>Wyraz twarzy powinien być naturalny: usta zamknięte, bez uśmiechu, z zachowaną widoczną linią brwi.</li>
+            <li>Oczy muszą być naturalnie otwarte i dobrze widoczne wraz ze źrenicami; wzrok skierowany na wprost.</li>
+            <li>Okulary są akceptowane, jeżeli nie zasłaniają oczu ani brwi oraz nie powodują odbić na szkłach. W razie wątpliwości prosimy o zdjęcie okularów.</li>
+            <li>Fryzura może wychodzić poza obrys zdjęcia, jednak ozdoby we włosach nie są dozwolone. Uszy mogą być zasłonięte.</li>
+            <li>Makijaż i kontrast powinny zapewniać naturalny wygląd i dobrą czytelność cech biometrycznych.</li>
+            <li>Nakrycia głowy są dozwolone wyłącznie z ważnych względów (np. religijnych) i po okazaniu stosownego zaświadczenia.</li>
+            <li>Dla zdjęć wizowych obowiązują dodatkowe wymagania (m.in. rozmiar głowy i położenie linii oczu) – przygotowujemy fotografię zgodnie z profilem danego kraju.</li>
           </ul>
         </div>
 
         {/* CTA */}
         <div className="text-center">
           <Link href={`/${locale}#contact`} className="inline-block bg-black text-white px-5 py-3 rounded-md text-sm hover:bg-neutral-800 transition-colors">Umów zdjęcia</Link>
-          <p className="text-xs text-neutral-500 mt-3">Źródło inspiracji treści: <a className="underline" href="https://www.fotosilesia.pl/oferta/zdjecia-do-dokumentow/" target="_blank" rel="noreferrer">FotoSilesia – Zdjęcia do dokumentów</a></p>
         </div>
       </div>
     </main>
