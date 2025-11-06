@@ -35,6 +35,12 @@ export default function Header() {
             O Mnie
           </button>
           <Link
+            href={`/${locale}/documents`}
+            className="text-white hover:text-neutral-300 transition-colors duration-300 uppercase text-xs sm:text-sm font-medium whitespace-nowrap"
+          >
+            Zdjęcia do dokumentów
+          </Link>
+          <Link
             href={`/${locale}/gallery`}
             className="text-white hover:text-neutral-300 transition-colors duration-300 uppercase text-xs sm:text-sm font-medium whitespace-nowrap"
           >
