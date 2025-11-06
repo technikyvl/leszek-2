@@ -105,6 +105,9 @@ export const AnimatedTestimonials = ({
     }
   };
 
+  // Side padding to allow first/last slide to center perfectly
+  const sidePadding = isMobile ? "16px" : "calc((100% - 560px)/2)";
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 24 }}
@@ -129,7 +132,8 @@ export const AnimatedTestimonials = ({
             scrollbarWidth: "none",
             msOverflowStyle: "none",
             WebkitOverflowScrolling: "touch",
-            scrollPaddingInline: "24px",
+            paddingInline: sidePadding,
+            scrollPaddingInline: sidePadding,
           }}
           role="region"
           aria-label="Karuzela zdjęć do dokumentów"
@@ -138,6 +142,7 @@ export const AnimatedTestimonials = ({
             <div
               key={index}
               className="flex-shrink-0 basis-full md:basis-[560px] snap-center px-1"
+              style={{ scrollSnapAlign: 'center', scrollSnapStop: 'always' }}
             >
               <div className="relative h-[22rem] md:h-[26rem] lg:h-[28rem] w-full overflow-hidden rounded-3xl shadow-lg">
                 <Image
