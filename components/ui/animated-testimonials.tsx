@@ -59,9 +59,14 @@ export const AnimatedTestimonials = ({
   const handleScroll = () => {
     if (!scrollContainerRef.current) return;
     const container = scrollContainerRef.current;
-    const scrollLeft = container.scrollLeft;
-    const itemWidth = container.scrollWidth / testimonials.length;
-    const newIndex = Math.round(scrollLeft / itemWidth);
+    const firstSpacer = container.querySelector('[data-carousel-spacer="start"]') as HTMLElement | null;
+    const itemEl = container.querySelector('[data-carousel-item]') as HTMLElement | null;
+    if (!itemEl) return;
+    const gap = 16; // gap-4
+    const spacerW = firstSpacer ? firstSpacer.clientWidth : 0;
+    const itemW = itemEl.clientWidth;
+    const offset = Math.max(0, container.scrollLeft - spacerW);
+    const newIndex = Math.round(offset / (itemW + gap));
     if (newIndex !== activeIndex && newIndex >= 0 && newIndex < testimonials.length) {
       setActiveIndex(newIndex);
     }
@@ -139,12 +144,13 @@ export const AnimatedTestimonials = ({
           aria-label="Karuzela zdjęć do dokumentów"
         >
           {/* Start spacer to allow first slide to center */}
-          <div className="shrink-0" style={{ width: sidePadding }} aria-hidden />
+          <div className="shrink-0" style={{ width: sidePadding }} aria-hidden data-carousel-spacer="start" />
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
               className="flex-shrink-0 basis-full md:basis-[560px] snap-center px-1"
               style={{ scrollSnapAlign: 'center', scrollSnapStop: 'always' }}
+              data-carousel-item
             >
               <div className="relative h-[22rem] md:h-[26rem] lg:h-[28rem] w-full overflow-hidden rounded-3xl shadow-lg">
                 <Image
@@ -163,7 +169,7 @@ export const AnimatedTestimonials = ({
             </div>
           ))}
           {/* End spacer to allow last slide to center */}
-          <div className="shrink-0" style={{ width: sidePadding }} aria-hidden />
+          <div className="shrink-0" style={{ width: sidePadding }} aria-hidden data-carousel-spacer="end" />
         </div>
 
         {/* Active item info */}
@@ -194,9 +200,13 @@ export const AnimatedTestimonials = ({
                 setActiveIndex(index);
                 if (scrollContainerRef.current) {
                   const container = scrollContainerRef.current;
-                  const itemWidth = container.scrollWidth / testimonials.length;
+                  const firstSpacer = container.querySelector('[data-carousel-spacer="start"]') as HTMLElement | null;
+                  const itemEl = container.querySelector('[data-carousel-item]') as HTMLElement | null;
+                  const gap = 16;
+                  const spacerW = firstSpacer ? firstSpacer.clientWidth : 0;
+                  const itemW = itemEl ? itemEl.clientWidth : 0;
                   container.scrollTo({
-                    left: itemWidth * index,
+                    left: spacerW + index * (itemW + gap),
                     behavior: "smooth",
                   });
                 }
