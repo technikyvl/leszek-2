@@ -31,26 +31,27 @@ export const AnimatedTestimonials = ({
   const startXRef = useRef(0);
   const startScrollLeftRef = useRef(0);
 
-  // Auto-scroll to active item
-  useEffect(() => {
-    if (scrollContainerRef.current) {
-      const container = scrollContainerRef.current;
-      const activeElement = container.children[activeIndex] as HTMLElement;
-      if (activeElement) {
-        activeElement.scrollIntoView({
-          behavior: "smooth",
-          block: "nearest",
-          inline: "center",
-        });
-      }
-    }
-  }, [activeIndex]);
+  // Programmatic horizontal scroll to active index (no page vertical jump)
+  const scrollToIndex = (index: number, behavior: ScrollBehavior = "smooth") => {
+    if (!scrollContainerRef.current) return;
+    const container = scrollContainerRef.current;
+    const firstSpacer = container.querySelector('[data-carousel-spacer="start"]') as HTMLElement | null;
+    const itemEl = container.querySelector('[data-carousel-item]') as HTMLElement | null;
+    const gap = 16;
+    const spacerW = firstSpacer ? firstSpacer.clientWidth : 0;
+    const itemW = itemEl ? itemEl.clientWidth : 0;
+    container.scrollTo({ left: spacerW + index * (itemW + gap), behavior });
+  };
 
   // Auto-play functionality
   useEffect(() => {
     if (!autoplay) return;
     const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % testimonials.length);
+      setActiveIndex((prev) => {
+        const next = (prev + 1) % testimonials.length;
+        scrollToIndex(next);
+        return next;
+      });
     }, 5000);
     return () => clearInterval(interval);
   }, [autoplay, testimonials.length]);
@@ -198,18 +199,7 @@ export const AnimatedTestimonials = ({
               key={index}
               onClick={() => {
                 setActiveIndex(index);
-                if (scrollContainerRef.current) {
-                  const container = scrollContainerRef.current;
-                  const firstSpacer = container.querySelector('[data-carousel-spacer="start"]') as HTMLElement | null;
-                  const itemEl = container.querySelector('[data-carousel-item]') as HTMLElement | null;
-                  const gap = 16;
-                  const spacerW = firstSpacer ? firstSpacer.clientWidth : 0;
-                  const itemW = itemEl ? itemEl.clientWidth : 0;
-                  container.scrollTo({
-                    left: spacerW + index * (itemW + gap),
-                    behavior: "smooth",
-                  });
-                }
+                scrollToIndex(index);
               }}
               className={cn(
                 "h-2 rounded-full transition-all duration-300",
