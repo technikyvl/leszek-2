@@ -1,9 +1,8 @@
 "use client";
 
-import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/lib/use-breakpoint";
 
@@ -23,27 +22,46 @@ export const AnimatedTestimonials = ({
   autoplay?: boolean;
   className?: string;
 }) => {
-  const [active, setActive] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
   const isMobile = useIsMobile();
   const [failedMap, setFailedMap] = useState<Record<string, boolean>>({});
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  const handleNext = () => {
-    setActive((prev) => (prev + 1) % testimonials.length);
-  };
+  // Auto-scroll to active item
+  useEffect(() => {
+    if (scrollContainerRef.current) {
+      const container = scrollContainerRef.current;
+      const activeElement = container.children[activeIndex] as HTMLElement;
+      if (activeElement) {
+        activeElement.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest",
+          inline: "center",
+        });
+      }
+    }
+  }, [activeIndex]);
 
-  const handlePrev = () => {
-    setActive((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
-
-  const isActive = (index: number) => {
-    return index === active;
-  };
-
+  // Auto-play functionality
   useEffect(() => {
     if (!autoplay) return;
-    const interval = setInterval(handleNext, 5000);
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
     return () => clearInterval(interval);
-  }, [autoplay]);
+  }, [autoplay, testimonials.length]);
+
+  // Handle scroll to update active index
+  const handleScroll = () => {
+    if (!scrollContainerRef.current) return;
+    const container = scrollContainerRef.current;
+    const scrollLeft = container.scrollLeft;
+    const itemWidth = container.scrollWidth / testimonials.length;
+    const newIndex = Math.round(scrollLeft / itemWidth);
+    if (newIndex !== activeIndex && newIndex >= 0 && newIndex < testimonials.length) {
+      setActiveIndex(newIndex);
+    }
+  };
 
   return (
     <motion.div
@@ -51,81 +69,95 @@ export const AnimatedTestimonials = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "0px 0px -100px 0px" }}
       transition={{ duration: isMobile ? 0.35 : 0.5, ease: "easeOut" }}
-      className={cn("max-w-5xl mx-auto px-4 md:px-6 py-12 md:py-16", className)}
+      className={cn("max-w-7xl mx-auto px-4 md:px-6 py-12 md:py-16", className)}
     >
-      <div className="relative grid grid-cols-1 md:grid-cols-2 items-center gap-10 md:gap-16">
-        <div>
-          <div className="relative h-[22rem] md:h-[26rem] lg:h-[28rem] w-full overflow-hidden rounded-3xl shadow-sm">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={testimonials[active].src}
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 1.02 }}
-                transition={{ duration: isMobile ? 0.25 : 0.35, ease: "easeOut" }}
-                className="absolute inset-0"
-                style={{ willChange: 'transform, opacity' }}
-              >
+      <div className="flex flex-col gap-8">
+        {/* Horizontal scrollable images */}
+        <div
+          ref={scrollContainerRef}
+          onScroll={handleScroll}
+          className="flex gap-4 overflow-x-auto scrollbar-hide pb-4 snap-x snap-mandatory scroll-smooth"
+          style={{
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+            WebkitOverflowScrolling: "touch",
+          }}
+        >
+          {testimonials.map((testimonial, index) => (
+            <div
+              key={index}
+              className="flex-shrink-0 w-full md:w-[500px] snap-center"
+            >
+              <div className="relative h-[22rem] md:h-[26rem] lg:h-[28rem] w-full overflow-hidden rounded-3xl shadow-lg">
                 <Image
-                  src={failedMap[testimonials[active].src] ? "/placeholder.jpg" : testimonials[active].src}
-                  alt={testimonials[active].name}
+                  src={failedMap[testimonial.src] ? "/placeholder.jpg" : testimonial.src}
+                  alt={testimonial.name}
                   fill
-                  priority
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority={index === 0}
+                  sizes="(max-width: 768px) 100vw, 500px"
                   draggable={false}
                   className="h-full w-full object-cover object-center"
                   onError={() => {
-                    setFailedMap((m) => ({ ...m, [testimonials[active].src]: true }));
+                    setFailedMap((m) => ({ ...m, [testimonial.src]: true }));
                   }}
                 />
-              </motion.div>
-            </AnimatePresence>
-          </div>
+              </div>
+            </div>
+          ))}
         </div>
-        <div className="flex justify-center md:justify-between flex-col py-0">
-          <motion.div
-            key={active}
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -20, opacity: 0 }}
-            transition={{ duration: 0.2, ease: "easeInOut" }}
-          >
-            <h3 className="text-2xl font-bold text-foreground">
-              {testimonials[active].name}
-            </h3>
-            <p className="text-sm text-muted-foreground">
-              {testimonials[active].designation}
-            </p>
-            <motion.p className="text-lg text-muted-foreground mt-6 md:mt-8 max-w-prose">
-              {testimonials[active].quote.split(" ").map((word, index) => (
-                <motion.span
-                  key={index}
-                  initial={{ filter: "blur(10px)", opacity: 0, y: 5 }}
-                  animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
-                  transition={{ duration: 0.2, ease: "easeInOut", delay: 0.02 * index }}
-                  className="inline-block"
-                >
-                  {word}&nbsp;
-                </motion.span>
-              ))}
-            </motion.p>
-          </motion.div>
-          <div className="flex gap-3 pt-6 md:pt-6">
+
+        {/* Active item info */}
+        <motion.div
+          key={activeIndex}
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          className="text-center"
+        >
+          <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
+            {testimonials[activeIndex].name}
+          </h3>
+          <p className="text-sm md:text-base text-muted-foreground mb-4">
+            {testimonials[activeIndex].designation}
+          </p>
+          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
+            {testimonials[activeIndex].quote}
+          </p>
+        </motion.div>
+
+        {/* Scroll indicators */}
+        <div className="flex justify-center gap-2">
+          {testimonials.map((_, index) => (
             <button
-              onClick={handlePrev}
-              className="h-8 w-8 rounded-full bg-secondary flex items-center justify-center group/button"
-            >
-              <IconArrowLeft className="h-5 w-5 text-foreground group-hover/button:rotate-12 transition-transform duration-300" />
-            </button>
-            <button
-              onClick={handleNext}
-              className="h-8 w-8 rounded-full bg-secondary flex items-center justify-center group/button"
-            >
-              <IconArrowRight className="h-5 w-5 text-foreground group-hover/button:-rotate-12 transition-transform duration-300" />
-            </button>
-          </div>
+              key={index}
+              onClick={() => {
+                setActiveIndex(index);
+                if (scrollContainerRef.current) {
+                  const container = scrollContainerRef.current;
+                  const itemWidth = container.scrollWidth / testimonials.length;
+                  container.scrollTo({
+                    left: itemWidth * index,
+                    behavior: "smooth",
+                  });
+                }
+              }}
+              className={cn(
+                "h-2 rounded-full transition-all duration-300",
+                index === activeIndex
+                  ? "w-8 bg-neutral-900"
+                  : "w-2 bg-neutral-300 hover:bg-neutral-400"
+              )}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
         </div>
       </div>
+
+      <style jsx>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </motion.div>
   );
 };
