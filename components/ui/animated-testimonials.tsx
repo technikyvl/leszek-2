@@ -27,6 +27,9 @@ export const AnimatedTestimonials = ({
   const isMobile = useIsMobile();
   const [failedMap, setFailedMap] = useState<Record<string, boolean>>({});
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const isDraggingRef = useRef(false);
+  const startXRef = useRef(0);
+  const startScrollLeftRef = useRef(0);
 
   // Auto-scroll to active item
   useEffect(() => {
@@ -64,6 +67,34 @@ export const AnimatedTestimonials = ({
     }
   };
 
+  // Drag-to-scroll for mouse and touch (pointer events)
+  const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!scrollContainerRef.current) return;
+    const container = scrollContainerRef.current;
+    isDraggingRef.current = true;
+    startXRef.current = e.clientX;
+    startScrollLeftRef.current = container.scrollLeft;
+    container.setPointerCapture?.(e.pointerId);
+    // Prevent text selection while dragging
+    document.body.style.userSelect = "none";
+  };
+
+  const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDraggingRef.current || !scrollContainerRef.current) return;
+    const container = scrollContainerRef.current;
+    const dx = e.clientX - startXRef.current;
+    container.scrollLeft = startScrollLeftRef.current - dx;
+  };
+
+  const endDrag = (e?: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDraggingRef.current) return;
+    isDraggingRef.current = false;
+    document.body.style.userSelect = "";
+    if (e && scrollContainerRef.current) {
+      scrollContainerRef.current.releasePointerCapture?.(e.pointerId);
+    }
+  };
+
   const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
     // Translate vertical wheel into horizontal scroll for desktop mouses
     if (!scrollContainerRef.current) return;
@@ -88,7 +119,12 @@ export const AnimatedTestimonials = ({
           ref={scrollContainerRef}
           onScroll={handleScroll}
           onWheel={handleWheel}
-          className="flex gap-4 overflow-x-auto scrollbar-hide pb-4 snap-x snap-mandatory scroll-smooth"
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={endDrag}
+          onPointerCancel={endDrag}
+          onPointerLeave={endDrag}
+          className="flex gap-4 overflow-x-auto scrollbar-hide pb-4 snap-x snap-mandatory scroll-smooth cursor-grab active:cursor-grabbing"
           style={{
             scrollbarWidth: "none",
             msOverflowStyle: "none",
