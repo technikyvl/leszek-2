@@ -66,8 +66,9 @@ export default function DocumentsLanding({ params }: { params: { locale: string 
         >
           <div className="order-2 md:order-1">
             <h2 className="text-2xl md:text-3xl font-bold text-neutral-900 mb-3">Zgodność z wytycznymi</h2>
-            <p className="text-neutral-600 mb-4">Wszystkie zdjęcia przygotowujemy w licencjonowanym oprogramowaniu <span className="font-semibold">Dokumenty Pro</span>, które posiada aktualizowane profile ponad 370 formatów i wspiera wymagania MSWiA oraz konsulatów.</p>
-            <p className="text-neutral-600">Masz pewność, że zdjęcia będą <span className="font-semibold">biometryczne</span> i spełnią wymogi Twojego dokumentu.</p>
+            <p className="text-neutral-600 mb-3">Wszystkie zdjęcia przygotowujemy w licencjonowanym oprogramowaniu <span className="font-semibold">Dokumenty Pro</span> (ponad 370 aktualnych profili), zgodnie z wymogami <span className="font-semibold">MSWiA</span> oraz konsulatów.</p>
+            <p className="text-neutral-600 mb-3">W jednym miejscu wykonasz zdjęcia do: <span className="font-semibold">dowodu osobistego, paszportu, prawa jazdy, karty pobytu, legitymacji (szkolnej, studenckiej, pracowniczej), dyplomu, wiz (USA/Schengen i inne)</span> oraz <span className="font-semibold">zdjęcia biznesowe</span> do CV i LinkedIn.</p>
+            <p className="text-neutral-600">Gotowe nawet w <span className="font-semibold">10–15 minut</span>: zrobimy serię ujęć, pomożemy wybrać najlepsze, a retusz masz w cenie. Masz pewność, że zdjęcia będą <span className="font-semibold">biometryczne</span> i przejdą w urzędzie bez poprawek.</p>
           </div>
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
