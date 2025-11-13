@@ -25,29 +25,37 @@ export default function Hero() {
     offset: ["start start", "end start"],
   })
 
-  const y = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 150 : 300], {
+  // Optimized transforms with reduced complexity for better performance
+  const y = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 100 : 200], {
     clamp: false,
   })
 
-  const scale = useTransform(scrollYProgress, [0, 1], [1, isMobile ? 1.1 : 1.2], {
+  const scale = useTransform(scrollYProgress, [0, 1], [1, isMobile ? 1.05 : 1.1], {
     clamp: false,
   })
 
-  const textOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
-  const textY = useTransform(scrollYProgress, [0, 0.5], [0, -50])
+  const textOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0])
+  const textY = useTransform(scrollYProgress, [0, 0.4], [0, -30])
 
-  // Auto-rotate carousel every 4 seconds
+  // Auto-rotate carousel every 2.5 seconds (faster)
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % facePortraits.length)
-    }, 4000)
+    }, 2500)
 
     return () => clearInterval(interval)
   }, [])
 
   return (
     <div ref={container} className="h-screen overflow-hidden relative">
-      <motion.div style={{ y, scale, willChange: 'transform' }} className="relative h-full">
+      <motion.div 
+        style={{ 
+          y, 
+          scale, 
+          willChange: isMobile ? 'auto' : 'transform' 
+        }} 
+        className="relative h-full"
+      >
         <AnimatePresence initial={false}>
           <motion.div
             key={currentIndex}
@@ -55,7 +63,7 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ 
-              duration: 1.5,
+              duration: 0.8,
               ease: [0.4, 0, 0.2, 1]
             }}
             className="absolute inset-0"
@@ -67,6 +75,8 @@ export default function Hero() {
               alt="Zdjęcia do dokumentów - portrety"
               style={{ objectFit: "cover", objectPosition: "center" }}
               sizes="100vw"
+              loading={currentIndex === 0 ? "eager" : "lazy"}
+              quality={85}
             />
           </motion.div>
         </AnimatePresence>

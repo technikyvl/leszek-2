@@ -13,7 +13,8 @@ export default function Section() {
     target: container,
     offset: ["start end", "end start"],
   })
-  const y = useTransform(scrollYProgress, [0, 1], [isMobile ? -15 : -30, isMobile ? 15 : 30], { clamp: false })
+  // Reduced parallax movement for better performance
+  const y = useTransform(scrollYProgress, [0, 1], [isMobile ? -10 : -20, isMobile ? 10 : 20], { clamp: false })
 
   return (
     <SectionReveal>
@@ -24,13 +25,21 @@ export default function Section() {
     >
       {/* Background photo instead of interactive map */}
       <div className="fixed top-0 left-0 h-screen w-full -z-10">
-        <motion.div style={{ y, willChange: 'transform' }} className="relative w-full h-full">
+        <motion.div 
+          style={{ 
+            y, 
+            willChange: isMobile ? 'auto' : 'transform' 
+          }} 
+          className="relative w-full h-full"
+        >
           <Image 
             src="/legitymacja - dyplom - przed retuszem i po oraz w różnych układach/IMG_1092_pp1 kopia-PL Legitymacja szkolna-102x152 mm_6x 35x45 L.jpg" 
             alt="Zdjęcia do dokumentów" 
             fill 
             style={{ objectFit: "cover" }} 
-            sizes="100vw" 
+            sizes="100vw"
+            quality={85}
+            loading="lazy"
           />
           <div className="absolute inset-0 bg-black/35 pointer-events-none" />
         </motion.div>

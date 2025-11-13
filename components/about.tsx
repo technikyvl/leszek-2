@@ -44,7 +44,7 @@ export default function About() {
         <motion.div 
           className="bg-neutral-900 text-white rounded-2xl p-8 md:p-12 mb-16"
           style={{ 
-            y: useTransform(scrollYProgress, [0, 0.3], [40, 0]),
+            y: useTransform(scrollYProgress, [0, 0.3], [20, 0]),
             opacity: useTransform(scrollYProgress, [0, 0.2], [1, 1])
           }}
         >
@@ -60,6 +60,8 @@ export default function About() {
                     alt="Orły Fotografii - Nagroda"
                     fill
                     className="object-contain"
+                    loading="lazy"
+                    quality={85}
                   />
                 </div>
                 <div className="text-left">

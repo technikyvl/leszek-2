@@ -15,14 +15,17 @@ export default function Home() {
   const lenisRef = useRef<Lenis | null>(null)
 
   useEffect(() => {
+    // Detect if mobile device for optimized settings
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+    
     const lenis = new Lenis({
-      duration: 0.5,
+      duration: isMobile ? 0.8 : 0.5, // Slightly longer on mobile for smoother feel
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
       wheelMultiplier: 1,
-      touchMultiplier: 2,
+      touchMultiplier: isMobile ? 1.2 : 2, // Reduced for iPhone performance
       infinite: false,
     })
 

@@ -12,11 +12,12 @@ export default function Featured() {
     offset: ["start end", "end start"],
   })
 
-  const imageY = useTransform(scrollYProgress, [0, 1], [100, -100])
-  const imageOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0])
-  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 1, 1.1])
+  // Simplified transforms for better performance
+  const imageY = useTransform(scrollYProgress, [0, 1], [50, -50])
+  const imageOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
+  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.95, 1, 1.05])
 
-  const textY = useTransform(scrollYProgress, [0, 1], [50, -50])
+  const textY = useTransform(scrollYProgress, [0, 1], [30, -30])
   const textOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
 
   return (
@@ -24,7 +25,12 @@ export default function Featured() {
       <div ref={container} className="flex flex-col lg:flex-row lg:justify-between lg:items-center min-h-screen px-6 py-12 lg:py-0">
       <motion.div 
         className="relative flex-1 h-[400px] lg:h-[800px] mb-8 lg:mb-0 lg:order-2"
-        style={{ y: imageY, opacity: imageOpacity, scale: imageScale }}
+        style={{ 
+          y: imageY, 
+          opacity: imageOpacity, 
+          scale: imageScale,
+          willChange: 'transform, opacity'
+        }}
       >
         <Image
           src="/mapa.png"
@@ -33,6 +39,7 @@ export default function Featured() {
           priority
           sizes="(max-width: 1024px) 100vw, 50vw"
           className="object-cover"
+          quality={85}
         />
       </motion.div>
       <motion.div 
