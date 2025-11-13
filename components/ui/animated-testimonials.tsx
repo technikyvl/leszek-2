@@ -56,7 +56,7 @@ export const AnimatedTestimonials = ({
     return () => clearInterval(interval);
   }, [autoplay, testimonials.length]);
 
-  // Handle scroll to update active index
+  // Handle scroll to update active index (throttled for performance)
   const handleScroll = () => {
     if (!scrollContainerRef.current) return;
     const container = scrollContainerRef.current;
@@ -72,6 +72,26 @@ export const AnimatedTestimonials = ({
       setActiveIndex(newIndex);
     }
   };
+  
+  // Throttle scroll handler for better performance
+  useEffect(() => {
+    if (!scrollContainerRef.current) return;
+    const container = scrollContainerRef.current;
+    let ticking = false;
+    
+    const throttledHandleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    
+    container.addEventListener('scroll', throttledHandleScroll, { passive: true });
+    return () => container.removeEventListener('scroll', throttledHandleScroll);
+  }, [activeIndex]);
 
   // Drag-to-scroll for mouse and touch (pointer events)
   const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
@@ -126,7 +146,6 @@ export const AnimatedTestimonials = ({
         {/* Horizontal scrollable images */}
         <div
           ref={scrollContainerRef}
-          onScroll={handleScroll}
           onWheel={handleWheel}
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
@@ -158,10 +177,12 @@ export const AnimatedTestimonials = ({
                   src={failedMap[testimonial.src] ? "/placeholder.jpg" : testimonial.src}
                   alt={testimonial.name}
                   fill
-                  priority={index === 0}
+                  priority={index === 0 && activeIndex === 0}
                   sizes="(max-width: 768px) 100vw, 500px"
                   draggable={false}
                   className="h-full w-full object-cover object-center"
+                  loading={index === 0 ? "eager" : "lazy"}
+                  quality={85}
                   onError={() => {
                     setFailedMap((m) => ({ ...m, [testimonial.src]: true }));
                   }}
