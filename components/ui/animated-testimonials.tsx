@@ -56,42 +56,44 @@ export const AnimatedTestimonials = ({
     return () => clearInterval(interval);
   }, [autoplay, testimonials.length]);
 
-  // Handle scroll to update active index (throttled for performance)
-  const handleScroll = () => {
-    if (!scrollContainerRef.current) return;
-    const container = scrollContainerRef.current;
-    const firstSpacer = container.querySelector('[data-carousel-spacer="start"]') as HTMLElement | null;
-    const itemEl = container.querySelector('[data-carousel-item]') as HTMLElement | null;
-    if (!itemEl) return;
-    const gap = 16; // gap-4
-    const spacerW = firstSpacer ? firstSpacer.clientWidth : 0;
-    const itemW = itemEl.clientWidth;
-    const offset = Math.max(0, container.scrollLeft - spacerW);
-    const newIndex = Math.round(offset / (itemW + gap));
-    if (newIndex !== activeIndex && newIndex >= 0 && newIndex < testimonials.length) {
-      setActiveIndex(newIndex);
-    }
-  };
+  // Use ref to track activeIndex without causing re-renders
+  const activeIndexRef = useRef(activeIndex);
+  useEffect(() => {
+    activeIndexRef.current = activeIndex;
+  }, [activeIndex]);
   
-  // Throttle scroll handler for better performance
+  // Handle scroll to update active index (throttled for performance)
   useEffect(() => {
     if (!scrollContainerRef.current) return;
     const container = scrollContainerRef.current;
     let ticking = false;
     
-    const throttledHandleScroll = () => {
+    const handleScroll = () => {
       if (!ticking) {
         requestAnimationFrame(() => {
-          handleScroll();
+          const firstSpacer = container.querySelector('[data-carousel-spacer="start"]') as HTMLElement | null;
+          const itemEl = container.querySelector('[data-carousel-item]') as HTMLElement | null;
+          if (!itemEl) {
+            ticking = false;
+            return;
+          }
+          const gap = 16;
+          const spacerW = firstSpacer ? firstSpacer.clientWidth : 0;
+          const itemW = itemEl.clientWidth;
+          const offset = Math.max(0, container.scrollLeft - spacerW);
+          const newIndex = Math.round(offset / (itemW + gap));
+          if (newIndex !== activeIndexRef.current && newIndex >= 0 && newIndex < testimonials.length) {
+            setActiveIndex(newIndex);
+          }
           ticking = false;
         });
         ticking = true;
       }
     };
     
-    container.addEventListener('scroll', throttledHandleScroll, { passive: true });
-    return () => container.removeEventListener('scroll', throttledHandleScroll);
-  }, [activeIndex]);
+    container.addEventListener('scroll', handleScroll, { passive: true });
+    return () => container.removeEventListener('scroll', handleScroll);
+  }, [testimonials.length]);
 
   // Drag-to-scroll for mouse and touch (pointer events)
   const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {

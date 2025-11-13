@@ -108,4 +108,27 @@
   .lenis.lenis-scrolling iframe {
     pointer-events: none;
   }
+  
+  /* Optimize scrolling on iOS */
+  @supports (-webkit-overflow-scrolling: touch) {
+    * {
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+  
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  
+  /* Performance: Use GPU for animated elements */
+  [data-framer-component] {
+    will-change: transform;
+  }
 }

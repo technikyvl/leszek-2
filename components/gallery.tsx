@@ -40,7 +40,8 @@ export default function Gallery() {
 
   function Stat({ label, target, start, suffix = "", prefix = "", decimals = 0 }: { label: string; target: number; start: boolean; suffix?: string; prefix?: string; decimals?: number }) {
     const mv = useMotionValue(0)
-    const spring = useSpring(mv, { stiffness: 240, damping: 18 })
+    // Reduced stiffness for smoother, less CPU-intensive animation
+    const spring = useSpring(mv, { stiffness: 180, damping: 20 })
     useEffect(() => {
       if (start) mv.set(target)
     }, [start, target, mv])
