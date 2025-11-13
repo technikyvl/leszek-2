@@ -5,6 +5,7 @@ import { useScroll, useTransform, motion } from "framer-motion"
 import { useRef } from "react"
 import Image from "next/image"
 import { SectionReveal } from "@/components/ui/section-reveal"
+import { useDevice, getDeviceOptimizations } from "@/lib/use-device"
 
 const Services = dynamic(() => import("./services"), {
   ssr: false,
@@ -13,6 +14,8 @@ const Services = dynamic(() => import("./services"), {
 
 export default function About() {
   const container = useRef<HTMLDivElement>(null)
+  const device = useDevice()
+  const optimizations = getDeviceOptimizations(device)
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ["start end", "end start"],
@@ -61,7 +64,7 @@ export default function About() {
                     fill
                     className="object-contain"
                     loading="lazy"
-                    quality={85}
+                    quality={optimizations.images.quality}
                   />
                 </div>
                 <div className="text-left">

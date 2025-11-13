@@ -2,7 +2,7 @@
 import Image from "next/image"
 import { useScroll, useTransform, motion, AnimatePresence } from "framer-motion"
 import { useRef, useState, useEffect } from "react"
-import { useIsMobile } from "@/lib/use-breakpoint"
+import { useDevice, getDeviceOptimizations } from "@/lib/use-device"
 
 const facePortraits = [
   "/0H2A0169_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
@@ -17,7 +17,8 @@ const facePortraits = [
 
 export default function Hero() {
   const container = useRef<HTMLDivElement>(null)
-  const isMobile = useIsMobile()
+  const device = useDevice()
+  const optimizations = getDeviceOptimizations(device)
   const [currentIndex, setCurrentIndex] = useState(0)
   
   const { scrollYProgress } = useScroll({
@@ -25,12 +26,16 @@ export default function Hero() {
     offset: ["start start", "end start"],
   })
 
-  // Optimized transforms with reduced complexity for better performance
-  const y = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 100 : 200], {
+  // Device-optimized transforms
+  const parallaxIntensity = optimizations.animations.parallaxIntensity
+  const maxY = device.isLowEnd ? 50 : device.type === "mobile" ? 100 : device.type === "tablet" ? 150 : 200
+  const maxScale = device.isLowEnd ? 1.02 : device.type === "mobile" ? 1.05 : device.type === "tablet" ? 1.08 : 1.1
+
+  const y = useTransform(scrollYProgress, [0, 1], [0, maxY * parallaxIntensity], {
     clamp: false,
   })
 
-  const scale = useTransform(scrollYProgress, [0, 1], [1, isMobile ? 1.05 : 1.1], {
+  const scale = useTransform(scrollYProgress, [0, 1], [1, maxScale], {
     clamp: false,
   })
 
@@ -52,7 +57,7 @@ export default function Hero() {
         style={{ 
           y, 
           scale, 
-          willChange: isMobile ? 'auto' : 'transform' 
+          willChange: optimizations.performance.useWillChange ? 'transform' : 'auto'
         }} 
         className="relative h-full"
       >
@@ -76,7 +81,7 @@ export default function Hero() {
               style={{ objectFit: "cover", objectPosition: "center" }}
               sizes="100vw"
               loading={currentIndex === 0 ? "eager" : "lazy"}
-              quality={85}
+              quality={optimizations.images.quality}
             />
           </motion.div>
         </AnimatePresence>

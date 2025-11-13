@@ -10,22 +10,22 @@ import Gallery from "@/components/gallery"
 import Promo from "@/components/promo"
 import Contact from "@/components/contact"
 import Footer from "@/components/footer"
+import { useDevice, getDeviceOptimizations } from "@/lib/use-device"
 
 export default function Home() {
   const lenisRef = useRef<Lenis | null>(null)
+  const device = useDevice()
+  const optimizations = getDeviceOptimizations(device)
 
   useEffect(() => {
-    // Detect if mobile device for optimized settings
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
-    
     const lenis = new Lenis({
-      duration: isMobile ? 0.8 : 0.5, // Slightly longer on mobile for smoother feel
+      duration: optimizations.lenis.duration,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: isMobile ? 1.2 : 2, // Reduced for iPhone performance
+      wheelMultiplier: optimizations.lenis.wheelMultiplier,
+      touchMultiplier: optimizations.lenis.touchMultiplier,
       infinite: false,
     })
 

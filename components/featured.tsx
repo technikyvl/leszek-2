@@ -4,20 +4,28 @@ import Image from "next/image"
 import { useScroll, useTransform, motion } from "framer-motion"
 import { useRef } from "react"
 import { SectionReveal } from "@/components/ui/section-reveal"
+import { useDevice, getDeviceOptimizations } from "@/lib/use-device"
 
 export default function Featured() {
   const container = useRef<HTMLDivElement>(null)
+  const device = useDevice()
+  const optimizations = getDeviceOptimizations(device)
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ["start end", "end start"],
   })
 
-  // Simplified transforms for better performance
-  const imageY = useTransform(scrollYProgress, [0, 1], [50, -50])
-  const imageOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
-  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.95, 1, 1.05])
+  // Device-optimized transforms
+  const parallaxIntensity = optimizations.animations.parallaxIntensity
+  const imageMaxY = device.isLowEnd ? 20 : device.type === "mobile" ? 30 : device.type === "tablet" ? 40 : 50
+  const textMaxY = device.isLowEnd ? 15 : device.type === "mobile" ? 20 : device.type === "tablet" ? 25 : 30
+  const maxScale = device.isLowEnd ? 1.02 : device.type === "mobile" ? 1.03 : device.type === "tablet" ? 1.04 : 1.05
 
-  const textY = useTransform(scrollYProgress, [0, 1], [30, -30])
+  const imageY = useTransform(scrollYProgress, [0, 1], [imageMaxY * parallaxIntensity, -imageMaxY * parallaxIntensity])
+  const imageOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
+  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [1 - (1 - maxScale), 1, maxScale])
+
+  const textY = useTransform(scrollYProgress, [0, 1], [textMaxY * parallaxIntensity, -textMaxY * parallaxIntensity])
   const textOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
 
   return (
@@ -39,7 +47,7 @@ export default function Featured() {
           priority
           sizes="(max-width: 1024px) 100vw, 50vw"
           className="object-cover"
-          quality={85}
+          quality={optimizations.images.quality}
         />
       </motion.div>
       <motion.div 

@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import type React from "react";
 import { cn } from "@/lib/utils";
-import { useIsMobile } from "@/lib/use-breakpoint";
+import { useDevice, getDeviceOptimizations } from "@/lib/use-device";
 
 type Testimonial = {
   quote: string;
@@ -24,7 +24,8 @@ export const AnimatedTestimonials = ({
   className?: string;
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const isMobile = useIsMobile();
+  const device = useDevice();
+  const optimizations = getDeviceOptimizations(device);
   const [failedMap, setFailedMap] = useState<Record<string, boolean>>({});
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const isDraggingRef = useRef(false);
@@ -134,14 +135,14 @@ export const AnimatedTestimonials = ({
   };
 
   // Side padding to allow first/last slide to center perfectly
-  const sidePadding = isMobile ? "16px" : "calc((100% - 560px)/2)";
+  const sidePadding = device.type === "mobile" ? "16px" : "calc((100% - 560px)/2)";
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "0px 0px -100px 0px" }}
-      transition={{ duration: isMobile ? 0.35 : 0.5, ease: "easeOut" }}
+      transition={{ duration: optimizations.animations.animationDuration, ease: "easeOut" }}
       className={cn("max-w-7xl mx-auto px-4 md:px-6 py-12 md:py-16", className)}
     >
       <div className="flex flex-col gap-8">
@@ -184,7 +185,7 @@ export const AnimatedTestimonials = ({
                   draggable={false}
                   className="h-full w-full object-cover object-center"
                   loading={index === 0 ? "eager" : "lazy"}
-                  quality={85}
+                  quality={optimizations.images.quality}
                   onError={() => {
                     setFailedMap((m) => ({ ...m, [testimonial.src]: true }));
                   }}

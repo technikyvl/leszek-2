@@ -4,17 +4,26 @@ import Image from "next/image"
 import { useScroll, useTransform, motion } from "framer-motion"
 import { useRef } from "react"
 import { SectionReveal } from "@/components/ui/section-reveal"
-import { useIsMobile } from "@/lib/use-breakpoint"
+import { useDevice, getDeviceOptimizations } from "@/lib/use-device"
 
 export default function Section() {
   const container = useRef<HTMLDivElement>(null)
-  const isMobile = useIsMobile()
+  const device = useDevice()
+  const optimizations = getDeviceOptimizations(device)
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ["start end", "end start"],
   })
-  // Reduced parallax movement for better performance
-  const y = useTransform(scrollYProgress, [0, 1], [isMobile ? -10 : -20, isMobile ? 10 : 20], { clamp: false })
+  
+  // Device-optimized parallax
+  const parallaxIntensity = optimizations.animations.parallaxIntensity
+  const maxMovement = device.isLowEnd ? 5 : device.type === "mobile" ? 10 : device.type === "tablet" ? 15 : 20
+  const y = useTransform(
+    scrollYProgress, 
+    [0, 1], 
+    [-maxMovement * parallaxIntensity, maxMovement * parallaxIntensity], 
+    { clamp: false }
+  )
 
   return (
     <SectionReveal>
@@ -28,7 +37,7 @@ export default function Section() {
         <motion.div 
           style={{ 
             y, 
-            willChange: isMobile ? 'auto' : 'transform' 
+            willChange: optimizations.performance.useWillChange ? 'transform' : 'auto'
           }} 
           className="relative w-full h-full"
         >
@@ -38,7 +47,7 @@ export default function Section() {
             fill 
             style={{ objectFit: "cover" }} 
             sizes="100vw"
-            quality={85}
+            quality={optimizations.images.quality}
             loading="lazy"
           />
           <div className="absolute inset-0 bg-black/35 pointer-events-none" />
