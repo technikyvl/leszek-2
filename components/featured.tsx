@@ -46,7 +46,8 @@ export default function Featured() {
           fill
           priority
           sizes="(max-width: 1024px) 100vw, 50vw"
-          className="object-cover"
+          className={device.type === "mobile" ? "object-contain" : "object-cover"}
+          style={device.type === "mobile" ? { objectPosition: "center" } : undefined}
           quality={optimizations.images.quality}
         />
       </motion.div>

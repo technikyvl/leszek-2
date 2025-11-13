@@ -42,11 +42,11 @@ export default function Hero() {
   const textOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0])
   const textY = useTransform(scrollYProgress, [0, 0.4], [0, -30])
 
-  // Auto-rotate carousel every 2.5 seconds (faster)
+  // Auto-rotate carousel every 2 seconds (faster)
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % facePortraits.length)
-    }, 2500)
+    }, 2000)
 
     return () => clearInterval(interval)
   }, [])
@@ -68,7 +68,7 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ 
-              duration: 0.8,
+              duration: 0.6,
               ease: [0.4, 0, 0.2, 1]
             }}
             className="absolute inset-0"
