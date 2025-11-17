@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 
 export default function Footer() {
   return (
@@ -19,15 +20,16 @@ export default function Footer() {
                   href="https://www.orlyfotografii.pl/profile-195180-leszek-jakiela-photography"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block"
+                  className="block relative w-[300px] h-[75px]"
                 >
-                  <img
+                  <Image
                     src="https://www.orlyfotografii.pl/images/medals/195180/laureat300_gold_pl.png"
-                    alt="Leszek Jakieła Photography - Racibórz"
-                    title="Leszek Jakieła Photography - Racibórz"
-                    width="300"
-                    height="75"
-                    style={{ border: 0 }}
+                    alt="Leszek Jakieła Photography - Racibórz - Laureat Orłów Fotografii"
+                    fill
+                    className="object-contain"
+                    sizes="300px"
+                    quality={90}
+                    loading="lazy"
                   />
                 </a>
                 <p className="text-white text-sm sm:text-base">© 2025 Leszek Jakieła - Racibórz</p>

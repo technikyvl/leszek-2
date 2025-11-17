@@ -2,6 +2,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useDevice, getDeviceOptimizations } from "@/lib/use-device";
 
 export const Card = React.memo(
   ({
@@ -9,11 +10,13 @@ export const Card = React.memo(
     index,
     hovered,
     setHovered,
+    optimizations,
   }: {
     card: any;
     index: number;
     hovered: number | null;
     setHovered: React.Dispatch<React.SetStateAction<number | null>>;
+    optimizations: ReturnType<typeof getDeviceOptimizations>;
   }) => (
     <div
       onMouseEnter={() => setHovered(index)}
@@ -30,7 +33,8 @@ export const Card = React.memo(
         className="object-cover absolute inset-0"
         style={card.objectPosition ? { objectPosition: card.objectPosition } : undefined}
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        unoptimized
+        quality={optimizations.images.quality}
+        loading="lazy"
       />
       <div
         className={cn(
@@ -55,6 +59,8 @@ type Card = {
 
 export function FocusCards({ cards }: { cards: Card[] }) {
   const [hovered, setHovered] = useState<number | null>(null);
+  const device = useDevice();
+  const optimizations = getDeviceOptimizations(device);
 
   // Determine grid columns based on number of cards
   const getGridCols = () => {
@@ -73,6 +79,7 @@ export function FocusCards({ cards }: { cards: Card[] }) {
           index={index}
           hovered={hovered}
           setHovered={setHovered}
+          optimizations={optimizations}
         />
       ))}
     </div>

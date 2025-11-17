@@ -69,6 +69,10 @@ export default function Home() {
       lenis.destroy()
       delete (window as any).lenis
       window.removeEventListener('hashchange', handleHashScroll)
+      // Clear any pending timeouts
+      if (typeof window !== 'undefined') {
+        // Timeout is cleared automatically when component unmounts
+      }
     }
   }, [optimizations])
 

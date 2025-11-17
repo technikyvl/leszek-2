@@ -3,6 +3,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { useDevice, getDeviceOptimizations } from "@/lib/use-device";
 
 const faces = [
   "/0H2A0113_pp%20kopia-Format%20dodatkowy-102x152%20mm_10x15.jpg",
@@ -54,6 +55,8 @@ const faces = [
 export default function DocumentsGallery() {
   const params = useParams();
   const locale = (params?.locale as string) || "pl";
+  const device = useDevice();
+  const optimizations = getDeviceOptimizations(device);
   
   return (
     <main className="min-h-screen px-6 py-20">
@@ -88,7 +91,15 @@ export default function DocumentsGallery() {
             transition={{ duration: 0.35, delay: 0.02 * i }}
             className="relative aspect-[3/4] overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
           >
-            <Image src={src} alt="Zdjęcie do dokumentów" fill className="object-cover" unoptimized />
+            <Image 
+              src={src} 
+              alt={`Zdjęcie do dokumentów - przykład ${i + 1}`} 
+              fill 
+              className="object-cover" 
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+              quality={optimizations.images.quality}
+              loading="lazy"
+            />
           </motion.div>
         ))}
         </div>

@@ -1,12 +1,16 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
+import { useDevice, getDeviceOptimizations } from "@/lib/use-device";
 
 export default function GalleryLanding() {
   const params = useParams();
   const locale = (params?.locale as string) || "pl";
+  const device = useDevice();
+  const optimizations = getDeviceOptimizations(device);
   const cards = [
     {
       title: "Zdjęcia do dokumentów",
@@ -46,7 +50,15 @@ export default function GalleryLanding() {
               transition={{ duration: 0.45, ease: "easeOut" }}
               className="rounded-lg relative bg-gray-100 dark:bg-neutral-900 overflow-hidden h-72 md:h-[28rem] w-full transition-all duration-300 ease-out"
             >
-              <img src={c.src} alt={c.title} className="absolute inset-0 h-full w-full object-cover" />
+              <Image 
+                src={c.src} 
+                alt={c.title} 
+                fill 
+                className="object-cover" 
+                sizes="(max-width: 768px) 100vw, 50vw"
+                quality={optimizations.images.quality}
+                loading="lazy"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-center justify-center">
                 <div className="text-2xl md:text-3xl font-semibold text-white text-center drop-shadow-lg">
                   {c.title}
