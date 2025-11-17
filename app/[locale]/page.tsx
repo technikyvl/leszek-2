@@ -41,11 +41,36 @@ export default function Home() {
     // Expose lenis to window for scroll functions
     ;(window as any).lenis = lenis
 
+    // Handle smooth scroll to section on page load (e.g., from subpages)
+    const handleHashScroll = () => {
+      const hash = window.location.hash
+      if (hash) {
+        const sectionId = hash.substring(1) // Remove #
+        // Wait for Lenis to be ready and page to render
+        setTimeout(() => {
+          const element = document.getElementById(sectionId)
+          if (element && lenis) {
+            lenis.scrollTo(element, {
+              offset: -20,
+              duration: 1.5,
+            })
+          }
+        }, 100)
+      }
+    }
+
+    // Check hash on mount
+    handleHashScroll()
+
+    // Also listen for hash changes
+    window.addEventListener('hashchange', handleHashScroll)
+
     return () => {
       lenis.destroy()
       delete (window as any).lenis
+      window.removeEventListener('hashchange', handleHashScroll)
     }
-  }, [])
+  }, [optimizations])
 
   return (
     <main style={{ minHeight: '100vh', width: '100%' }}>
