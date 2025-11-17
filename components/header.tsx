@@ -40,12 +40,19 @@ export default function Header() {
         <div className="text-white text-xs sm:text-sm uppercase tracking-wide font-bold">foto express leszek jakieła</div>
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-4 sm:gap-8" aria-label="Główna nawigacja">
-          <button
-            onClick={() => scrollToSection('about')}
+          <Link
+            href={`/${locale}#about`}
+            onClick={(e) => {
+              // If on same page, prevent default and use smooth scroll
+              if (window.location.pathname === `/${locale}` || window.location.pathname === `/${locale}/`) {
+                e.preventDefault();
+                scrollToSection('about');
+              }
+            }}
             className="text-white hover:text-neutral-300 transition-colors duration-300 uppercase text-xs sm:text-sm font-medium cursor-pointer whitespace-nowrap px-2 py-2"
           >
             O Mnie
-          </button>
+          </Link>
           <Link
             href={`/${locale}/documents`}
             className="text-white hover:text-neutral-300 transition-colors duration-300 uppercase text-xs sm:text-sm font-medium whitespace-nowrap px-2 py-2"
@@ -58,12 +65,19 @@ export default function Header() {
           >
             Galeria
           </Link>
-          <button
-            onClick={() => scrollToSection('contact')}
+          <Link
+            href={`/${locale}#contact`}
+            onClick={(e) => {
+              // If on same page, prevent default and use smooth scroll
+              if (window.location.pathname === `/${locale}` || window.location.pathname === `/${locale}/`) {
+                e.preventDefault();
+                scrollToSection('contact');
+              }
+            }}
             className="text-white hover:text-neutral-300 transition-colors duration-300 uppercase text-xs sm:text-sm font-medium cursor-pointer whitespace-nowrap px-2 py-2"
           >
             Kontakt
-          </button>
+          </Link>
         </nav>
 
         {/* Mobile burger */}
@@ -84,16 +98,32 @@ export default function Header() {
       {open && (
         <div className="md:hidden mt-3 rounded-xl bg-black/60 backdrop-blur px-3 py-2" role="dialog" aria-label="Menu mobilne">
           <div className="flex flex-col gap-1">
-            <button
-              onClick={() => { setOpen(false); scrollToSection('about'); }}
+            <Link
+              href={`/${locale}#about`}
+              onClick={(e) => {
+                setOpen(false);
+                // If on same page, prevent default and use smooth scroll
+                if (window.location.pathname === `/${locale}` || window.location.pathname === `/${locale}/`) {
+                  e.preventDefault();
+                  scrollToSection('about');
+                }
+              }}
               className="text-white text-sm uppercase text-left px-2 py-2 rounded hover:bg-white/10 whitespace-nowrap"
-            >O Mnie</button>
+            >O Mnie</Link>
             <Link onClick={() => setOpen(false)} href={`/${locale}/documents`} className="text-white text-sm uppercase px-2 py-2 rounded hover:bg-white/10 whitespace-nowrap">Zdjęcia do dokumentów</Link>
             <Link onClick={() => setOpen(false)} href={`/${locale}/gallery`} className="text-white text-sm uppercase px-2 py-2 rounded hover:bg-white/10 whitespace-nowrap">Galeria</Link>
-            <button
-              onClick={() => { setOpen(false); scrollToSection('contact'); }}
+            <Link
+              href={`/${locale}#contact`}
+              onClick={(e) => {
+                setOpen(false);
+                // If on same page, prevent default and use smooth scroll
+                if (window.location.pathname === `/${locale}` || window.location.pathname === `/${locale}/`) {
+                  e.preventDefault();
+                  scrollToSection('contact');
+                }
+              }}
               className="text-white text-sm uppercase text-left px-2 py-2 rounded hover:bg-white/10 whitespace-nowrap"
-            >Kontakt</button>
+            >Kontakt</Link>
           </div>
         </div>
       )}
