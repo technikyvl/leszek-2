@@ -32,12 +32,16 @@ export default function Featured() {
     <SectionReveal>
       <div ref={container} className="flex flex-col lg:flex-row lg:justify-between lg:items-center min-h-screen px-6 py-12 lg:py-0">
       <motion.div 
-        className="relative flex-1 h-[400px] lg:h-[800px] mb-8 lg:mb-0 lg:order-2"
+        className={`relative flex-1 mb-8 lg:mb-0 lg:order-2 ${
+          device.type === "mobile" 
+            ? "h-[300px] sm:h-[400px] w-full p-2" 
+            : "h-[400px] lg:h-[800px]"
+        }`}
         style={{ 
           y: imageY, 
           opacity: imageOpacity, 
           scale: imageScale,
-          willChange: 'transform, opacity'
+          willChange: optimizations.performance.useWillChange ? 'transform, opacity' : 'auto'
         }}
       >
         <Image
@@ -47,7 +51,9 @@ export default function Featured() {
           priority
           sizes="(max-width: 1024px) 100vw, 50vw"
           className={device.type === "mobile" ? "object-contain" : "object-cover"}
-          style={device.type === "mobile" ? { objectPosition: "center" } : undefined}
+          style={device.type === "mobile" ? { 
+            objectPosition: "center"
+          } : undefined}
           quality={optimizations.images.quality}
         />
       </motion.div>
