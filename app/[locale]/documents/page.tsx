@@ -104,16 +104,26 @@ export default function DocumentsLanding({ params }: { params: { locale: string 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="relative w-full aspect-[4/3] md:aspect-square order-1 md:order-2 rounded-xl overflow-hidden border border-neutral-200 bg-neutral-50 flex items-center justify-center"
+            className="relative w-full order-1 md:order-2 rounded-xl overflow-hidden border border-neutral-200"
           >
-            <Image 
-              src="/dokumenty-pro-new.jpg" 
-              alt="Oprogramowanie Dokumenty Pro" 
-              fill 
-              sizes="(max-width: 768px) 100vw, 50vw" 
-              className="object-contain p-4" 
-              priority
-            />
+            <ImageComparison 
+              className="w-full"
+              enableHover
+            >
+              <ImageComparisonImage
+                src="/przed.JPG"
+                alt="Zdjęcie przed retuszem"
+                position="left"
+              />
+              <ImageComparisonImage
+                src="/po.jpg"
+                alt="Zdjęcie po retuszu"
+                position="right"
+              />
+              <ImageComparisonSlider className="w-0.5 bg-white/30 backdrop-blur-xs">
+                <div className="absolute top-1/2 left-1/2 size-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white"></div>
+              </ImageComparisonSlider>
+            </ImageComparison>
           </motion.div>
         </motion.div>
 

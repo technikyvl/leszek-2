@@ -122,7 +122,7 @@ const ImageComparisonImage = ({
       ref={imgRef}
       src={src}
       alt={alt}
-      className={cn("absolute top-0 left-0 w-full h-auto", className)}
+      className={cn("absolute top-0 left-0 w-full h-auto object-contain", className)}
       style={{
         clipPath: position === "left" ? leftClipPath : rightClipPath
       }}
