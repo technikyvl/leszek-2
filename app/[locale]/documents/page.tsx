@@ -36,14 +36,35 @@ export default function DocumentsLanding({ params }: { params: { locale: string 
           <p className="text-neutral-600 text-lg max-w-3xl mx-auto">Profesjonalne zdjęcia biometryczne spełniające rygorystyczne wymogi urzędowe. Gotowe w 15 minut, z możliwością wyboru najlepszego ujęcia i retuszem w cenie.</p>
         </motion.div>
 
-        {/* Image Comparison */}
+        {/* Selling points */}
+        <div className="grid sm:grid-cols-3 gap-4 md:gap-6 mb-12">
+          {[
+            {title:"100% pewności",desc:"Zdjęcia wykonywane według aktualnych wytycznych – akceptowalne w urzędach."},
+            {title:"Gotowe w 15 minut",desc:"Ekspresowa realizacja i wydruk na profesjonalnym sprzęcie."},
+            {title:"Retusz w cenie",desc:"Wykonujemy kilka ujęć i retuszujemy zgodnie z Twoimi preferencjami."},
+          ].map((b,i)=> (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.4, delay: i * 0.1 }}
+              className="rounded-xl border border-neutral-200 bg-white p-6 text-center"
+            >
+              <div className="text-xl font-semibold text-neutral-900 mb-1">{b.title}</div>
+              <div className="text-neutral-600 text-sm">{b.desc}</div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Image Comparison - Przed i Po Retuszu */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.3 }}
           className="flex justify-center items-center mb-16"
         >
           <div className="w-full max-w-4xl">
+            <h2 className="text-2xl md:text-3xl font-bold text-neutral-900 mb-6 text-center">Przed i po retuszu</h2>
             <ImageComparison 
               className="w-full"
               enableHover
@@ -64,26 +85,6 @@ export default function DocumentsLanding({ params }: { params: { locale: string 
             </ImageComparison>
           </div>
         </motion.div>
-
-        {/* Selling points */}
-        <div className="grid sm:grid-cols-3 gap-4 md:gap-6 mb-12">
-          {[
-            {title:"100% pewności",desc:"Zdjęcia wykonywane według aktualnych wytycznych – akceptowalne w urzędach."},
-            {title:"Gotowe w 15 minut",desc:"Ekspresowa realizacja i wydruk na profesjonalnym sprzęcie."},
-            {title:"Retusz w cenie",desc:"Wykonujemy kilka ujęć i retuszujemy zgodnie z Twoimi preferencjami."},
-          ].map((b,i)=> (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.4, delay: i * 0.1 }}
-              className="rounded-xl border border-neutral-200 bg-white p-6 text-center"
-            >
-              <div className="text-xl font-semibold text-neutral-900 mb-1">{b.title}</div>
-              <div className="text-neutral-600 text-sm">{b.desc}</div>
-            </motion.div>
-          ))}
-        </div>
 
         {/* Dokumenty Pro */}
         <motion.div
