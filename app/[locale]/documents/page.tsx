@@ -36,35 +36,6 @@ export default function DocumentsLanding({ params }: { params: { locale: string 
           <p className="text-neutral-600 text-lg max-w-3xl mx-auto">Profesjonalne zdjęcia biometryczne spełniające rygorystyczne wymogi urzędowe. Gotowe w 15 minut, z możliwością wyboru najlepszego ujęcia i retuszem w cenie.</p>
         </motion.div>
 
-        {/* Image Comparison - Przed i Po Retuszu */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex justify-center items-center mb-12"
-        >
-          <div className="w-full max-w-4xl">
-            <ImageComparison 
-              className="w-full"
-              enableHover
-            >
-              <ImageComparisonImage
-                src="/przed.JPG"
-                alt="Zdjęcie przed retuszem"
-                position="left"
-              />
-              <ImageComparisonImage
-                src="/po.jpg"
-                alt="Zdjęcie po retuszu"
-                position="right"
-              />
-              <ImageComparisonSlider className="w-0.5 bg-white/30 backdrop-blur-xs">
-                <div className="absolute top-1/2 left-1/2 size-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white"></div>
-              </ImageComparisonSlider>
-            </ImageComparison>
-          </div>
-        </motion.div>
-
         {/* Selling points */}
         <div className="grid sm:grid-cols-3 gap-4 md:gap-6 mb-12">
           {[
@@ -84,36 +55,6 @@ export default function DocumentsLanding({ params }: { params: { locale: string 
             </motion.div>
           ))}
         </div>
-
-        {/* Image Comparison - Przed i Po Retuszu */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex justify-center items-center mb-16"
-        >
-          <div className="w-full max-w-4xl">
-            <h2 className="text-2xl md:text-3xl font-bold text-neutral-900 mb-6 text-center">Przed i po retuszu</h2>
-            <ImageComparison 
-              className="w-full"
-              enableHover
-            >
-              <ImageComparisonImage
-                src="/przed.JPG"
-                alt="Zdjęcie przed retuszem"
-                position="left"
-              />
-              <ImageComparisonImage
-                src="/po.jpg"
-                alt="Zdjęcie po retuszu"
-                position="right"
-              />
-              <ImageComparisonSlider className="w-0.5 bg-white/30 backdrop-blur-xs">
-                <div className="absolute top-1/2 left-1/2 size-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white"></div>
-              </ImageComparisonSlider>
-            </ImageComparison>
-          </div>
-        </motion.div>
 
         {/* Dokumenty Pro */}
         <motion.div
