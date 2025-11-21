@@ -4,6 +4,7 @@ import { motion, useMotionValue, useSpring, useInView } from "framer-motion"
 import { Star } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 import { useDevice, getDeviceOptimizations } from "@/lib/use-device"
+import { getSectionSizes } from "@/lib/device-sizes"
 
 type GoogleSummary = {
   rating: number
@@ -15,6 +16,8 @@ export default function Gallery() {
   const [summary, setSummary] = useState<GoogleSummary | null>(null)
   const sectionRef = useRef<HTMLDivElement>(null)
   const sectionInView = useInView(sectionRef, { once: true, margin: "0px 0px -100px 0px" })
+  const device = useDevice()
+  const sizes = getSectionSizes(device)
 
   useEffect(() => {
     let mounted = true
@@ -67,13 +70,13 @@ export default function Gallery() {
   }
 
   return (
-    <section id="gallery" ref={sectionRef} className="min-h-screen bg-neutral-100 py-20 px-6 flex items-center">
+    <section id="gallery" ref={sectionRef} className={`${sizes.gallery.minHeight === "auto" ? "" : "min-h-screen"} bg-neutral-100 ${sizes.gallery.padding} flex items-center`}>
       <div className="max-w-6xl mx-auto w-full">
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
           animate={sectionInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-          className="text-4xl md:text-6xl font-bold mb-4 text-neutral-900"
+          className={`${sizes.gallery.fontSize.title} font-bold mb-4 text-neutral-900`}
           style={{
             willChange: sectionInView ? 'auto' : 'transform, opacity',
             transform: 'translateZ(0)',

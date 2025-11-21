@@ -5,11 +5,13 @@ import { useScroll, useTransform, motion } from "framer-motion"
 import { useRef } from "react"
 import { SectionReveal } from "@/components/ui/section-reveal"
 import { useDevice, getDeviceOptimizations } from "@/lib/use-device"
+import { getSectionSizes } from "@/lib/device-sizes"
 
 export default function Featured() {
   const container = useRef<HTMLDivElement>(null)
   const device = useDevice()
   const optimizations = getDeviceOptimizations(device)
+  const sizes = getSectionSizes(device)
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ["start end", "end start"],
@@ -35,11 +37,13 @@ export default function Featured() {
 
   return (
     <SectionReveal>
-      <div ref={container} className="flex flex-col lg:flex-row lg:justify-between lg:items-center min-h-screen px-6 py-12 lg:py-0">
+      <div ref={container} className={`flex flex-col lg:flex-row lg:justify-between lg:items-center ${sizes.featured.minHeight === "auto" ? "" : "min-h-screen"} ${sizes.featured.padding}`}>
       <motion.div 
         className={`relative flex-1 mb-8 lg:mb-0 lg:order-2 ${
           device.type === "mobile" 
-            ? "h-[300px] sm:h-[400px] w-full p-2" 
+            ? `${sizes.featured.imageHeight} w-full p-2` 
+            : device.type === "tablet"
+            ? "h-[500px] lg:h-[600px]"
             : "h-[400px] lg:h-[800px]"
         }`}
         style={{ 
@@ -74,8 +78,8 @@ export default function Featured() {
           backfaceVisibility: 'hidden'
         }}
       >
-        <h3 className="uppercase mb-4">Zdjęcia do Dokumentów</h3>
-        <p className="text-2xl lg:text-4xl mb-8">
+        <h3 className={`uppercase mb-4 ${sizes.featured.fontSize.title}`}>Zdjęcia do Dokumentów</h3>
+        <p className={`${sizes.featured.fontSize.text} mb-8`}>
           Nie musisz już biegać po całym mieście, żeby zrobić zdjęcia do dokumentów.
           Moje studio znajduje się tuż obok urzędu, gdzie wyrabiasz dowód osobisty, prawo jazdy, paszport czy inne dokumenty.
         </p>

@@ -6,6 +6,7 @@ import { useRef } from "react"
 import Image from "next/image"
 import { SectionReveal } from "@/components/ui/section-reveal"
 import { useDevice, getDeviceOptimizations } from "@/lib/use-device"
+import { getSectionSizes } from "@/lib/device-sizes"
 
 const Services = dynamic(() => import("./services"), {
   ssr: false,
@@ -16,6 +17,7 @@ export default function About() {
   const container = useRef<HTMLDivElement>(null)
   const device = useDevice()
   const optimizations = getDeviceOptimizations(device)
+  const sizes = getSectionSizes(device)
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ["start end", "end start"],
@@ -23,9 +25,9 @@ export default function About() {
 
   // Animation only used for Methods section below
   return (
-    <section ref={container} id="about" className="min-h-screen bg-white py-20 px-6">
+    <section ref={container} id="about" className={`bg-white ${sizes.about.minHeight === "auto" ? "" : "min-h-screen"} ${sizes.about.padding}`}>
       <SectionReveal className="max-w-6xl mx-auto">
-        <h2 className="text-4xl md:text-6xl font-bold mb-8 text-neutral-900">
+        <h2 className={`${sizes.about.fontSize.title} font-bold mb-8 text-neutral-900`}>
           Najbliższy fotograf od urzędu
         </h2>
         <div className="grid md:grid-cols-2 gap-12 mb-16">
