@@ -18,6 +18,15 @@ export default function Home() {
   const optimizations = getDeviceOptimizations(device)
 
   useEffect(() => {
+    // Disable Lenis on mobile for better native scrolling
+    const isMobile = device.type === "mobile" || (typeof window !== 'undefined' && window.innerWidth < 768);
+    
+    if (isMobile) {
+      // Remove lenis class from html on mobile
+      document.documentElement.classList.remove('lenis', 'lenis-smooth');
+      return;
+    }
+
     const lenis = new Lenis({
       duration: optimizations.lenis.duration,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -27,8 +36,8 @@ export default function Home() {
       wheelMultiplier: optimizations.lenis.wheelMultiplier,
       touchMultiplier: optimizations.lenis.touchMultiplier,
       infinite: false,
-      syncTouch: true,
-      syncTouchLerp: 0.1,
+      syncTouch: false,
+      syncTouchLerp: 0.075,
     })
 
     lenisRef.current = lenis

@@ -89,9 +89,14 @@
   }
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
   }
   html {
     scroll-behavior: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
   }
   html.lenis {
     height: auto;
@@ -111,8 +116,38 @@
   
   /* Optimize scrolling on iOS */
   @supports (-webkit-overflow-scrolling: touch) {
-    * {
+    html, body {
       -webkit-overflow-scrolling: touch;
+    }
+  }
+  
+  /* Fix mobile scrolling issues */
+  @media (max-width: 767px) {
+    html, body {
+      position: relative;
+      height: 100%;
+      width: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+      touch-action: pan-y;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-y: contain;
+    }
+    
+    main {
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+    
+    /* Disable Lenis on mobile */
+    html.lenis,
+    html.lenis-smooth {
+      scroll-behavior: auto !important;
+    }
+    
+    html.lenis-stopped {
+      overflow: visible !important;
     }
   }
   
@@ -138,10 +173,12 @@
     -moz-osx-font-smoothing: grayscale;
   }
   
-  /* Content visibility for better performance */
-  section {
-    content-visibility: auto;
-    contain-intrinsic-size: auto 500px;
+  /* Content visibility for better performance - disabled on mobile */
+  @media (min-width: 768px) {
+    section {
+      content-visibility: auto;
+      contain-intrinsic-size: auto 500px;
+    }
   }
   
   /* GPU acceleration for transforms */

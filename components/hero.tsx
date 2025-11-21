@@ -61,7 +61,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <div ref={container} className="h-screen overflow-hidden relative">
+    <div ref={container} className="h-screen relative" style={{ overflow: 'hidden' }}>
       <motion.div 
         style={{ 
           y, 
