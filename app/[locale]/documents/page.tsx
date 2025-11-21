@@ -74,8 +74,37 @@ export default function DocumentsLanding({ params }: { params: { locale: string 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="relative w-full order-1 md:order-2 rounded-xl overflow-hidden border border-neutral-200 bg-neutral-50"
+            className="relative w-full aspect-[4/3] md:aspect-square order-1 md:order-2 rounded-xl overflow-hidden border border-neutral-200 bg-neutral-50 flex items-center justify-center"
           >
+            <Image 
+              src="/dokumenty-pro-new.jpg" 
+              alt="Oprogramowanie Dokumenty Pro" 
+              fill 
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-contain"
+              quality={90}
+            />
+          </motion.div>
+        </motion.div>
+
+        {/* Retusz zdjęć - Przed i Po */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mb-16"
+        >
+          <div className="text-center mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold text-neutral-900 mb-4">Retusz zdjęć w cenie</h2>
+            <p className="text-neutral-600 max-w-3xl mx-auto">
+              Każde zdjęcie do dokumentów przechodzi profesjonalny retusz, który zachowuje naturalny wygląd, 
+              jednocześnie poprawiając drobne niedoskonałości. Usuwamy przebarwienia, wyrównujemy koloryt skóry, 
+              delikatnie wygładzamy zmarszczki i poprawiamy kontrast, aby zdjęcie było zgodne z wymogami biometrycznymi, 
+              ale jednocześnie prezentowało Cię w najlepszym świetle. Retusz jest zawsze w cenie i wykonujemy go zgodnie 
+              z Twoimi preferencjami.
+            </p>
+          </div>
+          <div className="relative w-full max-w-4xl mx-auto rounded-xl overflow-hidden border border-neutral-200 bg-neutral-50">
             <ImageComparison 
               className="w-full relative"
               enableHover
@@ -94,7 +123,7 @@ export default function DocumentsLanding({ params }: { params: { locale: string 
                 <div className="absolute top-1/2 left-1/2 size-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white"></div>
               </ImageComparisonSlider>
             </ImageComparison>
-          </motion.div>
+          </div>
         </motion.div>
 
         {/* Types */}
