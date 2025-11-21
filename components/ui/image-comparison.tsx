@@ -11,7 +11,7 @@ import {
   useMotionValue,
   useSpring,
   useTransform
-} from "framer-motion";
+} from "motion/react";
 
 const ImageComparisonContext = createContext<
   | {
@@ -135,7 +135,7 @@ const ImageComparisonSlider = ({
   className,
   children
 }: {
-  className?: string;
+  className: string;
   children?: React.ReactNode;
 }) => {
   const context = useContext(ImageComparisonContext);
