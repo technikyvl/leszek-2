@@ -5,7 +5,6 @@ import { useScroll, useTransform, motion } from "framer-motion"
 import { useRef } from "react"
 import { SectionReveal } from "@/components/ui/section-reveal"
 import { useDevice, getDeviceOptimizations } from "@/lib/use-device"
-import { ImageComparison, ImageComparisonImage, ImageComparisonSlider } from "@/components/ui/image-comparison"
 
 export default function Featured() {
   const container = useRef<HTMLDivElement>(null)
@@ -33,10 +32,10 @@ export default function Featured() {
     <SectionReveal>
       <div ref={container} className="flex flex-col lg:flex-row lg:justify-between lg:items-center min-h-screen px-6 py-12 lg:py-0">
       <motion.div 
-        className={`flex-1 mb-8 lg:mb-0 lg:order-2 ${
+        className={`relative flex-1 mb-8 lg:mb-0 lg:order-2 ${
           device.type === "mobile" 
-            ? "w-full" 
-            : ""
+            ? "h-[300px] sm:h-[400px] w-full p-2" 
+            : "h-[400px] lg:h-[800px]"
         }`}
         style={{ 
           y: imageY, 
@@ -45,24 +44,18 @@ export default function Featured() {
           willChange: optimizations.performance.useWillChange ? 'transform, opacity' : 'auto'
         }}
       >
-        <ImageComparison 
-          className="w-full"
-          enableHover
-        >
-          <ImageComparisonImage
-            src="/przed.JPG"
-            alt="Zdjęcie przed retuszem"
-            position="left"
-          />
-          <ImageComparisonImage
-            src="/po.jpg"
-            alt="Zdjęcie po retuszu"
-            position="right"
-          />
-          <ImageComparisonSlider className="w-0.5 bg-white/30 backdrop-blur-xs">
-            <div className="absolute top-1/2 left-1/2 size-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white"></div>
-          </ImageComparisonSlider>
-        </ImageComparison>
+        <Image
+          src="/mapa.png"
+          alt="Mapa lokalizacji studia fotograficznego"
+          fill
+          priority
+          sizes="(max-width: 1024px) 100vw, 50vw"
+          className={device.type === "mobile" ? "object-contain" : "object-cover"}
+          style={device.type === "mobile" ? { 
+            objectPosition: "center"
+          } : undefined}
+          quality={optimizations.images.quality}
+        />
       </motion.div>
       <motion.div 
         className="flex-1 text-left lg:h-[800px] flex flex-col justify-center lg:mr-12 lg:order-1"

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import { ImageComparison, ImageComparisonImage, ImageComparisonSlider } from "@/components/ui/image-comparison";
 
 export default function DocumentsLanding({ params }: { params: { locale: string } }) {
   const { locale } = params;
@@ -33,6 +34,35 @@ export default function DocumentsLanding({ params }: { params: { locale: string 
         >
           <h1 className="text-4xl md:text-6xl font-bold text-neutral-900 mb-4">Zdjęcia do dokumentów</h1>
           <p className="text-neutral-600 text-lg max-w-3xl mx-auto">Profesjonalne zdjęcia biometryczne spełniające rygorystyczne wymogi urzędowe. Gotowe w 15 minut, z możliwością wyboru najlepszego ujęcia i retuszem w cenie.</p>
+        </motion.div>
+
+        {/* Image Comparison */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="flex justify-center items-center mb-16"
+        >
+          <div className="w-full max-w-4xl">
+            <ImageComparison 
+              className="w-full"
+              enableHover
+            >
+              <ImageComparisonImage
+                src="/przed.JPG"
+                alt="Zdjęcie przed retuszem"
+                position="left"
+              />
+              <ImageComparisonImage
+                src="/po.jpg"
+                alt="Zdjęcie po retuszu"
+                position="right"
+              />
+              <ImageComparisonSlider className="w-0.5 bg-white/30 backdrop-blur-xs">
+                <div className="absolute top-1/2 left-1/2 size-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white"></div>
+              </ImageComparisonSlider>
+            </ImageComparison>
+          </div>
         </motion.div>
 
         {/* Selling points */}
