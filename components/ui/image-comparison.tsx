@@ -111,8 +111,12 @@ const ImageComparisonImage = ({
     if (imgRef.current && position === "left" && imageLoaded) {
       const img = imgRef.current;
       const container = img.closest('.relative');
-      if (container && img.naturalHeight > 0) {
-        (container as HTMLElement).style.height = `${img.naturalHeight}px`;
+      if (container && img.naturalHeight > 0 && img.naturalWidth > 0) {
+        const aspectRatio = img.naturalWidth / img.naturalHeight;
+        const containerWidth = container.clientWidth || img.clientWidth;
+        const calculatedHeight = containerWidth / aspectRatio;
+        (container as HTMLElement).style.height = `${calculatedHeight}px`;
+        (container as HTMLElement).style.minHeight = `${calculatedHeight}px`;
       }
     }
   }, [position, imageLoaded]);
@@ -122,7 +126,7 @@ const ImageComparisonImage = ({
       ref={imgRef}
       src={src}
       alt={alt}
-      className={cn("absolute top-0 left-0 w-full h-auto object-contain", className)}
+      className={cn("absolute top-0 left-0 w-full h-full object-contain", className)}
       style={{
         clipPath: position === "left" ? leftClipPath : rightClipPath
       }}

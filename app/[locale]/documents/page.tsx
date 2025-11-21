@@ -74,10 +74,10 @@ export default function DocumentsLanding({ params }: { params: { locale: string 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="relative w-full order-1 md:order-2 rounded-xl overflow-hidden border border-neutral-200"
+            className="relative w-full order-1 md:order-2 rounded-xl overflow-hidden border border-neutral-200 bg-neutral-50"
           >
             <ImageComparison 
-              className="w-full"
+              className="w-full relative"
               enableHover
             >
               <ImageComparisonImage
