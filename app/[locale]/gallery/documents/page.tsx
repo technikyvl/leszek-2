@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useDevice, getDeviceOptimizations } from "@/lib/use-device";
 
+// Unique faces - no duplicates, mixed gender distribution
 const faces = [
   "/0H2A0113_pp%20kopia-Format%20dodatkowy-102x152%20mm_10x15.jpg",
   "/0H2A0169_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
@@ -52,6 +53,9 @@ const faces = [
   "/IMG_8932_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
 ];
 
+// Remove duplicates
+const uniqueFaces = Array.from(new Set(faces));
+
 export default function DocumentsGallery() {
   const params = useParams();
   const locale = (params?.locale as string) || "pl";
@@ -82,7 +86,7 @@ export default function DocumentsGallery() {
           Przykładowe realizacje zdjęć do dokumentów.
         </motion.p>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
-        {faces.map((src, i) => (
+        {uniqueFaces.map((src, i) => (
           <motion.div
             key={src}
             initial={{ opacity: 0, y: 16 }}

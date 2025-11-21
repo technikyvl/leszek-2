@@ -94,7 +94,7 @@ export default function Hero() {
           fill
               priority={currentIndex === 0}
               alt="Zdjęcia do dokumentów - portrety"
-              style={{ objectFit: "cover", objectPosition: "center" }}
+              style={{ objectFit: "cover", objectPosition: "center top" }}
               sizes="100vw"
               loading={currentIndex === 0 ? "eager" : "lazy"}
               quality={optimizations.images.quality}
