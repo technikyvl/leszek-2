@@ -41,7 +41,9 @@ export default function Featured() {
           y: imageY, 
           opacity: imageOpacity, 
           scale: imageScale,
-          willChange: optimizations.performance.useWillChange ? 'transform, opacity' : 'auto'
+          willChange: optimizations.performance.useWillChange ? 'transform, opacity' : 'auto',
+          transform: 'translateZ(0)',
+          backfaceVisibility: 'hidden'
         }}
       >
         <Image
@@ -59,7 +61,13 @@ export default function Featured() {
       </motion.div>
       <motion.div 
         className="flex-1 text-left lg:h-[800px] flex flex-col justify-center lg:mr-12 lg:order-1"
-        style={{ y: textY, opacity: textOpacity }}
+        style={{ 
+          y: textY, 
+          opacity: textOpacity,
+          willChange: optimizations.performance.useWillChange ? 'transform, opacity' : 'auto',
+          transform: 'translateZ(0)',
+          backfaceVisibility: 'hidden'
+        }}
       >
         <h3 className="uppercase mb-4">Zdjęcia do Dokumentów</h3>
         <p className="text-2xl lg:text-4xl mb-8">

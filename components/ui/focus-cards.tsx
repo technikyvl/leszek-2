@@ -22,9 +22,15 @@ export const Card = React.memo(
       onMouseEnter={() => setHovered(index)}
       onMouseLeave={() => setHovered(null)}
       className={cn(
-        "rounded-lg relative bg-gray-100 dark:bg-neutral-900 overflow-hidden h-60 md:h-96 w-full transition-all duration-300 ease-out",
-        hovered !== null && hovered !== index && "blur-sm scale-[0.98]"
+        "rounded-lg relative bg-gray-100 dark:bg-neutral-900 overflow-hidden h-60 md:h-96 w-full",
+        hovered !== null && hovered !== index && "blur-sm"
       )}
+      style={{
+        transform: hovered !== null && hovered !== index ? 'scale(0.98) translateZ(0)' : 'scale(1) translateZ(0)',
+        transition: 'transform 0.3s ease-out, filter 0.3s ease-out',
+        willChange: hovered !== null ? 'transform, filter' : 'auto',
+        backfaceVisibility: 'hidden'
+      }}
     >
       <Image
         src={card.src || "/placeholder.jpg"}

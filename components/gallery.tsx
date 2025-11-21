@@ -72,16 +72,26 @@ export default function Gallery() {
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
           animate={sectionInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
           className="text-4xl md:text-6xl font-bold mb-4 text-neutral-900"
+          style={{
+            willChange: sectionInView ? 'auto' : 'transform, opacity',
+            transform: 'translateZ(0)',
+            backfaceVisibility: 'hidden'
+          }}
         >
           Opinie Klientów
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 8 }}
           animate={sectionInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.4, delay: 0.05 }}
+          transition={{ duration: 0.4, delay: 0.05, ease: [0.4, 0, 0.2, 1] }}
           className="text-neutral-600 mb-10"
+          style={{
+            willChange: sectionInView ? 'auto' : 'transform, opacity',
+            transform: 'translateZ(0)',
+            backfaceVisibility: 'hidden'
+          }}
         >
           <span className="inline-flex items-center gap-2 font-semibold text-neutral-900">
             <span className="flex items-center gap-1 text-yellow-500">
@@ -109,8 +119,13 @@ export default function Gallery() {
               key={i}
               initial={{ opacity: 0, y: 12 }}
               animate={sectionInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.4, delay: i * 0.05 }}
+              transition={{ duration: 0.4, delay: i * 0.05, ease: [0.4, 0, 0.2, 1] }}
               className="rounded-xl bg-white p-6 shadow-sm border border-neutral-200"
+              style={{
+                willChange: sectionInView ? 'auto' : 'transform, opacity',
+                transform: 'translateZ(0)',
+                backfaceVisibility: 'hidden'
+              }}
             >
               <div className="flex items-center gap-2 mb-3">
                 <div className="flex text-yellow-500">

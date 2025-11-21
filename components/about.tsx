@@ -48,7 +48,10 @@ export default function About() {
           className="bg-neutral-900 text-white rounded-2xl p-8 md:p-12 mb-16"
           style={{ 
             y: useTransform(scrollYProgress, [0, 0.3], [20, 0]),
-            opacity: useTransform(scrollYProgress, [0, 0.2], [1, 1])
+            opacity: useTransform(scrollYProgress, [0, 0.2], [1, 1]),
+            willChange: optimizations.performance.useWillChange ? 'transform, opacity' : 'auto',
+            transform: 'translateZ(0)',
+            backfaceVisibility: 'hidden'
           }}
         >
           <div className="max-w-4xl mx-auto">

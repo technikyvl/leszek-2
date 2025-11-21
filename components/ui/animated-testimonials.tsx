@@ -162,6 +162,8 @@ export const AnimatedTestimonials = ({
             WebkitOverflowScrolling: "touch",
             paddingInline: 0,
             scrollPaddingInline: 0,
+            transform: 'translateZ(0)',
+            willChange: 'scroll-position'
           }}
           role="region"
           aria-label="Karuzela zdjęć do dokumentów"

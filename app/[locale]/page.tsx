@@ -27,16 +27,19 @@ export default function Home() {
       wheelMultiplier: optimizations.lenis.wheelMultiplier,
       touchMultiplier: optimizations.lenis.touchMultiplier,
       infinite: false,
+      syncTouch: true,
+      syncTouchLerp: 0.1,
     })
 
     lenisRef.current = lenis
 
+    let rafId: number;
     function raf(time: number) {
       lenis.raf(time)
-      requestAnimationFrame(raf)
+      rafId = requestAnimationFrame(raf)
     }
 
-    requestAnimationFrame(raf)
+    rafId = requestAnimationFrame(raf)
 
     // Expose lenis to window for scroll functions
     ;(window as any).lenis = lenis
@@ -66,13 +69,10 @@ export default function Home() {
     window.addEventListener('hashchange', handleHashScroll)
 
     return () => {
+      if (rafId) cancelAnimationFrame(rafId)
       lenis.destroy()
       delete (window as any).lenis
       window.removeEventListener('hashchange', handleHashScroll)
-      // Clear any pending timeouts
-      if (typeof window !== 'undefined') {
-        // Timeout is cleared automatically when component unmounts
-      }
     }
   }, [optimizations])
 

@@ -131,4 +131,31 @@
   [data-framer-component] {
     will-change: transform;
   }
+  
+  /* Smooth scrolling optimizations */
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Content visibility for better performance */
+  section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 500px;
+  }
+  
+  /* GPU acceleration for transforms */
+  [style*="transform"] {
+    backface-visibility: hidden;
+  }
+  
+  /* Prevent layout shifts */
+  img {
+    height: auto;
+  }
+  
+  /* Optimize repaints */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
 }

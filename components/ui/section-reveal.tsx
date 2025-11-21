@@ -17,8 +17,13 @@ export const SectionReveal = memo(function SectionReveal({ children, className, 
       ref={ref}
       initial={{ opacity: 0, y: 24 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.4, ease: "easeOut" }}
+      transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
       className={cn(className)}
+      style={{
+        willChange: inView ? 'auto' : 'transform, opacity',
+        transform: 'translateZ(0)',
+        backfaceVisibility: 'hidden'
+      }}
     >
       {children}
     </motion.div>

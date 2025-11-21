@@ -37,7 +37,9 @@ export default function Section() {
         <motion.div 
           style={{ 
             y, 
-            willChange: optimizations.performance.useWillChange ? 'transform' : 'auto'
+            willChange: optimizations.performance.useWillChange ? 'transform' : 'auto',
+            transform: 'translateZ(0)',
+            backfaceVisibility: 'hidden'
           }} 
           className="relative w-full h-full"
         >

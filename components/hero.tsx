@@ -42,13 +42,22 @@ export default function Hero() {
   const textOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0])
   const textY = useTransform(scrollYProgress, [0, 0.4], [0, -30])
 
-  // Auto-rotate carousel every 2 seconds (faster)
+  // Auto-rotate carousel every 2 seconds (faster) - optimized with requestAnimationFrame
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % facePortraits.length)
-    }, 2000)
-
-    return () => clearInterval(interval)
+    let frameId: number;
+    let lastTime = 0;
+    const interval = 2000;
+    
+    const animate = (currentTime: number) => {
+      if (currentTime - lastTime >= interval) {
+        setCurrentIndex((prev) => (prev + 1) % facePortraits.length)
+        lastTime = currentTime;
+      }
+      frameId = requestAnimationFrame(animate);
+    };
+    
+    frameId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frameId);
   }, [])
 
   return (
@@ -57,21 +66,28 @@ export default function Hero() {
         style={{ 
           y, 
           scale, 
-          willChange: optimizations.performance.useWillChange ? 'transform' : 'auto'
+          willChange: optimizations.performance.useWillChange ? 'transform' : 'auto',
+          transform: 'translateZ(0)',
+          backfaceVisibility: 'hidden'
         }} 
         className="relative h-full"
       >
-        <AnimatePresence initial={false}>
+        <AnimatePresence initial={false} mode="wait">
           <motion.div
             key={currentIndex}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ 
-              duration: 0.6,
+              duration: 0.5,
               ease: [0.4, 0, 0.2, 1]
             }}
             className="absolute inset-0"
+            style={{
+              willChange: 'opacity',
+              transform: 'translateZ(0)',
+              backfaceVisibility: 'hidden'
+            }}
           >
         <Image
               src={facePortraits[currentIndex]}
@@ -93,7 +109,9 @@ export default function Hero() {
             style={{
               opacity: textOpacity,
               y: textY,
-              willChange: 'transform, opacity'
+              willChange: 'transform, opacity',
+              transform: 'translateZ(0)',
+              backfaceVisibility: 'hidden'
             }}
           >
             <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight uppercase">Zdjęcia do Dokumentów - Racibórz</h1>
