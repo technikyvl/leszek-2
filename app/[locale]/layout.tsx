@@ -70,7 +70,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} className={`${playfair.variable} ${inter.variable}`}>
       <body className="font-sans" style={{ margin: 0, padding: 0, backgroundColor: '#ffffff', color: '#000000' }}>
-        {children}
+          {children}
         <Analytics />
       </body>
     </html>

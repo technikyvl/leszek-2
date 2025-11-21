@@ -73,9 +73,9 @@ export default function Hero() {
             }}
             className="absolute inset-0"
           >
-            <Image
+        <Image
               src={facePortraits[currentIndex]}
-              fill
+          fill
               priority={currentIndex === 0}
               alt="Zdjęcia do dokumentów - portrety"
               style={{ objectFit: "cover", objectPosition: "center" }}

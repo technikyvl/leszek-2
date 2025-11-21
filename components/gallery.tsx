@@ -119,7 +119,7 @@ export default function Gallery() {
                   ))}
                 </div>
                 <span className="text-sm text-neutral-500">{rev.author_name}</span>
-              </div>
+            </div>
               <p className="text-neutral-700 leading-relaxed">{rev.text}</p>
             </motion.div>
           ))}
