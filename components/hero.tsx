@@ -3,17 +3,9 @@ import Image from "next/image"
 import { useScroll, useTransform, motion, AnimatePresence } from "framer-motion"
 import { useRef, useState, useEffect } from "react"
 import { useDevice, getDeviceOptimizations } from "@/lib/use-device"
+import { heroPortraits } from "@/lib/image-gender-balance"
 
-const facePortraits = [
-  "/0H2A0169_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/0H2A0318_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/0H2A0430_pp1-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/0H2A0562_pp1%20kopia2-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/0H2A0601_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/IMG_1777_pp1-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/IMG_1790_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/IMG_2221_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-]
+const facePortraits = heroPortraits
 
 export default function Hero() {
   const container = useRef<HTMLDivElement>(null)
@@ -145,4 +137,3 @@ export default function Hero() {
     </div>
   )
 }
-sp

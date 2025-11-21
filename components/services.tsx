@@ -2,6 +2,7 @@
 
 import { FocusCards } from "@/components/ui/focus-cards"
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials"
+import { servicePortraits } from "@/lib/image-gender-balance"
 
 export default function Services() {
   // Document photo categories (from FotoJoker)
@@ -48,17 +49,8 @@ export default function Services() {
     },
   ]
 
-  // Local face images placed in public/ (spaces URL-encoded)
-  const faceImages = [
-    "/0H2A0113_pp%20kopia-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-    "/0H2A0169_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-    "/0H2A0318_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-    "/0H2A0430_pp1-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-    "/0H2A0562_pp1%20kopia2-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-    "/0H2A0601_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-    "/IMG_1432_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-    "/IMG_1777_pp1-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  ]
+  // Local face images - balanced gender mix
+  const faceImages = servicePortraits
 
   // Studio photography categories
   const studioCategories = [

@@ -4,57 +4,10 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useDevice, getDeviceOptimizations } from "@/lib/use-device";
+import { galleryPortraits } from "@/lib/image-gender-balance";
 
-// Unique faces - no duplicates, mixed gender distribution
-const faces = [
-  "/0H2A0113_pp%20kopia-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/0H2A0169_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/0H2A0318_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/0H2A0430_pp1-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/0H2A0562_pp1%20kopia2-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/0H2A0601_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/0H2A1586_pp%20kopia-Format%20dodatkowy-102x152%20mm_10x15%20kopia.jpg",
-  "/0H2A1740_pp1-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/0H2A1769_pp1-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/0H2A2303_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/0H2A2378_pp%20kopia1-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/0H2A2534_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/0H2A3097_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/0H2A4108_pp%20kopia-Format%20dodatkowy-102x152%20mm_10x15%20kopia1.jpg",
-  "/0H2A4130_pp12-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/0H2A4173%20kopia_pp%20kopia-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/0H2A5617_pp1-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/0H2A6027_pp%20kopia-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/0H2A6236_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/0H2A6591_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/0H2A8177_pp%20kopia-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/0H2A8732_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/0H2A9414_pp1-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/0H2A9640_pp1-Format%20dodatkowy-102x152%20mm_10x15%20kopia.jpg",
-  "/IMG_1517_pp1a-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/IMG_1777_pp1-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/IMG_1790_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/IMG_2221_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/IMG_2379_pp%20kopia-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/IMG_2964_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/IMG_3032_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/IMG_3198_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/IMG_3803_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/IMG_3952_pp%20kor-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/IMG_3987_pp1-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/IMG_4055_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/IMG_4272_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/IMG_4311_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/IMG_4903_pp1-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/IMG_6387_pp1-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/IMG_7250_pp1-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/IMG_7254_pp1-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-  "/IMG_7284_pp-Format%20dodatkowy-102x152%20mm_10x15%20j_czerny.jpg",
-  "/IMG_8932_pp-Format%20dodatkowy-102x152%20mm_10x15.jpg",
-];
-
-// Remove duplicates
-const uniqueFaces = Array.from(new Set(faces));
+// Gallery faces - no duplicates, balanced gender distribution
+const faces = galleryPortraits;
 
 export default function DocumentsGallery() {
   const params = useParams();
@@ -86,7 +39,7 @@ export default function DocumentsGallery() {
           Przykładowe realizacje zdjęć do dokumentów.
         </motion.p>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
-        {uniqueFaces.map((src, i) => (
+        {faces.map((src, i) => (
           <motion.div
             key={src}
             initial={{ opacity: 0, y: 16 }}
