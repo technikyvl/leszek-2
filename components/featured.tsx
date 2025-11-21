@@ -46,7 +46,7 @@ export default function Featured() {
         }}
       >
         <ImageComparison 
-          className={`w-full ${device.type === "mobile" ? "h-auto" : "h-auto"}`}
+          className="w-full"
           enableHover
         >
           <ImageComparisonImage

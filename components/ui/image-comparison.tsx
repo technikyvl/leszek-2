@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 
-import { useState, createContext, useContext } from "react";
+import { useState, createContext, useContext, useEffect, useRef } from "react";
 
 import {
   motion,
@@ -98,6 +98,8 @@ const ImageComparisonImage = ({
     throw new Error("ImageComparisonImage must be used within ImageComparison");
   }
   const { motionSliderPosition } = context;
+  const imgRef = useRef<HTMLImageElement>(null);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const leftClipPath = useTransform(motionSliderPosition, (value) => `inset(0 0 0 ${value}%)`);
   const rightClipPath = useTransform(
@@ -105,14 +107,26 @@ const ImageComparisonImage = ({
     (value) => `inset(0 ${100 - value}% 0 0)`
   );
 
+  useEffect(() => {
+    if (imgRef.current && position === "left" && imageLoaded) {
+      const img = imgRef.current;
+      const container = img.closest('.relative');
+      if (container && img.naturalHeight > 0) {
+        (container as HTMLElement).style.height = `${img.naturalHeight}px`;
+      }
+    }
+  }, [position, imageLoaded]);
+
   return (
     <motion.img
+      ref={imgRef}
       src={src}
       alt={alt}
-      className={cn("absolute inset-0 h-full w-full object-cover", className)}
+      className={cn("absolute top-0 left-0 w-full h-auto", className)}
       style={{
         clipPath: position === "left" ? leftClipPath : rightClipPath
       }}
+      onLoad={() => setImageLoaded(true)}
     />
   );
 };
@@ -134,9 +148,10 @@ const ImageComparisonSlider = ({
 
   return (
     <motion.div
-      className={cn("absolute top-0 bottom-0 w-1 cursor-ew-resize", className)}
+      className={cn("absolute top-0 w-1 cursor-ew-resize", className)}
       style={{
-        left
+        left,
+        height: '100%'
       }}>
       {children}
     </motion.div>
