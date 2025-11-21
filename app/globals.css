@@ -125,25 +125,43 @@
   @media (max-width: 767px) {
     html, body {
       position: relative;
-      height: 100%;
       width: 100%;
       overflow-x: hidden;
-      overflow-y: auto;
       touch-action: pan-y;
       -webkit-overflow-scrolling: touch;
       overscroll-behavior-y: contain;
+    }
+    
+    html {
+      height: auto;
+      min-height: 100%;
+    }
+    
+    body {
+      min-height: 100vh;
+      height: auto;
     }
     
     main {
       min-height: 100vh;
       overflow-x: hidden;
       position: relative;
+      width: 100%;
+    }
+    
+    /* Ensure sections are visible on mobile */
+    section {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      min-height: auto;
     }
     
     /* Disable Lenis on mobile */
     html.lenis,
     html.lenis-smooth {
       scroll-behavior: auto !important;
+      height: auto !important;
     }
     
     html.lenis-stopped {

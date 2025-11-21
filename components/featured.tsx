@@ -22,11 +22,16 @@ export default function Featured() {
   const maxScale = device.isLowEnd ? 1.02 : device.type === "mobile" ? 1.03 : device.type === "tablet" ? 1.04 : 1.05
 
   const imageY = useTransform(scrollYProgress, [0, 1], [imageMaxY * parallaxIntensity, -imageMaxY * parallaxIntensity])
-  const imageOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
+  // On mobile, keep opacity at 1 to avoid hiding sections
+  const imageOpacity = device.type === "mobile" 
+    ? useTransform(scrollYProgress, [0, 1], [1, 1])
+    : useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
   const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [1 - (1 - maxScale), 1, maxScale])
 
   const textY = useTransform(scrollYProgress, [0, 1], [textMaxY * parallaxIntensity, -textMaxY * parallaxIntensity])
-  const textOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
+  const textOpacity = device.type === "mobile"
+    ? useTransform(scrollYProgress, [0, 1], [1, 1])
+    : useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
 
   return (
     <SectionReveal>
