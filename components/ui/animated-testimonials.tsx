@@ -177,7 +177,7 @@ export const AnimatedTestimonials = ({
               style={{ scrollSnapAlign: 'center', scrollSnapStop: 'always' }}
               data-carousel-item
             >
-              <div className="relative h-[22rem] md:h-[26rem] lg:h-[28rem] w-full overflow-hidden rounded-3xl shadow-lg">
+              <div className="relative h-[22rem] md:h-[26rem] lg:h-[28rem] w-full overflow-hidden rounded-3xl shadow-lg bg-neutral-100">
                 <Image
                   src={failedMap[testimonial.src] ? "/placeholder.jpg" : testimonial.src}
                   alt={testimonial.name}
@@ -185,7 +185,7 @@ export const AnimatedTestimonials = ({
                   priority={index === 0 && activeIndex === 0}
                   sizes="(max-width: 768px) 100vw, 500px"
                   draggable={false}
-                  className="h-full w-full object-cover object-center"
+                  className="h-full w-full object-contain object-center"
                   loading={index === 0 ? "eager" : "lazy"}
                   quality={optimizations.images.quality}
                   onError={() => {
