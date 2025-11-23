@@ -62,7 +62,7 @@ export default function Hero() {
           transform: 'translateZ(0)',
           backfaceVisibility: 'hidden'
         }} 
-        className="relative h-full bg-neutral-900"
+        className="relative h-full bg-white"
       >
         <AnimatePresence initial={false} mode="wait">
           <motion.div
