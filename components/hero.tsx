@@ -12,6 +12,7 @@ export default function Hero() {
   const device = useDevice()
   const optimizations = getDeviceOptimizations(device)
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [backgroundColor, setBackgroundColor] = useState('rgb(153, 153, 153)')
   
   const { scrollYProgress } = useScroll({
     target: container,
@@ -33,6 +34,57 @@ export default function Hero() {
 
   const textOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0])
   const textY = useTransform(scrollYProgress, [0, 0.4], [0, -30])
+
+  // Function to extract background color from image
+  const extractBackgroundColor = (imageSrc: string) => {
+    const img = new Image()
+    img.crossOrigin = 'anonymous'
+    img.onload = () => {
+      const canvas = document.createElement('canvas')
+      const ctx = canvas.getContext('2d')
+      if (!ctx) return
+      
+      canvas.width = img.width
+      canvas.height = img.height
+      ctx.drawImage(img, 0, 0)
+      
+      // Sample pixels from corners (where background usually is)
+      const sampleSize = Math.min(50, Math.floor(img.width * 0.1), Math.floor(img.height * 0.1))
+      const corners = [
+        { x: 0, y: 0 }, // top-left
+        { x: img.width - sampleSize, y: 0 }, // top-right
+        { x: 0, y: img.height - sampleSize }, // bottom-left
+        { x: img.width - sampleSize, y: img.height - sampleSize }, // bottom-right
+      ]
+      
+      let totalR = 0, totalG = 0, totalB = 0, pixelCount = 0
+      
+      corners.forEach(corner => {
+        for (let x = corner.x; x < corner.x + sampleSize; x += 5) {
+          for (let y = corner.y; y < corner.y + sampleSize; y += 5) {
+            const pixel = ctx.getImageData(x, y, 1, 1).data
+            totalR += pixel[0]
+            totalG += pixel[1]
+            totalB += pixel[2]
+            pixelCount++
+          }
+        }
+      })
+      
+      if (pixelCount > 0) {
+        const avgR = Math.round(totalR / pixelCount)
+        const avgG = Math.round(totalG / pixelCount)
+        const avgB = Math.round(totalB / pixelCount)
+        setBackgroundColor(`rgb(${avgR}, ${avgG}, ${avgB})`)
+      }
+    }
+    img.src = imageSrc
+  }
+
+  // Extract background color when image changes
+  useEffect(() => {
+    extractBackgroundColor(facePortraits[currentIndex])
+  }, [currentIndex])
 
   // Auto-rotate carousel every 2 seconds (faster) - optimized with requestAnimationFrame
   useEffect(() => {
@@ -61,7 +113,7 @@ export default function Hero() {
           willChange: optimizations.performance.useWillChange ? 'transform' : 'auto',
           transform: 'translateZ(0)',
           backfaceVisibility: 'hidden',
-          backgroundColor: 'rgb(153, 153, 153)'
+          backgroundColor: backgroundColor
         }} 
         className="relative h-full"
       >
