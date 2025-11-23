@@ -60,9 +60,10 @@ export default function Hero() {
           scale, 
           willChange: optimizations.performance.useWillChange ? 'transform' : 'auto',
           transform: 'translateZ(0)',
-          backfaceVisibility: 'hidden'
+          backfaceVisibility: 'hidden',
+          backgroundColor: 'hsl(42, 15%, 95%)'
         }} 
-        className="relative h-full bg-white"
+        className="relative h-full"
       >
         <AnimatePresence initial={false} mode="wait">
           <motion.div
