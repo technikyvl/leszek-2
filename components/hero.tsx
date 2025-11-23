@@ -61,7 +61,7 @@ export default function Hero() {
           willChange: optimizations.performance.useWillChange ? 'transform' : 'auto',
           transform: 'translateZ(0)',
           backfaceVisibility: 'hidden',
-          backgroundColor: 'hsl(42, 15%, 95%)'
+          backgroundColor: 'rgb(153, 153, 153)'
         }} 
         className="relative h-full"
       >
