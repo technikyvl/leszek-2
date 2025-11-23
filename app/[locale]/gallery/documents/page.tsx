@@ -52,7 +52,8 @@ export default function DocumentsGallery() {
               src={src} 
               alt={`Zdjęcie do dokumentów - przykład ${i + 1}`} 
               fill 
-              className="object-contain bg-neutral-50" 
+              className="object-cover" 
+              style={{ objectPosition: "center 25%" }}
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
               quality={optimizations.images.quality}
               loading="lazy"

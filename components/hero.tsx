@@ -62,7 +62,7 @@ export default function Hero() {
           transform: 'translateZ(0)',
           backfaceVisibility: 'hidden'
         }} 
-        className="relative h-full bg-neutral-900"
+        className="relative h-full"
       >
         <AnimatePresence initial={false} mode="wait">
           <motion.div
@@ -86,7 +86,7 @@ export default function Hero() {
           fill
               priority={currentIndex === 0}
               alt="Zdjęcia do dokumentów - portrety"
-              style={{ objectFit: "contain", objectPosition: "center center" }}
+              style={{ objectFit: "cover", objectPosition: "center 25%" }}
               sizes="100vw"
               loading={currentIndex === 0 ? "eager" : "lazy"}
               quality={optimizations.images.quality}
