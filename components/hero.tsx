@@ -37,7 +37,7 @@ export default function Hero() {
 
   const imageRef = useRef<HTMLImageElement | null>(null)
 
-  // Function to extract background color from image
+  // Function to extract background color from image (only white/light background)
   const extractBackgroundColor = (imageElement: HTMLImageElement | null) => {
     if (!imageElement || !imageElement.complete) return
     
@@ -49,36 +49,56 @@ export default function Hero() {
     canvas.height = imageElement.naturalHeight || imageElement.height
     ctx.drawImage(imageElement, 0, 0)
     
-    // Sample pixels from corners (where background usually is)
+    // Sample pixels from corners and edges (where white background usually is)
     const width = canvas.width
     const height = canvas.height
-    const sampleSize = Math.min(50, Math.floor(width * 0.1), Math.floor(height * 0.1))
-    const corners = [
-      { x: 0, y: 0 }, // top-left
-      { x: width - sampleSize, y: 0 }, // top-right
-      { x: 0, y: height - sampleSize }, // bottom-left
-      { x: width - sampleSize, y: height - sampleSize }, // bottom-right
+    const sampleSize = Math.min(100, Math.floor(width * 0.15), Math.floor(height * 0.15))
+    
+    // Sample from corners and edges
+    const sampleAreas = [
+      { x: 0, y: 0, w: sampleSize, h: sampleSize }, // top-left corner
+      { x: width - sampleSize, y: 0, w: sampleSize, h: sampleSize }, // top-right corner
+      { x: 0, y: height - sampleSize, w: sampleSize, h: sampleSize }, // bottom-left corner
+      { x: width - sampleSize, y: height - sampleSize, w: sampleSize, h: sampleSize }, // bottom-right corner
+      { x: Math.floor(width / 2) - Math.floor(sampleSize / 2), y: 0, w: sampleSize, h: sampleSize }, // top center
+      { x: Math.floor(width / 2) - Math.floor(sampleSize / 2), y: height - sampleSize, w: sampleSize, h: sampleSize }, // bottom center
     ]
     
     let totalR = 0, totalG = 0, totalB = 0, pixelCount = 0
     
-    corners.forEach(corner => {
-      for (let x = corner.x; x < corner.x + sampleSize; x += 5) {
-        for (let y = corner.y; y < corner.y + sampleSize; y += 5) {
+    sampleAreas.forEach(area => {
+      for (let x = area.x; x < area.x + area.w; x += 3) {
+        for (let y = area.y; y < area.y + area.h; y += 3) {
           const pixel = ctx.getImageData(x, y, 1, 1).data
-          totalR += pixel[0]
-          totalG += pixel[1]
-          totalB += pixel[2]
-          pixelCount++
+          const r = pixel[0]
+          const g = pixel[1]
+          const b = pixel[2]
+          
+          // Only consider light/white pixels (RGB values > 180 indicate light background)
+          // Also check that colors are relatively balanced (not too much difference between R, G, B)
+          const isLight = r > 180 && g > 180 && b > 180
+          const isBalanced = Math.abs(r - g) < 30 && Math.abs(g - b) < 30 && Math.abs(r - b) < 30
+          
+          if (isLight && isBalanced) {
+            totalR += r
+            totalG += g
+            totalB += b
+            pixelCount++
+          }
         }
       }
     })
     
-    if (pixelCount > 0) {
+    // If we found enough light pixels, use their average
+    // Otherwise, fall back to a default light gray
+    if (pixelCount > 10) {
       const avgR = Math.round(totalR / pixelCount)
       const avgG = Math.round(totalG / pixelCount)
       const avgB = Math.round(totalB / pixelCount)
       setBackgroundColor(`rgb(${avgR}, ${avgG}, ${avgB})`)
+    } else {
+      // Fallback to light gray if not enough light pixels found
+      setBackgroundColor('rgb(240, 240, 240)')
     }
   }
 
